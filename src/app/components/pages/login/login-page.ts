@@ -6,8 +6,8 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'login-page',
-  templateUrl: './login.html',
-  styleUrl: './login.scss',
+  templateUrl: './login-page.html',
+  styleUrl: './login-page.scss',
   imports: [FormsModule],
 })
 export class LoginPage {

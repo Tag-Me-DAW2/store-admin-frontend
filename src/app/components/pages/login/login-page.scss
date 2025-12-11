@@ -1,0 +1,161 @@
+:host {
+  // Login Variables
+  --login-width: var(--tgm-sys-percentage-100);
+  --login-font-family: var(--tgm-sys-font-family-primary);
+
+  // Login logo container variables
+  --login-logo-container-height: var(--tgm-sys-percentage-100);
+  --login-logo-container-bg-color: var(--tgm-sys-color-primary);
+
+  // Login background image variables
+  --login-background-image-size: var(--tgm-sys-width-image-large);
+
+  // Login logo variables
+  --login-logo-width: var(--tgm-sys-width-image-content);
+
+  // Login form container variables
+  --login-form-container-height: var(--tgm-sys-percentage-100);
+  --login-form-container-padding: var(--tgm-sys-padding-large) var(--tgm-sys-padding-xxlarge);
+  --login-form-container-gap: var(--tgm-sys-gap-xlarge);
+  --login-form-container-background-color: var(--tgm-sys-color-background);
+
+  // Login from title variables
+  --login-form-title-font-size: var(--tgm-sys-font-size-giant);
+  --login-form-title-font-weight: var(--tgm-sys-font-weight-extra-bold);
+  --login-form-title-color: var(--tgm-sys-color-secondary);
+
+  // Login inputs container variables
+  --login-inputs-container-gap: var(--tgm-sys-gap-medium);
+
+  // Login form input wrapper variables
+  --login-form-input-wrapper-width: var(--tgm-sys-width-image-large);
+  --login-form-input-wrapper-border-radius: var(--tgm-sys-border-radius-xlarge);
+  --login-form-input-wrapper-border-color: var(--tgm-sys-color-secondary);
+  --login-form-input-wrapper-font-size: var(--tgm-sys-font-size-large);
+  --login-form-input-wrapper-padding: var(--tgm-sys-padding-small) var(--tgm-sys-padding-xlarge);
+  --login-form-input-wrapper-gap: var(--tgm-sys-gap-medium);
+
+  // Login form user icon variables
+  --login-form-user-icon-height: var(--tgm-sys-height-small);
+  --login-form-user-icon-width: var(--tgm-sys-width-small);
+
+  // Login form input variables
+  --login-form-input-width: var(--tgm-sys-percentage-75);
+
+  // Login form button variables
+  --login-form-button-margin-top: var(--tgm-sys-margin-xlarge);
+  --login-form-button-width: var(--tgm-sys-width-image-large);
+  --login-form-button-font-size: var(--tgm-sys-font-size-large);
+  --login-form-button-font-weight: var(--tgm-sys-font-weight-medium);
+  --login-form-button-border-radius: var(--tgm-sys-border-radius-xlarge);
+  --login-form-button-padding: var(--tgm-sys-padding-small) var(--tgm-sys-padding-xlarge);
+  --login-form-button-hover-color: var(--tgm-sys-color-primary);
+  --login-form-button-hover-background-color: var(--tgm-sys-color-secondary);
+}
+
+
+.login {
+  display: flex;
+  align-content: center;
+  height: 100vh;
+  width: var(--login-width);
+  font-family: var(--login-font-family);
+
+  &__logo-container {
+    position: relative;
+    display: flex;
+    flex: 4;
+    align-content: center;
+    justify-content: center;
+    height: var(--login-logo-container-height);
+    background-color: var(--login-logo-container-bg-color);
+  }
+
+  &__background-image {
+    position: absolute;
+    width: var(--login-background-image-size);
+    height: auto;
+
+    &--top-left {
+      top: 0;
+      left: 0;
+    }
+
+    &--bottom-right {
+      bottom: 0;
+      right: 0;
+    }
+  }
+
+  &__logo {
+    width: var(--login-logo-width);
+  }
+
+  &__form-container {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    flex-direction: column;
+    height: var(--login-form-container-height);
+    padding: var(--login-form-container-padding);
+    gap: var(--login-form-container-gap);
+    background-color: var(--login-form-container-background-color);
+  }
+
+  &__form-title {
+    font-size: var(--login-form-title-font-size);
+    font-weight: var(--login-form-title-font-weight);
+    color: var(--login-form-title-color);
+  }
+
+  &__inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--login-inputs-container-gap);
+  }
+
+  &__form-input-wrapper {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    width: var(--login-form-input-wrapper-width);
+    font-size: var(--login-form-input-wrapper-font-size);
+    text-align: center;
+    border-radius: var(--login-form-input-wrapper-border-radius);
+    border: 1px solid var(--login-form-input-wrapper-border-color);
+    padding: var(--login-form-input-wrapper-padding);
+    gap: var(--login-form-input-wrapper-gap);
+  }
+
+  &__form-user-icon {
+    height: var(--login-form-user-icon-height);
+    width: var(--login-form-user-icon-width);
+  }
+
+  &__form-input {
+    border: none;
+    outline: none;
+    width: var(--login-form-input-width);
+
+  }
+
+  &__form-button {
+    margin-top: var(--login-form-button-margin-top);
+    width: var(--login-form-button-width);
+    font-size: var(--login-form-button-font-size);
+    font-weight: var(--login-form-button-font-weight);
+    text-align: center;
+    background-color: var(--tgm-sys-color-primary);
+    color: var(--tgm-sys-color-on-primary);
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: var(--login-form-button-border-radius);
+    padding: var(--login-form-button-padding);
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: var(--login-form-button-hover-color);
+      background-color: var(--login-form-button-hover-background-color);
+    }
+  }
+}
