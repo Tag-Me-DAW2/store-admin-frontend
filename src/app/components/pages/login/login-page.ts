@@ -21,7 +21,7 @@ export class LoginPage {
     this.authService.login(this.email, this.password).subscribe({
       next: (token: String) => {
         console.log('Login successful, token:', token);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/header']);
       },
       error: (error) => {
         console.error('Login failed', error);

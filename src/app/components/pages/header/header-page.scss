@@ -1,0 +1,83 @@
+:host {  
+    // Header Variables
+  --header-width: var(--tgm-sys-percentage-100);
+  --header-bg-color: var(--tgm-sys-color-secondary);
+  --header-height: var(--tgm-sys-height-header);
+  --header-font-family: var(--tgm-sys-font-family-primary);
+  --header-color: var(--tgm-sys-color-background);
+  --header-gap: var(--tgm-sys-gap-header);
+
+    // Header Logo Variables
+    --header-logo-width: var(--tgm-sys-width-image-small);
+    --header-logo-margin-left: var(--tgm-sys-margin-xxxlarge);
+
+    // Header Links Variables
+    --header-links-gap: var(--tgm-sys-gap-xxlarge);
+
+    // Header Link Variables
+    --header-link-font-size: var(--tgm-sys-font-size-xxlarge);
+    --header-font-weight: var(--tgm-sys-font-weight-semi-bold);
+    --header-link-hover-color: var(--tgm-sys-color-primary);
+
+    // Header Link Hover After Variables
+    --header-link-hover-underline-height: 3px;
+    --header-link-hover-underline-width: var(--tgm-sys-percentage-75);
+
+}
+
+.header {
+    width: var(--header-width);
+    background-color: var(--header-bg-color);
+    height: var(--header-height);
+    display: flex;
+    font-family: var(--header-font-family);
+    color: var(--header-color);
+    align-items: center;
+    gap: var(--header-gap);
+
+    &__logo {
+        width: var(--header-logo-width);
+        margin-left: var(--header-logo-margin-left);
+    }
+
+    &__links {
+        display: flex;
+        gap: var(--header-links-gap);
+        align-items: center;
+    }
+
+    &__link {
+        font-size: var(--header-link-font-size);
+        font-weight: var(--header-font-weight);
+        text-decoration: none;
+        color: var(--header-color);
+        transition: all 0.2s ease-in-out;
+        position: relative;
+
+        &:hover {
+            color: var(--header-link-hover-color);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            height: var(--header-link-hover-underline-height);                
+            width: 0;                   
+            background: currentColor;   
+            transform: translateX(-50%); 
+            transition: width 0.3s ease-in-out;
+            }
+
+            
+            &:hover::after {
+                width: var(--header-link-hover-underline-width);
+            }
+        }
+
+}
+
+// Logo -> Margin: 150px, Width: 150px, Usar el gold
+// Links -> Gap: 70px <- Desplegable hacia derecha
+// Poner imagen user <- Desplegable hacia izquierda

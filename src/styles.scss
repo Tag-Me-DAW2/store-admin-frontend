@@ -1,1 +1,6 @@
 @use "./app/scss/main" as *;
+
+body{
+    background-color: var(--tgm-sys-color-background);
+    max-height: 100vh;
+}
