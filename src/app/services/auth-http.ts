@@ -9,20 +9,17 @@ import { LoginRequest } from '../models/request/login-request';
 export class AuthHttp {
   apiUrl = 'http://localhost:8080/auth';
 
+  header = new HttpHeaders({
+    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+  });
+
   HttpClient = inject(HttpClient);
 
-  login(email: string, password: string): Observable<String> {
-    let loginRequest: LoginRequest = { email, password };
-    console.log('Sending login request:', loginRequest);
-
+  login(loginRequest: LoginRequest): Observable<String> {
     return this.HttpClient.post<String>(`${this.apiUrl}/login`, loginRequest);
   }
 
   logout(): Observable<void> {
-    let header = new HttpHeaders({
-      Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-    });
-
-    return this.HttpClient.post<void>(`${this.apiUrl}/logout`, { headers: header });
+    return this.HttpClient.post<void>(`${this.apiUrl}/logout`, { headers: this.header });
   }
 }
