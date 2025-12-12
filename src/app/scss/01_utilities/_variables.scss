@@ -53,7 +53,8 @@ $fixed-heights: (
   "tgm-sys-height-small": 30px,
   "tgm-sys-height-medium": 60px,
   "tgm-sys-height-header": 100px,
-  "tgm-sys-height-footer": 80px
+  "tgm-sys-height-footer": 80px,
+  "tgm-sys-height-viewport": 100vh
 );
 // Fixed widths
 $fixed-widths: (
@@ -71,6 +72,7 @@ $percentages: (
   "tgm-sys-percentage-25": 25%,
   "tgm-sys-percentage-50": 50%,
   "tgm-sys-percentage-75": 75%,
+  "tgm-sys-percentage-85": 85%,
   "tgm-sys-percentage-100": 100%
 );
 // Gaps

@@ -1,7 +1,9 @@
 :host {
   // Login Variables
-  --login-width: var(--tgm-sys-percentage-100);
+  --login-height: var(--tgm-sys-percentage-85);
+  --login-width: var(--tgm-sys-percentage-85);
   --login-font-family: var(--tgm-sys-font-family-primary);
+  --login-border-radius: var(--tgm-sys-border-radius-xlarge);
 
   // Login logo container variables
   --login-logo-container-height: var(--tgm-sys-percentage-100);
@@ -51,15 +53,22 @@
   --login-form-button-padding: var(--tgm-sys-padding-small) var(--tgm-sys-padding-xlarge);
   --login-form-button-hover-color: var(--tgm-sys-color-primary);
   --login-form-button-hover-background-color: var(--tgm-sys-color-secondary);
+
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#272838, #897888);
 }
 
 
 .login {
   display: flex;
-  align-content: center;
-  height: 100vh;
+  height: var(--login-height);
   width: var(--login-width);
   font-family: var(--login-font-family);
+  border-radius: var(--login-border-radius);
+  overflow: hidden;
 
   &__logo-container {
     position: relative;
@@ -78,7 +87,7 @@
 
     &--top-left {
       top: 0;
-      left: 0;
+      left: -2px;
     }
 
     &--bottom-right {
