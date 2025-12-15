@@ -1,6 +1,6 @@
 <div class="header" [class.header--collapsed]="isCollapsed">
   <div class="header__menu-container">
-    <img class="header__app-icon" alt="App Icon" src="/assets/logo-brigth_snow.svg"/>
+    <img class="header__app-icon" alt="App Icon" src="/assets/logo-brigth_snow.svg" />
     <div class="header__menu-icon" alt="menu-icon" (click)="toggleHeader()">
       <i class='bx  bx-menu'></i>
     </div>
@@ -16,18 +16,16 @@
     <div class="header__nav-link">
       <div class="header__nav-link-wrapper" (click)="toggleMenu()">
         <p class="header__nav-link-name">Tables</p>
-        <i
-          class="bx bxs-caret-up" [ngClass]="{'bx-rotate-180': isOpen, 'bx-rotate-270': !isOpen}"
-        ></i>
+        <i class="bx" [ngClass]="isOpen ? 'bxs-caret-down' : 'bxs-caret-left'"></i>
       </div>
-        <ul class="header__submenu-list" [ngClass]="{'header__submenu-list--open': isOpen}">
-          <li class="header__submenu-item">
-            <a routerLink="/products">Products</a>
-          </li>
-          <li class="header__submenu-item">
-            <a routerLink="/categories">Categories</a>
-          </li>
-        </ul>
+      <ul class="header__submenu-list" [ngClass]="{'header__submenu-list--open': isOpen}">
+        <li class="header__submenu-item">
+          <a routerLink="/products">Products</a>
+        </li>
+        <li class="header__submenu-item">
+          <a routerLink="/categories">Categories</a>
+        </li>
+      </ul>
     </div>
   </nav>
 </div>
