@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
 import { inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'login-page',
@@ -24,8 +25,11 @@ export class LoginPage {
         this.router.navigate(['/dashboard']);
       },
       error: (error) => {
-        console.error('Login failed', error);
-        alert('Login failed. Please check your credentials and try again.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Credenciales inválidas',
+          text: 'Por favor, verifica tu correo electrónico y contraseña e intenta nuevamente.',
+        })
       },
     });
   }

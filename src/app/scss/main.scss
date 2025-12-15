@@ -1,3 +1,15 @@
 @forward "./03_global/_index";
 @forward "./02_base/_index";
 @forward "./04_components/_index";
+
+.swal2-popup {
+  font-family: var(--tgm-sys-font-family-primary);
+}
+
+.swal2-title {
+  font-weight: var(--tgm-sys-font-weight-bold);
+}
+
+.swal2-html-container {
+  font-weight: var(--tgm-sys-font-weight-regular);
+}

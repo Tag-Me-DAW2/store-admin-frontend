@@ -9,10 +9,6 @@ import { LoginRequest } from '../models/request/login-request';
 export class AuthHttp {
   apiUrl = 'http://localhost:8080/auth';
 
-  header = new HttpHeaders({
-    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
-  });
-
   HttpClient = inject(HttpClient);
 
   login(loginRequest: LoginRequest): Observable<String> {
@@ -20,6 +16,6 @@ export class AuthHttp {
   }
 
   logout(): Observable<void> {
-    return this.HttpClient.post<void>(`${this.apiUrl}/logout`, { headers: this.header });
+    return this.HttpClient.post<void>(`${this.apiUrl}/logout`, {});
   }
 }
