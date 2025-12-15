@@ -30,6 +30,7 @@ $font-weights: (
   "tgm-sys-font-weight-light": 300,
   "tgm-sys-font-weight-regular": 400,
   "tgm-sys-font-weight-medium": 500,
+  "tgm-sys-font-weight-semi-bold": 600,
   "tgm-sys-font-weight-bold": 700,
   "tgm-sys-font-weight-extra-bold": 800,
   "tgm-sys-font-weight-black": 900
@@ -81,7 +82,10 @@ $gaps: (
   "tgm-sys-gap-medium": 20px,
   "tgm-sys-gap-large": 30px,
   "tgm-sys-gap-xlarge": 40px,
-  "tgm-sys-gap-xxlarge": 50px
+  "tgm-sys-gap-xxlarge": 50px,
+  "tgm-sys-gap-xxxlarge": 60px,
+  "tgm-sys-gap-giant": 80px,
+  "tgm-sys-gap-header": 150px
 );
 // paddings
 $paddings: (
@@ -96,5 +100,7 @@ $margins: (
   "tgm-sys-margin-small": 10px,
   "tgm-sys-margin-medium": 20px,
   "tgm-sys-margin-large": 30px,
-  "tgm-sys-margin-xlarge": 40px
+  "tgm-sys-margin-xlarge": 40px,
+  "tgm-sys-margin-xxlarge": 50px,
+  "tgm-sys-margin-xxxlarge": 60px
 );

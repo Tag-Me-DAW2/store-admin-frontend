@@ -1,0 +1,192 @@
+:host {
+  // Header Variables
+  --header-height: var(--tgm-sys-percentage-100);
+  --header-width: var(--tgm-sys-width-sidebar);
+  --header-bg-color: var(--tgm-sys-color-secondary);
+  --header-font-family: var(--tgm-sys-font-family-primary);
+  --header-color: var(--tgm-sys-color-background);
+  --header-gap: var(--tgm-sys-gap-header);
+
+  // Header App Icon Variables
+  --header-app-icon-width: var(--tgm-sys-width-image-small);
+
+  // Header collapsed Variables
+  --header-collapsed-width: var(--tgm-sys-width-medium);
+
+  // Header Logo Variables
+  --header-logo-width: var(--tgm-sys-width-image-small);
+  --header-logo-margin-left: var(--tgm-sys-margin-xxxlarge);
+
+  // Header Links Variables
+  --header-links-gap: var(--tgm-sys-gap-medium);
+
+  // Header Link Variables
+  --header-link-font-size: var(--tgm-sys-font-size-xxlarge);
+  --header-font-weight: var(--tgm-sys-font-weight-semi-bold);
+  --header-link-hover-color: var(--tgm-sys-color-primary);
+
+  // Header Link Hover After Variables
+  --header-link-hover-underline-height: 3px;
+  --header-link-hover-underline-width: var(--tgm-sys-percentage-75);
+
+}
+
+.header {
+  width: var(--header-width);
+  background-color: var(--header-bg-color);
+  height: var(--header-height);
+  display: flex;
+  flex-direction: column;
+  color: var(--header-color);
+  align-items: center;
+  justify-content: flex-start;
+  font-family: var(--header-font-family);
+  transition: all 0.3s ease-out;
+  gap: 15px;
+
+  &--collapsed {
+    width: var(--header-collapsed-width);
+
+    .header__container {
+      justify-content: center;
+    }
+
+    .header__container,
+    .header__nav-links-container,
+    .header__app-icon{
+      display: none;
+    }
+  }
+
+  &__menu-container {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding: 15px 15px 0 15px;
+  }
+
+  &__app-icon {
+    width: var(--header-app-icon-width);
+  }
+
+  &__menu-icon {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+    width: fit-content;
+    font-size: 35px;
+    color: #F9F8F8;
+    cursor: pointer;
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--tgm-sys-gap-medium);
+    padding: 0 15px 0 15px;
+  }
+
+  &__user-logo {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    border: 1px solid var(--tgm-sys-color-white);
+    border-radius: 50%;
+  }
+
+  &__user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  &__user-name {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &__user-logout {
+    font-weight: 700;
+    color: #FF5733;
+  }
+
+  &__nav-links-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--header-links-gap);
+    align-items: flex-start;
+  }
+
+  &__nav-link {
+    width: 100%;
+    font-size: var(--header-link-font-size);
+    font-weight: var(--header-font-weight);
+    text-decoration: none;
+    color: var(--header-color);
+    transition: all 0.2s ease-in-out;
+    position: relative;
+  }
+
+  &__nav-link-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    padding: 0 15px 0 15px;
+
+    &:hover {
+      color: var(--header-link-hover-color);
+      background-color: #1c1d26;
+    }
+
+    i {
+      color: #F9F8F8;
+      height: 30px;
+      width: 30px;
+    }
+  }
+
+
+  &__nav-link-name {
+    font-size: 25px;
+  }
+
+  &__submenu-list {
+    height: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    background-color: #1c1d26;
+    gap: 5px;
+    padding: 0 35px;
+    transition: all 0.3s;
+    overflow: hidden;
+
+    &--open {
+      height: auto;
+      padding: 15px 35px;
+    }
+  }
+
+  &__submenu-item {
+    color: #F9F8F8;
+
+    &:hover {
+      color: #F3DE8A;
+    }
+  }
+}
+
+// Logo -> Margin: 150px, Width: 150px, Usar el gold
+// Links -> Gap: 70px <- Desplegable hacia derecha
+// Poner imagen user <- Desplegable hacia izquierda
