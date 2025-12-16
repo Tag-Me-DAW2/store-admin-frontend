@@ -1,28 +1,28 @@
 :host {
   // Header Variables
   --header-height: var(--tgm-sys-percentage-100);
-  --header-width: var(--tgm-sys-width-sidebar);
+  --header-width: var(--tgm-sys-width-250);
   --header-bg-color: var(--tgm-sys-color-secondary);
   --header-font-family: var(--tgm-sys-font-family-primary);
   --header-color: var(--tgm-sys-color-background);
   --header-gap: var(--tgm-sys-gap-header);
 
   // Header App Icon Variables
-  --header-app-icon-width: var(--tgm-sys-width-image-small);
+  --header-app-icon-width: var(--tgm-sys-width-100);
 
   // Header collapsed Variables
-  --header-collapsed-width: var(--tgm-sys-width-medium);
+  --header-collapsed-width: var(--tgm-sys-width-60);
 
   // Header Logo Variables
-  --header-logo-width: var(--tgm-sys-width-image-small);
-  --header-logo-margin-left: var(--tgm-sys-margin-xxxlarge);
+  --header-logo-width: var(--tgm-sys-width-100);
+  --header-logo-margin-left: var(--tgm-sys-margin-60);
 
   // Header Links Variables
-  --header-links-gap: var(--tgm-sys-gap-medium);
+  --header-links-gap: var(--tgm-sys-gap-20);
 
   // Header Link Variables
-  --header-link-font-size: var(--tgm-sys-font-size-xxlarge);
-  --header-font-weight: var(--tgm-sys-font-weight-semi-bold);
+  --header-link-font-size: var(--tgm-sys-font-size-32);
+  --header-font-weight: var(--tgm-sys-font-weight-600);
   --header-link-hover-color: var(--tgm-sys-color-primary);
 
   // Header Link Hover After Variables
@@ -86,7 +86,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: var(--tgm-sys-gap-medium);
+    gap: var(--tgm-sys-gap-20);
     padding: 0 15px 0 15px;
   }
 

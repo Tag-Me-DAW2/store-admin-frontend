@@ -10,47 +10,47 @@
   --login-logo-container-bg-color: var(--tgm-sys-color-primary);
 
   // Login background image variables
-  --login-background-image-size: var(--tgm-sys-width-image-large);
+  --login-background-image-size: var(--tgm-sys-width-300);
 
   // Login logo variables
-  --login-logo-width: var(--tgm-sys-width-content);
+  --login-logo-width: var(--tgm-sys-width-800);
 
   // Login form container variables
   --login-form-container-height: var(--tgm-sys-percentage-100);
-  --login-form-container-padding: var(--tgm-sys-padding-large) var(--tgm-sys-padding-xxlarge);
-  --login-form-container-gap: var(--tgm-sys-gap-xlarge);
+  --login-form-container-padding: var(--tgm-sys-padding-30) var(--tgm-sys-padding-50);
+  --login-form-container-gap: var(--tgm-sys-gap-40);
   --login-form-container-background-color: var(--tgm-sys-color-background);
 
   // Login from title variables
-  --login-form-title-font-size: var(--tgm-sys-font-size-giant);
-  --login-form-title-font-weight: var(--tgm-sys-font-weight-extra-bold);
+  --login-form-title-font-size: var(--tgm-sys-font-size-48);
+  --login-form-title-font-weight: var(--tgm-sys-font-weight-800);
   --login-form-title-color: var(--tgm-sys-color-secondary);
 
   // Login inputs container variables
-  --login-inputs-container-gap: var(--tgm-sys-gap-medium);
+  --login-inputs-container-gap: var(--tgm-sys-gap-20);
 
   // Login form input wrapper variables
-  --login-form-input-wrapper-width: var(--tgm-sys-width-image-large);
+  --login-form-input-wrapper-width: var(--tgm-sys-width-300);
   --login-form-input-wrapper-border-radius: var(--tgm-sys-border-radius-xlarge);
   --login-form-input-wrapper-border-color: var(--tgm-sys-color-secondary);
-  --login-form-input-wrapper-font-size: var(--tgm-sys-font-size-large);
-  --login-form-input-wrapper-padding: var(--tgm-sys-padding-small) var(--tgm-sys-padding-xlarge);
-  --login-form-input-wrapper-gap: var(--tgm-sys-gap-medium);
+  --login-form-input-wrapper-font-size: var(--tgm-sys-font-size-20);
+  --login-form-input-wrapper-padding: var(--tgm-sys-padding-14) var(--tgm-sys-padding-40);
+  --login-form-input-wrapper-gap: var(--tgm-sys-gap-20);
 
   // Login form user icon variables
-  --login-form-user-icon-height: var(--tgm-sys-height-small);
-  --login-form-user-icon-width: var(--tgm-sys-width-small);
+  --login-form-user-icon-height: var(--tgm-sys-height-30);
+  --login-form-user-icon-width: var(--tgm-sys-width-30);
 
   // Login form input variables
   --login-form-input-width: var(--tgm-sys-percentage-75);
 
   // Login form button variables
-  --login-form-button-margin-top: var(--tgm-sys-margin-xlarge);
-  --login-form-button-width: var(--tgm-sys-width-image-large);
-  --login-form-button-font-size: var(--tgm-sys-font-size-large);
-  --login-form-button-font-weight: var(--tgm-sys-font-weight-medium);
+  --login-form-button-margin-top: var(--tgm-sys-margin-40);
+  --login-form-button-width: var(--tgm-sys-width-300);
+  --login-form-button-font-size: var(--tgm-sys-font-size-20);
+  --login-form-button-font-weight: var(--tgm-sys-font-weight-500);
   --login-form-button-border-radius: var(--tgm-sys-border-radius-xlarge);
-  --login-form-button-padding: var(--tgm-sys-padding-small) var(--tgm-sys-padding-xlarge);
+  --login-form-button-padding: var(--tgm-sys-padding-14) var(--tgm-sys-padding-40);
   --login-form-button-hover-color: var(--tgm-sys-color-primary);
   --login-form-button-hover-background-color: var(--tgm-sys-color-secondary);
 
@@ -173,15 +173,15 @@
   // Variables Override
   :host {
     --login-logo-container-height: var(--tgm-sys-percentage-30);
-    --login-background-image-size: var(--tgm-sys-width-image-content);
-    --login-form-container-gap: var(--tgm-sys-gap-xxlarge);
-    --login-form-container-padding: var(--tgm-sys-padding-xxlarge) var(--tgm-sys-padding-xlarge);
+    --login-background-image-size: var(--tgm-sys-width-250);
+    --login-form-container-gap: var(--tgm-sys-gap-50);
+    --login-form-container-padding: var(--tgm-sys-padding-50) var(--tgm-sys-padding-40);
 
-    --login-inputs-container-gap: var(--tgm-sys-gap-xxlarge);
-    --login-form-input-wrapper-width: var(--tgm-sys-width-image-500);
+    --login-inputs-container-gap: var(--tgm-sys-gap-50);
+    --login-form-input-wrapper-width: var(--tgm-sys-width-500);
     
-    --login-form-button-width: var(--tgm-sys-width-image-500);
-    --login-form-button-margin-top: var(--tgm-sys-margin-xxlarge);
+    --login-form-button-width: var(--tgm-sys-width-500);
+    --login-form-button-margin-top: var(--tgm-sys-margin-50);
   }
 
    // Meter gap de 100 px almenos y letras sign in mas grandes
