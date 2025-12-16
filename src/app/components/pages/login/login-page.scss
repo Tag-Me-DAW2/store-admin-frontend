@@ -13,7 +13,7 @@
   --login-background-image-size: var(--tgm-sys-width-image-large);
 
   // Login logo variables
-  --login-logo-width: var(--tgm-sys-width-image-content);
+  --login-logo-width: var(--tgm-sys-width-content);
 
   // Login form container variables
   --login-form-container-height: var(--tgm-sys-percentage-100);
@@ -166,5 +166,78 @@
       color: var(--login-form-button-hover-color);
       background-color: var(--login-form-button-hover-background-color);
     }
+  }
+}
+
+@media (max-width: 1023px) {
+  // Variables Override
+  :host {
+    --login-logo-container-height: var(--tgm-sys-percentage-30);
+    --login-background-image-size: var(--tgm-sys-width-image-content);
+    --login-form-container-gap: var(--tgm-sys-gap-xxlarge);
+    --login-form-container-padding: var(--tgm-sys-padding-xxlarge) var(--tgm-sys-padding-xlarge);
+
+    --login-inputs-container-gap: var(--tgm-sys-gap-xxlarge);
+    --login-form-input-wrapper-width: var(--tgm-sys-width-image-500);
+    
+    --login-form-button-width: var(--tgm-sys-width-image-500);
+    --login-form-button-margin-top: var(--tgm-sys-margin-xxlarge);
+  }
+
+   // Meter gap de 100 px almenos y letras sign in mas grandes
+  .login {
+    flex-direction: column;
+
+
+    &__logo-container {
+      flex: 1;
+
+    }
+
+    &__form-container {
+      justify-content: flex-start;
+      flex: 4;
+      align-items: center;
+    }
+
+    &__form-input-wrapper {
+      justify-content: normal;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  // Variables Override
+  :host {
+    --login-logo-container-height: var(--tgm-sys-percentage-10);
+    --login-background-image-size: var(--tgm-sys-percentage-30);
+
+    --login-form-container-width: var(--tgm-sys-percentage-100);
+    --login-form-container-gap: var(--tgm-sys-gap-100);
+    --login-form-width: var(--tgm-sys-percentage-100);
+
+    --login-form-input-wrapper-width: var(--tgm-sys-percentage-100);
+    --login-form-button-width: var(--tgm-sys-percentage-100);
+    
+  }
+
+  .login {
+    &__form-container {
+      width: var(--login-form-container-width);
+    }
+
+    &__form {
+      width: var(--login-form-width);
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  // Variables Override
+  :host {
+    --login-width: var(--tgm-sys-percentage-100);
+    --login-height: var(--tgm-sys-percentage-100);
+    --login-border-radius: 0;
+
   }
 }

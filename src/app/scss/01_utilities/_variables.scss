@@ -62,18 +62,25 @@ $fixed-widths: (
   "tgm-sys-width-small": 30px,
   "tgm-sys-width-medium": 60px,
   "tgm-sys-width-image-small": 100px,
+  "tgm-sys-width-150": 150px,
   "tgm-sys-width-image-medium": 200px,
+  "tgm-sys-width-image-content": 250px,
   "tgm-sys-width-image-large": 300px,
   "tgm-sys-width-image-xlarge": 400px,
+  "tgm-sys-width-image-500": 500px,
   "tgm-sys-width-sidebar": 250px,
   "tgm-sys-width-content": 800px
 );
 // Percentages
 $percentages: (
+  "tgm-sys-percentage-10": 10%,
+  "tgm-sys-percentage-20": 20%,
   "tgm-sys-percentage-25": 25%,
+  "tgm-sys-percentage-30": 30%,
   "tgm-sys-percentage-50": 50%,
   "tgm-sys-percentage-75": 75%,
   "tgm-sys-percentage-85": 85%,
+  "tgm-sys-percentage-90": 90%,
   "tgm-sys-percentage-100": 100%
 );
 // Gaps
@@ -83,9 +90,9 @@ $gaps: (
   "tgm-sys-gap-large": 30px,
   "tgm-sys-gap-xlarge": 40px,
   "tgm-sys-gap-xxlarge": 50px,
-  "tgm-sys-gap-xxxlarge": 60px,
-  "tgm-sys-gap-giant": 80px,
-  "tgm-sys-gap-header": 150px
+  "tgm-sys-gap-100": 100px,
+  "tgm-sys-gap-115": 115px,
+  "tgm-sys-gap-125": 125px
 );
 // paddings
 $paddings: (

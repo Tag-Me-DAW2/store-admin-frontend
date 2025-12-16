@@ -1,6 +1,5 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { Title } from "@angular/platform-browser";
 import { Router } from "@angular/router";
 import { catchError, Observable, throwError } from "rxjs";
 import Swal from "sweetalert2";

@@ -4,6 +4,7 @@
 
 .swal2-popup {
   font-family: var(--tgm-sys-font-family-primary);
+  background-color: var(--tgm-sys-color-background);
 }
 
 .swal2-title {
@@ -12,4 +13,14 @@
 
 .swal2-html-container {
   font-weight: var(--tgm-sys-font-weight-regular);
+}
+
+.swal2-confirm {
+  background-color: var(--tgm-sys-color-primary);
+  color: var(--tgm-sys-color-secondary);
+}
+
+.swal2-confirm:hover {
+  background-color: var(--tgm-sys-color-secondary);
+  color: var(--tgm-sys-color-primary);
 }
