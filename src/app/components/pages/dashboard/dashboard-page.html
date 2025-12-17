@@ -1,4 +1,7 @@
 <div class="dashboard">
-  <header-component/>
-  <router-outlet/>
+  <header-component class="dashboard__header dashboard__header--horizontal" headerType="horizontal"></header-component>
+  <header-component class="dashboard__header dashboard__header--vertical" headerType="vertical"></header-component>
+  <div class="dashboard__content">
+    <router-outlet></router-outlet>
+  </div>
 </div>

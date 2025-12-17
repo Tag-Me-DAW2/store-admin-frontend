@@ -1,0 +1,18 @@
+<div class="user-menu" [class.user-menu--open]="menuOpen">
+    <div class="user-menu__info">
+        <div class="user-menu__profile">
+            <img src="assets/user-icon.png" alt="User Icon" class="user-menu__profile--image" />
+            <div class="user-menu__profile--names">
+                <p class="user-menu__profile--username">{{ user.username }}</p>
+                <p class="user-menu__profile--firstname">{{ user.firstName }}</p>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <span class="user-menu__profile--email"><i class="bxr bx-envelope"></i>{{ user.email }}</span>
+    <hr />
+    <div class="user-menu__buttons">
+        <button tgm-button funcion="peligrosa" importance="primaria" size="medium" (click)="logout()">Logout</button>
+        <button tgm-button funcion="normal" importance="primaria" size="medium" (click)="modify()">Modify</button>
+    </div>
+</div>

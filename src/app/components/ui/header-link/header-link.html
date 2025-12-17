@@ -1,0 +1,13 @@
+<div class="header-dropdown">
+    <div class="header-dropdown__toggle" (click)="toggleMenu()" [class.header-dropdown__toggle--active]="isOpen">
+        <p class="header-dropdown__title">{{title}}</p>
+        <i class="bx" [ngClass]="isOpen ? 'bxs-caret-down' : 'bxs-caret-left'"></i>
+    </div>
+    <ul class="header-dropdown__submenu-list" [ngClass]="{'header-dropdown__submenu-list--open': isOpen}">
+        @for (item of items; track $index) {
+        <li class="header-dropdown__submenu-item">
+            <a [routerLink]="item.link">{{item.name}}</a>
+        </li>
+        }
+    </ul>
+</div>

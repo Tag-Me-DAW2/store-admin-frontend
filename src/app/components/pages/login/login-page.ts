@@ -18,18 +18,30 @@ export class LoginPage {
   authService = inject(AuthService);
   router = inject(Router);
 
+  ngOnInit(): void {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('user');
+  }
+
   onLogin(): void {
     this.authService.login(this.email, this.password).subscribe({
-      next: (token: String) => {
+      next: (token: Object) => {
         console.log('Login successful, token:', token);
-        this.router.navigate(['/header']);
+        this.authService.getUser().subscribe({
+          next: () => {
+            this.router.navigate(['/dashboard']);
+          },
+          error: (err) => {
+            console.error('Failed to fetch user after login', err);
+          },
+        });
       },
       error: (error) => {
         Swal.fire({
           icon: 'error',
           title: 'Credenciales inválidas',
           text: 'Por favor, verifica tu correo electrónico y contraseña e intenta nuevamente.',
-        })
+        });
       },
     });
   }

@@ -1,31 +1,30 @@
-<div class="header" [class.header--collapsed]="isCollapsed">
-  <div class="header__menu-container">
-    <img class="header__app-icon" alt="App Icon" src="/assets/logo-brigth_snow.svg" />
-    <div class="header__menu-icon" alt="menu-icon" (click)="toggleHeader()">
-      <i class='bx  bx-menu'></i>
-    </div>
+@switch(headerType) {
+@case('horizontal') {
+<div class="header header--horizontal">
+  <div class="header__app-icon" alt="app-icon">
+    <img src="assets/logo-brigth_snow.svg" alt="Logo" class="header__app-icon--image" />
   </div>
-  <div class="header__container">
-    <img class="header__user-logo" alt="user iamge" src="/assets/user-icon.png" alt="user icon">
-    <div class="header__user-info">
-      <h1 class="header__user-name">User</h1>
-      <p class="header__user-logout">Log Out</p>
+  <div class="header__app-user-icon" (click)="openUserMenu()" alt="user-icon">
+    <img src="assets/user-icon.png" alt="User Icon" class="header__app-user-icon--image" />
+    @if(menuOpen) {
+    <tgm-user-menu [menuOpen]="menuOpen" (editUser)="openEditUser()"></tgm-user-menu>
+    }
+  </div>
+</div>
+}
+@case('vertical') {
+<div class="header header--vertical" [class.header--collapsed]="isCollapsed">
+  <div class="header__menu-container">
+    <div class="header__menu-icon" alt="menu-icon" (click)="toggleHeader()">
+      <i class='bx bx-menu'></i>
     </div>
   </div>
   <nav class="header__nav-links-container">
-    <div class="header__nav-link">
-      <div class="header__nav-link-wrapper" (click)="toggleMenu()">
-        <p class="header__nav-link-name">Tables</p>
-        <i class="bx" [ngClass]="isOpen ? 'bxs-caret-down' : 'bxs-caret-left'"></i>
-      </div>
-      <ul class="header__submenu-list" [ngClass]="{'header__submenu-list--open': isOpen}">
-        <li class="header__submenu-item">
-          <a routerLink="/products">Products</a>
-        </li>
-        <li class="header__submenu-item">
-          <a routerLink="/categories">Categories</a>
-        </li>
-      </ul>
-    </div>
+    <tgm-header-link title="Dashboard" [items]="[
+        { name: 'Categories', link: '/dashboard/categories' },
+        { name: 'Products', link: '/dashboard/products' }
+      ]" [headerToggled]="!isCollapsed"></tgm-header-link>
   </nav>
 </div>
+}
+}

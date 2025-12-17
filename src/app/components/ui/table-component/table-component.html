@@ -1,0 +1,17 @@
+@if (data && columns) {
+<table>
+    <tbody>
+        @for (row of data; track row) {
+        <tr>
+            @for (col of columns; track col) {
+            <td>
+                {{ row[col] }}
+            </td>
+            }
+        </tr>
+        }
+    </tbody>
+</table>
+} @else {
+    <p>No products found</p>
+}

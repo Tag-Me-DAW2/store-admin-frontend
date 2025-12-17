@@ -1,0 +1,76 @@
+:host {
+  // Header Link Variables
+  --dropdown-font-size: var(--tgm-sys-font-size-24);
+  --dropdown-font-weight: var(--tgm-sys-font-weight-600);
+  --dropdown-color: var(--tgm-sys-color-background);
+  --dropdown-bg-color: var(--tgm-sys-color-secondary-dark);
+  --dropdown-width: var(--tgm-sys-percentage-100);
+
+  --dropdown-menu-link-hover-color: var(--tgm-sys-color-primary);
+  --dropdown-menu-link-font-size: var(--tgm-sys-font-size-32);
+
+  --dropdown-submenu-link-font-size: var(--tgm-sys-font-size-24);
+  --dropdown-submenu-gap: var(--tgm-sys-gap-10);
+  --dropdown-submenu-padding: var(--tgm-sys-gap-35);
+  --dropdown-submenu-open-padding-vertical: var(--tgm-sys-gap-15);
+  --dropdown-submenu-open-padding-horizontal: var(--tgm-sys-gap-35);
+}
+
+.header-dropdown {
+  width: var(--dropdown-width);
+  font-size: var(--dropdown-font-size);
+  font-weight: var(--dropdown-font-weight);
+  text-decoration: none;
+  color: var(--dropdown-color);
+  transition: all 0.2s ease-in-out;
+  position: relative;
+
+  &__toggle {
+    width: var(--dropdown-width);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    padding: 0 15px 0 15px;
+
+    &:hover {
+      color: var(--dropdown-menu-link-hover-color);
+    }
+
+    &--active {
+      color: var(--dropdown-menu-link-hover-color);
+      background-color: var(--dropdown-bg-color);
+    }
+  }
+
+  &__title {
+    font-size: var(--dropdown-menu-link-font-size);
+    margin-bottom: 0 !important;
+  }
+
+  &__submenu-list {
+    height: 0;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--dropdown-submenu-link-font-size);
+    background-color: var(--dropdown-bg-color);
+    gap: var(--dropdown-submenu-gap);
+    padding: 0px var(--dropdown-submenu-padding);
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+
+    &--open {
+      height: auto;
+      padding: var(--dropdown-submenu-open-padding-vertical)
+        var(--dropdown-submenu-open-padding-horizontal);
+    }
+  }
+
+  &__submenu-item {
+    color: #f9f8f8;
+
+    &:hover {
+      color: #f3de8a;
+    }
+  }
+}

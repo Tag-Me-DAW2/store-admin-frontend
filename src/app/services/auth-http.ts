@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { LoginRequest } from '../models/request/login-request';
+import { UserResponse } from '../models/response/user-response';
 
 @Injectable({
   providedIn: 'root',
@@ -11,11 +12,15 @@ export class AuthHttp {
 
   HttpClient = inject(HttpClient);
 
-  login(loginRequest: LoginRequest): Observable<String> {
-    return this.HttpClient.post<String>(`${this.apiUrl}/login`, loginRequest);
+  login(loginRequest: LoginRequest): Observable<{ token: string }> {
+    return this.HttpClient.post<{ token: string }>(`${this.apiUrl}/login`, loginRequest);
   }
 
   logout(): Observable<void> {
     return this.HttpClient.post<void>(`${this.apiUrl}/logout`, {});
+  }
+
+  getUser(): Observable<UserResponse> {
+    return this.HttpClient.get<UserResponse>(`${this.apiUrl}`);
   }
 }

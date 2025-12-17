@@ -6,11 +6,12 @@ import {
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
+import { AuthInterceptor } from './services/auth-interceptor';
 
 registerLocaleData(localeEs);
 
@@ -19,8 +20,9 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptorsFromDi()),
     { provide: LOCALE_ID, useValue: 'es-ES' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
 };

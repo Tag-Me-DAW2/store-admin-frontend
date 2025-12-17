@@ -5,13 +5,22 @@
   --header-bg-color: var(--tgm-sys-color-secondary);
   --header-font-family: var(--tgm-sys-font-family-primary);
   --header-color: var(--tgm-sys-color-background);
-  --header-gap: var(--tgm-sys-gap-header);
+  --header-gap: var(--tgm-sys-gap-60);
+
+  // Header Horizontal Variables
+  --header-horizontal-height: var(--tgm-sys-height-100);
+  --header-horizontal-width: var(--tgm-sys-percentage-100);
+
+  // Header Vertical Variables
+  --header-vertical-height: var(--tgm-sys-height-80);
+  --header-vertical-width: var(--tgm-sys-width-250);
+  --header-vertical-bg-color: var(--tgm-sys-color-secondary-dark);
 
   // Header App Icon Variables
   --header-app-icon-width: var(--tgm-sys-width-100);
 
   // Header collapsed Variables
-  --header-collapsed-width: var(--tgm-sys-width-60);
+  --header-collapsed-width: var(--tgm-sys-width-100);
 
   // Header Logo Variables
   --header-logo-width: var(--tgm-sys-width-100);
@@ -29,20 +38,59 @@
   --header-link-hover-underline-height: 3px;
   --header-link-hover-underline-width: var(--tgm-sys-percentage-75);
 
+  --header-user-icon-size: var(--tgm-sys-width-40);
+  --header-user-icon-border-radius: var(--tgm-sys-border-radius-large);
+  --header-user-icon-margin-right: var(--tgm-sys-margin-20);
 }
 
 .header {
-  width: var(--header-width);
-  background-color: var(--header-bg-color);
-  height: var(--header-height);
-  display: flex;
-  flex-direction: column;
-  color: var(--header-color);
-  align-items: center;
-  justify-content: flex-start;
+  height: 100%;
+  gap: 0;
   font-family: var(--header-font-family);
-  transition: all 0.3s ease-out;
-  gap: 15px;
+
+  &--horizontal {
+    grid-area: horizontal;
+    height: var(--header-horizontal-height);
+    width: var(--header-horizontal-width);
+    background-color: var(--header-bg-color);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__app-icon {
+    width: var(--header-app-icon-width);
+
+    & > img:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__app-user-icon {
+    width: var(--header-user-icon-size);
+    height: var(--header-user-icon-size);
+    border-radius: var(--header-user-icon-border-radius);
+    cursor: pointer;
+    object-fit: cover;
+    margin-right: var(--header-user-icon-margin-right);
+    align-content: center;
+  }
+
+  &--vertical {
+    height: 100%;
+    grid-area: vertical;
+    width: 250px;
+    background-color: var(--header-vertical-bg-color);
+    display: flex;
+    flex-direction: column;
+    color: var(--header-color);
+    align-items: center;
+    justify-content: flex-start;
+    transition: all 0.3s ease-out;
+    font-family: var(--header-font-family);
+    gap: var(--header-gap);
+  }
 
   &--collapsed {
     width: var(--header-collapsed-width);
@@ -53,8 +101,13 @@
 
     .header__container,
     .header__nav-links-container,
-    .header__app-icon{
+    .header__app-icon {
       display: none;
+    }
+
+    .header__menu-icon {
+      margin-left: auto;
+      margin-right: auto;
     }
   }
 
@@ -62,12 +115,8 @@
     width: 100%;
     display: flex;
     align-content: center;
-    justify-content: space-between;
+    justify-content: end;
     padding: 15px 15px 0 15px;
-  }
-
-  &__app-icon {
-    width: var(--header-app-icon-width);
   }
 
   &__menu-icon {
@@ -77,8 +126,13 @@
     height: 100%;
     width: fit-content;
     font-size: 35px;
-    color: #F9F8F8;
+    color: #f9f8f8;
     cursor: pointer;
+    margin-left: auto;
+
+    &:hover {
+      color: var(--tgm-sys-color-primary);
+    }
   }
 
   &__container {
@@ -90,103 +144,15 @@
     padding: 0 15px 0 15px;
   }
 
-  &__user-logo {
-    height: 50px;
-    width: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    border: 1px solid var(--tgm-sys-color-white);
-    border-radius: 50%;
-  }
-
-  &__user-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  &__user-name {
-    font-size: 18px;
-    font-weight: 700;
-  }
-
-  &__user-logout {
-    font-weight: 700;
-    color: #FF5733;
-  }
-
   &__nav-links-container {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: var(--header-links-gap);
     align-items: flex-start;
-  }
 
-  &__nav-link {
-    width: 100%;
-    font-size: var(--header-link-font-size);
-    font-weight: var(--header-font-weight);
-    text-decoration: none;
-    color: var(--header-color);
-    transition: all 0.2s ease-in-out;
-    position: relative;
-  }
-
-  &__nav-link-wrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    cursor: pointer;
-    padding: 0 15px 0 15px;
-
-    &:hover {
-      color: var(--header-link-hover-color);
-      background-color: #1c1d26;
-    }
-
-    i {
-      color: #F9F8F8;
-      height: 30px;
-      width: 30px;
-    }
-  }
-
-
-  &__nav-link-name {
-    font-size: 25px;
-  }
-
-  &__submenu-list {
-    height: 0;
-    display: flex;
-    flex-direction: column;
-    font-size: 18px;
-    background-color: #1c1d26;
-    gap: 5px;
-    padding: 0 35px;
-    transition: all 0.3s;
-    overflow: hidden;
-
-    &--open {
-      height: auto;
-      padding: 15px 35px;
-    }
-  }
-
-  &__submenu-item {
-    color: #F9F8F8;
-
-    &:hover {
-      color: #F3DE8A;
+    & > * {
+      width: 100%;
     }
   }
 }
-
-// Logo -> Margin: 150px, Width: 150px, Usar el gold
-// Links -> Gap: 70px <- Desplegable hacia derecha
-// Poner imagen user <- Desplegable hacia izquierda

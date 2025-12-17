@@ -1,112 +1,142 @@
-@use "sass:map";
-@use "sass:list";
+@use 'sass:map';
+@use 'sass:list';
 
 // Color Palette
 $colors: (
-  "tgm-sys-color-white": #FFFFFF,
-  "tgm-sys-color-black": #000000,
-  "tgm-sys-color-primary": #F3DE8A,
-  "tgm-sys-color-secondary": #272838,
-  "tgm-sys-color-accent": #FF5733,
-  "tgm-sys-color-background": #F9F8F8
+  'tgm-sys-color-white': #ffffff,
+  'tgm-sys-color-black': #000000,
+  'tgm-sys-color-primary': #f3de8a,
+  'tgm-sys-color-secondary': #272838,
+  'tgm-sys-color-accent': #ff5733,
+  'tgm-sys-color-background': #f9f8f8,
+  'tgm-sys-color-background-secondary': #e1e1e1,
+  'tgm-sys-color-secondary-dark': #1c1d26,
+  'tgm-sys-color-button-primary': #0d6efd,
+  'tgm-sys-color-button-warning': #ffc107,
+  'tgm-sys-color-button-danger': #dc3545,
 );
 // Font Families
 $font-families: (
-  "tgm-sys-font-family-primary": "Poppins, sans-serif",
-  "tgm-sys-font-family-secondary": "Montserrat, sans-serif"
+  'tgm-sys-font-family-primary': 'Poppins, sans-serif',
+  'tgm-sys-font-family-secondary': 'Montserrat, sans-serif',
 );
 // Font Sizes
 $font-sizes: (
-  "tgm-sys-font-size-12": 12px,
-  "tgm-sys-font-size-16": 16px,
-  "tgm-sys-font-size-20": 20px,
-  "tgm-sys-font-size-24": 24px,
-  "tgm-sys-font-size-32": 32px,
-  "tgm-sys-font-size-40": 40px,
-  "tgm-sys-font-size-48": 48px
+  'tgm-sys-font-size-12': 12px,
+  'tgm-sys-font-size-14': 14px,
+  'tgm-sys-font-size-16': 16px,
+  'tgm-sys-font-size-20': 20px,
+  'tgm-sys-font-size-24': 24px,
+  'tgm-sys-font-size-32': 32px,
+  'tgm-sys-font-size-40': 40px,
+  'tgm-sys-font-size-48': 48px,
 );
 // Font Weights
 $font-weights: (
-  "tgm-sys-font-weight-300": 300,
-  "tgm-sys-font-weight-400": 400,
-  "tgm-sys-font-weight-500": 500,
-  "tgm-sys-font-weight-600": 600,
-  "tgm-sys-font-weight-700": 700,
-  "tgm-sys-font-weight-800": 800,
-  "tgm-sys-font-weight-900": 900
+  'tgm-sys-font-weight-300': 300,
+  'tgm-sys-font-weight-400': 400,
+  'tgm-sys-font-weight-500': 500,
+  'tgm-sys-font-weight-600': 600,
+  'tgm-sys-font-weight-700': 700,
+  'tgm-sys-font-weight-800': 800,
+  'tgm-sys-font-weight-900': 900,
 );
 // Spacing
 $spacing: (
-  "tgm-sys-spacing-8": 8px,
-  "tgm-sys-spacing-16": 16px,
-  "tgm-sys-spacing-24": 24px,
-  "tgm-sys-spacing-32": 32px
+  'tgm-sys-spacing-8': 8px,
+  'tgm-sys-spacing-16': 16px,
+  'tgm-sys-spacing-24': 24px,
+  'tgm-sys-spacing-32': 32px,
 );
 // Border Radius
 $border-radius: (
-  "tgm-sys-border-radius-small": 4px,
-  "tgm-sys-border-radius-medium": 8px,
-  "tgm-sys-border-radius-large": 16px,
-  "tgm-sys-border-radius-xlarge": 32px
+  'tgm-sys-border-radius-small': 4px,
+  'tgm-sys-border-radius-medium': 8px,
+  'tgm-sys-border-radius-large': 16px,
+  'tgm-sys-border-radius-xlarge': 32px,
 );
 // Fixed Heights
 $fixed-heights: (
-  "tgm-sys-height-30": 30px,
-  "tgm-sys-height-60": 60px,
-  "tgm-sys-height-80": 80px,
-  "tgm-sys-height-100": 100px,
-  "tgm-sys-height-viewport": 100vh
+  'tgm-sys-height-20': 20px,
+  'tgm-sys-height-30': 30px,
+  'tgm-sys-height-60': 60px,
+  'tgm-sys-height-70': 70px,
+  'tgm-sys-height-80': 80px,
+  'tgm-sys-height-100': 100px,
+  'tgm-sys-height-viewport': 100vh,
 );
 // Fixed widths
 $fixed-widths: (
-  "tgm-sys-width-30": 30px,
-  "tgm-sys-width-60": 60px,
-  "tgm-sys-width-100": 100px,
-  "tgm-sys-width-150": 150px,
-  "tgm-sys-width-200": 200px,
-  "tgm-sys-width-250": 250px,
-  "tgm-sys-width-300": 300px,
-  "tgm-sys-width-400": 400px,
-  "tgm-sys-width-500": 500px,
-  "tgm-sys-width-800": 800px
+  'tgm-sys-width-2': 2px,
+  'tgm-sys-width-5': 5px,
+  'tgm-sys-width-10': 10px,
+  'tgm-sys-width-16': 16px,
+  'tgm-sys-width-30': 30px,
+  'tgm-sys-width-40': 40px,
+  'tgm-sys-width-60': 60px,
+  'tgm-sys-width-80': 80px,
+  'tgm-sys-width-100': 100px,
+  'tgm-sys-width-150': 150px,
+  'tgm-sys-width-200': 200px,
+  'tgm-sys-width-250': 250px,
+  'tgm-sys-width-300': 300px,
+  'tgm-sys-width-400': 400px,
+  'tgm-sys-width-500': 500px,
+  'tgm-sys-width-800': 800px,
 );
 // Percentages
 $percentages: (
-  "tgm-sys-percentage-10": 10%,
-  "tgm-sys-percentage-20": 20%,
-  "tgm-sys-percentage-25": 25%,
-  "tgm-sys-percentage-30": 30%,
-  "tgm-sys-percentage-50": 50%,
-  "tgm-sys-percentage-75": 75%,
-  "tgm-sys-percentage-85": 85%,
-  "tgm-sys-percentage-90": 90%,
-  "tgm-sys-percentage-100": 100%
+  'tgm-sys-percentage-5': 5%,
+  'tgm-sys-percentage-10': 10%,
+  'tgm-sys-percentage-20': 20%,
+  'tgm-sys-percentage-25': 25%,
+  'tgm-sys-percentage-30': 30%,
+  'tgm-sys-percentage-50': 50%,
+  'tgm-sys-percentage-75': 75%,
+  'tgm-sys-percentage-85': 85%,
+  'tgm-sys-percentage-90': 90%,
+  'tgm-sys-percentage-100': 100%,
 );
 // Gaps
 $gaps: (
-  "tgm-sys-gap-10": 10px,
-  "tgm-sys-gap-20": 20px,
-  "tgm-sys-gap-30": 30px,
-  "tgm-sys-gap-40": 40px,
-  "tgm-sys-gap-50": 50px,
-  "tgm-sys-gap-100": 100px,
-  "tgm-sys-gap-115": 115px,
-  "tgm-sys-gap-125": 125px
+  'tgm-sys-gap-5': 5px,
+  'tgm-sys-gap-10': 10px,
+  'tgm-sys-gap-15': 15px,
+  'tgm-sys-gap-20': 20px,
+  'tgm-sys-gap-30': 30px,
+  'tgm-sys-gap-35': 35px,
+  'tgm-sys-gap-40': 40px,
+  'tgm-sys-gap-50': 50px,
+  'tgm-sys-gap-60': 60px,
+  'tgm-sys-gap-100': 100px,
+  'tgm-sys-gap-115': 115px,
+  'tgm-sys-gap-125': 125px,
 );
 // paddings
 $paddings: (
-  "tgm-sys-padding-14": 14px,
-  "tgm-sys-padding-20": 20px,
-  "tgm-sys-padding-30": 30px,
-  "tgm-sys-padding-40": 40px,
-  "tgm-sys-padding-50": 50px
+  'tgm-sys-padding-3': 3px,
+  'tgm-sys-padding-5': 5px,
+  'tgm-sys-padding-10': 10px,
+  'tgm-sys-padding-14': 14px,
+  'tgm-sys-padding-20': 20px,
+  'tgm-sys-padding-30': 30px,
+  'tgm-sys-padding-35': 35px,
+  'tgm-sys-padding-40': 40px,
+  'tgm-sys-padding-50': 50px,
 );
 // Margins
 $margins: (
-  "tgm-sys-margin-10": 10px,
-  "tgm-sys-margin-20": 20px,
-  "tgm-sys-margin-30": 30px,
-  "tgm-sys-margin-40": 40px,
-  "tgm-sys-margin-50": 50px,
-  "tgm-sys-margin-60": 60px
+  'tgm-sys-margin-10': 10px,
+  'tgm-sys-margin-20': 20px,
+  'tgm-sys-margin-30': 30px,
+  'tgm-sys-margin-40': 40px,
+  'tgm-sys-margin-50': 50px,
+  'tgm-sys-margin-60': 60px,
+  'tgm-sys-margin-100': 100px,
+);
+
+$box-shadows: (
+  'tgm-sys-box-shadow-light': 0 2px 4px rgba(0, 0, 0, 0.1),
+  'tgm-sys-box-shadow-medium': 0 4px 8px rgba(0, 0, 0, 0.1),
+  'tgm-sys-box-shadow-heavy': 0 8px 16px rgba(0, 0, 0, 0.2),
 );

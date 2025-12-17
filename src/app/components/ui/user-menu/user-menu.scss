@@ -1,0 +1,97 @@
+:host {
+  // User Menu Variables
+  --user-menu-bg-color: var(--tgm-sys-color-secondary);
+  --user-menu-width: var(--tgm-sys-width-250);
+  --user-menu-top: var(--tgm-sys-height-70);
+  --user-menu-color: var(--tgm-sys-color-background);
+  --user-menu-border-radius: var(--tgm-sys-border-radius-medium);
+  --user-menu-border: 1px solid var(--tgm-sys-color-background);
+  --user-menu-padding: var(--tgm-sys-padding-20);
+  --user-menu-font-size: var(--tgm-sys-font-size-16);
+  --user-menu-font-weight: var(--tgm-sys-font-weight-400);
+  --user-menu-box-shadow: var(--tgm-sys-box-shadow-heavy);
+
+  --user-menu-profile-gap: var(--tgm-sys-gap-5);
+  --user-menu-profile-margin-bottom: var(--tgm-sys-margin-100);
+  --user-menu-image-radius: var(--tgm-sys-percentage-50);
+
+  --user-menu-profile-username-font-size: var(--tgm-sys-font-size-16);
+  --user-menu-profile-username-font-weight: var(--tgm-sys-font-weight-600);
+
+  --user-menu-profile-firstname-font-size: var(--tgm-sys-font-size-14);
+  --user-menu-profile-firstname-font-weight: var(--tgm-sys-font-weight-400);
+  --user-menu-profile-firstname-color: var(--tgm-sys-color-background-secondary);
+
+  --user-menu-profile-gap: var(--tgm-sys-gap-10);
+
+  --user-menu-buttons-margin-top: var(--tgm-sys-margin-100);
+}
+
+.user-menu {
+  height: 0px;
+  position: absolute;
+  top: var(--user-menu-top);
+  background-color: var(--user-menu-bg-color);
+  width: var(--user-menu-width);
+  right: 1%;
+  color: var(--user-menu-color);
+  border-radius: var(--user-menu-border-radius);
+  border: var(--user-menu-border);
+  padding: var(--user-menu-padding);
+  font-size: var(--user-menu-font-size);
+  font-weight: var(--user-menu-font-weight);
+  box-shadow: var(--user-menu-box-shadow);
+  transition: height 0.3s ease-out;
+  cursor: default;
+  overflow: hidden;
+
+  &--open {
+    height: auto;
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    gap: var(--user-menu-profile-gap);
+
+    &--image {
+      width: var(--tgm-sys-width-40);
+      height: auto;
+      border-radius: var(--user-menu-image-radius);
+      object-fit: cover;
+      margin-right: var(--tgm-sys-margin-16);
+    }
+
+    &--username {
+      font-size: var(--user-menu-profile-username-font-size);
+      font-weight: var(--user-menu-profile-username-font-weight);
+    }
+
+    &--firstname {
+      font-size: var(--user-menu-profile-firstname-font-size);
+      font-weight: var(--user-menu-profile-firstname-font-weight);
+      color: var(--user-menu-profile-firstname-color);
+    }
+
+    &--email {
+      display: flex;
+      align-items: center;
+      gap: var(--user-menu-profile-gap);
+      font-size: var(--tgm-sys-font-size-16);
+      margin-bottom: var(--user-menu-profile-margin-bottom);
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+}
+
+hr {
+  border: none;
+  border-top: 0.5px solid var(--tgm-sys-color-background-secondary);
+  margin: var(--tgm-sys-margin-10) 0;
+}

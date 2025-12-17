@@ -1,0 +1,79 @@
+.boton {
+  --boton-color-strong: var(--tgm-sys-color-button-primary);
+  --boton-color-weak: var(--tgm-sys-color-background);
+
+  --boton-background-color: var(--boton-color-strong);
+  --boton-border-color: var(--boton-color-strong);
+  --boton-text-color: var(--boton-color-weak);
+
+  --boton-font-family: var(--tgm-sys-font-family-primary);
+  --boton-font-size: var(--tgm-sys-font-size-16);
+
+  --boton-padding: var(--tgm-sys-padding-3);
+  --boton-width: var(--tgm-sys-width-2);
+  --boton-border-radius: var(--tgm-sys-border-radius-small);
+
+  font-family: var(--boton-font-family);
+  font-size: var(--boton-font-size);
+  padding: var(--boton-padding);
+
+  border-radius: var(--boton-border-radius);
+  border-width: var(--boton-width);
+  border-style: solid;
+
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: none;
+
+  border-color: var(--boton-border-color);
+  background-color: var(--boton-background-color);
+  color: var(--boton-text-color);
+  display: flex;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    scale: 1.05;
+  }
+}
+
+.boton--funcionNormal {
+  --boton-color-strong: var(--tgm-sys-color-primary);
+  --boton-text-color: var(--tgm-sys-color-secondary);
+}
+
+.boton--funcionAlternativa {
+  --boton-color-strong: var(--tgm-sys-color-button-warning);
+}
+
+.boton--funcionPeligrosa {
+  --boton-color-strong: var(--tgm-sys-color-button-danger);
+}
+
+.boton--importanciaPrimaria {
+  --boton-background-color: var(--boton-color-strong);
+  --boton-border-color: var(--boton-color-strong);
+  --boton-text-color: var(--boton-color-weak);
+}
+.boton--importanciaSecundaria {
+  --boton-background-color: var(--boton-color-weak);
+  --boton-border-color: var(--boton-color-strong);
+  --boton-text-color: var(--boton-color-strong);
+}
+.boton--importanciaTerciaria {
+  --boton-background-color: var(--boton-color-weak);
+  --boton-border-color: var(--boton-color-weak);
+  --boton-text-color: var(--boton-color-strong);
+}
+
+.boton--sizeSmall {
+  --boton-font-size: 0.875rem;
+  --boton-padding: 0.25rem 0.5rem;
+}
+.boton--sizeMedium {
+  --boton-font-size: 1rem;
+  --boton-padding: 0.375rem 0.75rem;
+}
+.boton--sizeLarge {
+  --boton-font-size: 1.25rem;
+  --boton-padding: 0.5rem 1rem;
+}
