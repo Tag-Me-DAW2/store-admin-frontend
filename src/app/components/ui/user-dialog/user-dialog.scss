@@ -2,7 +2,7 @@
   --user-dialog-bg-color: var(--tgm-sys-color-background);
   --user-dialog-top: var(--tgm-sys-percentage-20);
   --user-dialog-left: var(--tgm-sys-percentage-50);
-  --user-dialog-width: var(--tgm-sys-percentage-60);
+  --user-dialog-width: var(--tgm-sys-percentage-50);
   --user-dialog-border-radius: var(--tgm-sys-border-radius-medium);
   --user-dialog-box-shadow: var(--tgm-sys-box-shadow-heavy);
   --user-dialog-font-family: var(--tgm-sys-font-family-primary);
@@ -21,9 +21,11 @@
   --user-dialog-content-padding: var(--tgm-sys-padding-20);
   --user-dialog-content-gap: var(--tgm-sys-gap-30);
   position: absolute;
-  left: var(--user-dialog-left);
-  top: var(--user-dialog-top);
-  width: 40%;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.5);
+  // filter: opacity(1);
 }
 
 .user-dialog {
@@ -39,6 +41,9 @@
   font-family: var(--user-dialog-font-family);
   color: var(--user-dialog-font-color);
   overflow: hidden;
+  top: var(--user-dialog-top);
+  left: var(--user-dialog-left);
+  width: var(--user-dialog-width);
 
   &__title {
     display: flex;
