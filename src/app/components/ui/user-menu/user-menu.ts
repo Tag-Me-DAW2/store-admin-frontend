@@ -26,6 +26,7 @@ export class UserMenuComponent {
   }
 
   modify() {
+    this.menuOpen = false;
     this.editUser.emit(true);
   }
 }

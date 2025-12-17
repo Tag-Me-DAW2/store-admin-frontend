@@ -10,17 +10,16 @@
   --boton-font-size: var(--tgm-sys-font-size-16);
 
   --boton-padding: var(--tgm-sys-padding-3);
-  --boton-width: var(--tgm-sys-width-2);
   --boton-border-radius: var(--tgm-sys-border-radius-small);
+
+  --boton-width: var(--tgm-sys-width-70);
 
   font-family: var(--boton-font-family);
   font-size: var(--boton-font-size);
   padding: var(--boton-padding);
-
+  width: var(--boton-width);
   border-radius: var(--boton-border-radius);
-  border-width: var(--boton-width);
   border-style: solid;
-
   display: inline-block;
   cursor: pointer;
   text-decoration: none;

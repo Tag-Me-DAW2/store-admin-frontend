@@ -1,0 +1,94 @@
+:host {
+  --user-dialog-bg-color: var(--tgm-sys-color-background);
+  --user-dialog-top: var(--tgm-sys-percentage-20);
+  --user-dialog-left: var(--tgm-sys-percentage-50);
+  --user-dialog-width: var(--tgm-sys-percentage-60);
+  --user-dialog-border-radius: var(--tgm-sys-border-radius-medium);
+  --user-dialog-box-shadow: var(--tgm-sys-box-shadow-heavy);
+  --user-dialog-font-family: var(--tgm-sys-font-family-primary);
+  --user-dialog-font-color: var(--tgm-sys-color-text-secondary);
+
+  --user-dialog-title-font-size: var(--tgm-sys-font-size-20);
+  --user-dialog-title-font-weight: var(--tgm-sys-font-weight-500);
+  --user-dialog-title-padding: var(--tgm-sys-padding-20);
+  --user-dialog-title-bg-color: var(--tgm-sys-color-secondary);
+  --user-dialog-title-color: var(--tgm-sys-color-background);
+
+  --user-dialog-primary-color: var(--tgm-sys-color-primary);
+
+  --user-dialog-close-button-size: var(--tgm-sys-font-size-24);
+
+  --user-dialog-content-padding: var(--tgm-sys-padding-20);
+  --user-dialog-content-gap: var(--tgm-sys-gap-30);
+}
+
+.user-dialog {
+  position: absolute;
+  top: var(--user-dialog-top);
+  left: var(--user-dialog-left);
+  background-color: var(--user-dialog-bg-color);
+  width: var(--user-dialog-width);
+  border-radius: var(--user-dialog-border-radius);
+  box-shadow: var(--user-dialog-box-shadow);
+  animation: userDialogIn 180ms ease-out forwards;
+  z-index: 1000;
+  font-family: var(--user-dialog-font-family);
+  color: var(--user-dialog-font-color);
+  overflow: hidden;
+
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--user-dialog-title-padding);
+    font-size: var(--user-dialog-title-font-size);
+    font-weight: var(--user-dialog-title-font-weight);
+    background-color: var(--user-dialog-title-bg-color);
+    color: var(--user-dialog-title-color);
+  }
+
+  &__close-button {
+    color: var(--user-dialog-title-color);
+    font-size: var(--user-dialog-close-button-size);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--user-dialog-primary-color);
+      transition: all 150ms ease-in-out;
+    }
+  }
+
+  &__content {
+    padding: var(--user-dialog-content-padding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--user-dialog-content-gap);
+  }
+
+  &__inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--user-dialog-content-gap);
+  }
+
+  &__submit-button {
+    align-self: center;
+    justify-self: center;
+  }
+}
+
+@keyframes userDialogIn {
+  from {
+    transform: translate(-50%, -5%);
+    opacity: 0;
+  }
+
+  80% {
+    transform: translate(-50%, -22%);
+  }
+
+  to {
+    transform: translate(-50%, -20%);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,27 @@
+<div class="input-container">
+    @if (label) {
+    <label>{{ label }}</label>
+    }
+    @switch (type) {
+    @case ('text') {
+    <input [type]="type" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="setValue($event)"
+        (blur)="onTouched()" [disabled]="disabled" />
+    }
+
+    @case ('email') {
+    <input [type]="type" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="setValue($event)"
+        (blur)="onTouched()" [disabled]="disabled" />
+    }
+    @case ('number') {
+    <input [type]="type" [placeholder]="placeholder" [(ngModel)]="value" (ngModelChange)="setValue($event)"
+        (blur)="onTouched()" [disabled]="disabled" />
+    }
+
+    @case ('select') {
+    <select [(ngModel)]="value" (ngModelChange)="setValue($event)" (blur)="onTouched()" [disabled]="disabled">
+        <option value="" disabled selected hidden>{{ placeholder }}</option>
+        <option *ngFor="let opt of options" [value]="opt.value">{{ opt.label }}</option>
+    </select>
+    }
+    }
+</div>

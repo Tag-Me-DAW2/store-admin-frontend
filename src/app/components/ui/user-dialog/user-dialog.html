@@ -1,0 +1,26 @@
+<div class="user-dialog">
+    <div class="user-dialog__title">
+        <h2>User Details</h2>
+        <button class="user-dialog__close-button" (click)="closeDialog()">&times;</button>
+    </div>
+    <form (ngSubmit)="updateUser()" method="post" class="user-dialog__content">
+        <div class="user-dialog__inputs">
+            <tgm-input-component label="Username" [(ngModel)]="user.username" placeholder="Enter username"
+                name="username"></tgm-input-component>
+            <tgm-input-component label="Email" type="email" [(ngModel)]="user.email" placeholder="Enter email"
+                name="email"></tgm-input-component>
+            <tgm-input-component label="First Name" [(ngModel)]="user.firstName" placeholder="Enter first name"
+                name="firstName"></tgm-input-component>
+            <tgm-input-component label="Last Name" [(ngModel)]="user.lastName" placeholder="Enter last name"
+                name="lastName"></tgm-input-component>
+            <tgm-input-component label="Phone" type="text" [(ngModel)]="user.phone" placeholder="Enter phone number"
+                name="phone"></tgm-input-component>
+            <tgm-input-component label="Role" type="text" [(ngModel)]="user.role" placeholder="Enter role" name="role"
+                [disabled]="true"></tgm-input-component>
+        </div>
+        <tgm-image-upload-component (imageBase64)="onImageBase64($event)"
+            class="user-dialog__image-upload"></tgm-image-upload-component>
+        <button tgm-button funcion="normal" importance="primaria" size="small" type="submit"
+            class="user-dialog__submit-button">Update</button>
+    </form>
+</div>

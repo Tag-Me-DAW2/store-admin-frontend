@@ -1,0 +1,10 @@
+<div class="image-upload-container">
+    <label for="fileUpload" class="upload-label">
+        @if (!preview) {
+        <span>Sube tu imagen</span>
+        } @else {
+        <img [src]="preview" alt="Preview" class="preview-img" />
+        }
+    </label>
+    <input type="file" id="fileUpload" (change)="onFileSelected($event)" hidden />
+</div>

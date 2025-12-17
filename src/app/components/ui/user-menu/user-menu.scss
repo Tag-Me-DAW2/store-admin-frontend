@@ -28,7 +28,7 @@
 }
 
 .user-menu {
-  height: 0px;
+  display: none;
   position: absolute;
   top: var(--user-menu-top);
   background-color: var(--user-menu-bg-color);
@@ -45,8 +45,11 @@
   cursor: default;
   overflow: hidden;
 
+  animation: userMenuIn 160ms ease-out forwards;
+  transform-origin: top right;
+
   &--open {
-    height: auto;
+    display: block;
   }
 
   &__profile {
@@ -94,4 +97,16 @@ hr {
   border: none;
   border-top: 0.5px solid var(--tgm-sys-color-background-secondary);
   margin: var(--tgm-sys-margin-10) 0;
+}
+
+@keyframes userMenuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
