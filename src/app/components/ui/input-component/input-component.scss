@@ -1,30 +1,53 @@
 .input-container {
+  // Label variables
+  --input-label-font-weight: var(--tgm-sys-font-weight-500);
+  --input-label-font-margin-bottom: var(--tgm-sys-margin-4);
+  --input-label-color: var(--tgm-sys-color-secondary);
+  --input-label-font-size: var(--tgm-sys-font-size-16);
+  --input-label-font-family: var(--tgm-sys-font-family-primary);
+
+  // Input variables
+  --input-padding-vertical: var(--tgm-sys-padding-8);
+  --input-padding-horizontal: var(--tgm-sys-padding-12);
+  --input-border: 1px solid var(--tgm-sys-color-secondary-weak);
+  --input-border-radius: var(--tgm-sys-border-radius-medium);
+  --input-font-size: var(--tgm-sys-font-size-16);
+  --input-focus-border-color: var(--tgm-sys-color-primary-strong);
+  --input-hover-border-color: var(--tgm-sys-color-primary-strong);
+
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 
   label {
-    font-weight: 500;
-    margin-bottom: 4px;
-    color: #333;
+    font-weight: var(--input-label-font-weight);
+    margin-bottom: var(--input-label-font-margin-bottom);
+    color: var(--input-label-color);
+    font-size: var(--input-label-font-size);
+    font-family: var(--input-label-font-family);
   }
 
   input,
   select {
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
+    padding: var(--input-padding-vertical) var(--input-padding-horizontal);
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    font-size: var(--input-font-size);
     transition: border 0.2s, box-shadow 0.2s;
 
     &:focus {
       outline: none;
-      border-color: #007bff;
-      box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+      border-color: var(--input-focus-border-color);
+      box-shadow: 0 0 0 2px rgba(243, 222, 138, 0.4);
     }
 
     &:hover {
-      border-color: #999;
+      border-color: var(--input-hover-border-color);
+    }
+
+    &:disabled {
+      background-color: #dfdede;
+      cursor: not-allowed;
     }
   }
 

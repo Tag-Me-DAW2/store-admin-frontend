@@ -14,8 +14,8 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class TgmButtonComponent {
-  @Input() funcion: 'normal' | 'alternativa' | 'peligrosa' = 'normal';
-  @Input() importance: 'primaria' | 'secundaria' | 'terciaria' = 'primaria';
+  @Input() function: 'normal' | 'alternative' | 'danger' = 'normal';
+  @Input() importance: 'primary' | 'secondary' | 'tertiary' = 'primary';
   @Input() size: 'small' | 'medium' | 'large' = 'medium';
   @Input() href: string = '';
   @Output() onClick = new EventEmitter<void>();
@@ -29,13 +29,13 @@ export class TgmButtonComponent {
     return {
       boton: true,
 
-      'boton--funcionNormal': this.funcion === 'normal',
-      'boton--funcionAlternativa': this.funcion === 'alternativa',
-      'boton--funcionPeligrosa': this.funcion === 'peligrosa',
+      'boton--functionNormal': this.function === 'normal',
+      'boton--functionAlternative': this.function === 'alternative',
+      'boton--functionDanger': this.function === 'danger',
 
-      'boton--importancePrimaria': this.importance === 'primaria',
-      'boton--importanceSecundaria': this.importance === 'secundaria',
-      'boton--importanceTerciaria': this.importance === 'terciaria',
+      'boton--importancePrimary': this.importance === 'primary',
+      'boton--importanceSecondary': this.importance === 'secondary',
+      'boton--importanceTertiary': this.importance === 'tertiary',
 
       'boton--sizeSmall': this.size === 'small',
       'boton--sizeMedium': this.size === 'medium',

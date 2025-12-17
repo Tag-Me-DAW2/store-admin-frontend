@@ -6,7 +6,9 @@ $colors: (
   'tgm-sys-color-white': #ffffff,
   'tgm-sys-color-black': #000000,
   'tgm-sys-color-primary': #f3de8a,
+  'tgm-sys-color-primary-strong': #d4b83e,
   'tgm-sys-color-secondary': #272838,
+  'tgm-sys-color-secondary-weak': #3e415a,
   'tgm-sys-color-accent': #ff5733,
   'tgm-sys-color-background': #f9f8f8,
   'tgm-sys-color-background-secondary': #e1e1e1,
@@ -118,7 +120,9 @@ $gaps: (
 $paddings: (
   'tgm-sys-padding-3': 3px,
   'tgm-sys-padding-5': 5px,
+  'tgm-sys-padding-8': 8px,
   'tgm-sys-padding-10': 10px,
+  'tgm-sys-padding-12': 12px,
   'tgm-sys-padding-14': 14px,
   'tgm-sys-padding-20': 20px,
   'tgm-sys-padding-30': 30px,
@@ -128,6 +132,9 @@ $paddings: (
 );
 // Margins
 $margins: (
+  'tgm-sys-margin-3': 3px,
+  'tgm-sys-margin-4': 4px,
+  'tgm-sys-margin-5': 5px,
   'tgm-sys-margin-10': 10px,
   'tgm-sys-margin-20': 20px,
   'tgm-sys-margin-30': 30px,

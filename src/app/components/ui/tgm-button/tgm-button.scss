@@ -1,4 +1,5 @@
 .boton {
+  /* === Colores base === */
   --boton-color-strong: var(--tgm-sys-color-button-primary);
   --boton-color-weak: var(--tgm-sys-color-background);
 
@@ -6,73 +7,106 @@
   --boton-border-color: var(--boton-color-strong);
   --boton-text-color: var(--boton-color-weak);
 
+  /* === Tipografía === */
   --boton-font-family: var(--tgm-sys-font-family-primary);
   --boton-font-size: var(--tgm-sys-font-size-16);
+  --boton-line-height: 1.25;
 
-  --boton-padding: var(--tgm-sys-padding-3);
+  /* === Espaciado === */
+  --boton-padding: 0.375rem 0.75rem;
   --boton-border-radius: var(--tgm-sys-border-radius-small);
-
-  --boton-width: var(--tgm-sys-width-70);
 
   font-family: var(--boton-font-family);
   font-size: var(--boton-font-size);
-  padding: var(--boton-padding);
-  width: var(--boton-width);
-  border-radius: var(--boton-border-radius);
-  border-style: solid;
-  display: inline-block;
-  cursor: pointer;
-  text-decoration: none;
+  line-height: var(--boton-line-height);
 
-  border-color: var(--boton-border-color);
+  padding: var(--boton-padding);
+  border-radius: var(--boton-border-radius);
+
+  border: 1px solid var(--boton-border-color);
   background-color: var(--boton-background-color);
   color: var(--boton-text-color);
-  display: flex;
-  transition: all 0.2s ease-in-out;
 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    color 0.15s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.15s ease-in-out;
+
+  will-change: transform;
+
+  /* === Hover === */
   &:hover {
-    scale: 1.05;
+    scale: 1.03;
   }
-}
 
-.boton--funcionNormal {
-  --boton-color-strong: var(--tgm-sys-color-primary);
-  --boton-text-color: var(--tgm-sys-color-secondary);
-}
+  /* === Active (click) === */
+  &:active {
+    transform: scale(0.97);
+  }
 
-.boton--funcionAlternativa {
-  --boton-color-strong: var(--tgm-sys-color-button-warning);
-}
+  /* === Focus accesible === */
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.35); // estilo bootstrap
+  }
 
-.boton--funcionPeligrosa {
-  --boton-color-strong: var(--tgm-sys-color-button-danger);
-}
+  /* === Disabled === */
+  &:disabled,
+  &--disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 
-.boton--importanciaPrimaria {
-  --boton-background-color: var(--boton-color-strong);
-  --boton-border-color: var(--boton-color-strong);
-  --boton-text-color: var(--boton-color-weak);
-}
-.boton--importanciaSecundaria {
-  --boton-background-color: var(--boton-color-weak);
-  --boton-border-color: var(--boton-color-strong);
-  --boton-text-color: var(--boton-color-strong);
-}
-.boton--importanciaTerciaria {
-  --boton-background-color: var(--boton-color-weak);
-  --boton-border-color: var(--boton-color-weak);
-  --boton-text-color: var(--boton-color-strong);
-}
+  &--functionNormal {
+    --boton-color-strong: var(--tgm-sys-color-primary);
+    --boton-text-color: var(--tgm-sys-color-secondary);
+  }
 
-.boton--sizeSmall {
-  --boton-font-size: 0.875rem;
-  --boton-padding: 0.25rem 0.5rem;
-}
-.boton--sizeMedium {
-  --boton-font-size: 1rem;
-  --boton-padding: 0.375rem 0.75rem;
-}
-.boton--sizeLarge {
-  --boton-font-size: 1.25rem;
-  --boton-padding: 0.5rem 1rem;
+  &--functionAlternative {
+    --boton-color-strong: var(--tgm-sys-color-button-warning);
+    --boton-text-color: var(--tgm-sys-color-background);
+  }
+
+  &--functionDanger {
+    --boton-color-strong: var(--tgm-sys-color-button-danger);
+    --boton-text-color: var(--tgm-sys-color-background);
+  }
+
+  &--importancePrimary {
+    --boton-background-color: var(--boton-color-strong);
+    --boton-border-color: var(--boton-color-strong);
+  }
+
+  &--importanceSecondary {
+    --boton-background-color: transparent;
+    --boton-border-color: var(--boton-color-strong);
+  }
+
+  &--importanceTertiary {
+    --boton-background-color: transparent;
+    --boton-border-color: transparent;
+  }
+
+  &--sizeSmall {
+    --boton-font-size: 0.875rem;
+    --boton-padding: 0.25rem 0.5rem;
+  }
+
+  &--sizeMedium {
+    --boton-font-size: 1rem;
+    --boton-padding: 0.375rem 0.75rem;
+  }
+
+  &--sizeLarge {
+    --boton-font-size: 1.25rem;
+    --boton-padding: 0.5rem 1rem;
+  }
 }
