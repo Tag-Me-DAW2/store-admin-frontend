@@ -1,7 +1,5 @@
 :host {
   // Header Variables
-  --header-height: var(--tgm-sys-percentage-100);
-  --header-width: var(--tgm-sys-width-250);
   --header-bg-color: var(--tgm-sys-color-secondary);
   --header-font-family: var(--tgm-sys-font-family-primary);
   --header-color: var(--tgm-sys-color-background);
@@ -44,7 +42,6 @@
 }
 
 .header {
-  height: 100%;
   gap: 0;
   font-family: var(--header-font-family);
 

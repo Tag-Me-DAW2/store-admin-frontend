@@ -20,14 +20,18 @@
 
   --user-dialog-content-padding: var(--tgm-sys-padding-20);
   --user-dialog-content-gap: var(--tgm-sys-gap-30);
+  position: absolute;
+  left: var(--user-dialog-left);
+  top: var(--user-dialog-top);
+  width: 40%;
 }
 
 .user-dialog {
-  position: absolute;
-  top: var(--user-dialog-top);
-  left: var(--user-dialog-left);
+  position: relative;
+  // top: var(--user-dialog-top);
+  // left: var(--user-dialog-left);
   background-color: var(--user-dialog-bg-color);
-  width: var(--user-dialog-width);
+  // width: var(--user-dialog-width);
   border-radius: var(--user-dialog-border-radius);
   box-shadow: var(--user-dialog-box-shadow);
   animation: userDialogIn 180ms ease-out forwards;

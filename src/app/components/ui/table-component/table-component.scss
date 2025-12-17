@@ -1,0 +1,217 @@
+:host {
+  // Table Variables
+  --table-width: var(--tgm-sys-percentage-100);
+  --table-background-color: var(--tgm-sys-color-white);
+  --table-border-radius: 12px;
+  --table-font-family: var(--tgm-sys-font-family-primary);
+  --table-margin: var(--tgm-sys-spacing-16) 0;
+  --table-shadow: var(--tgm-sys-box-shadow-table);
+
+  // Table Head Variables
+  --table-head-background: linear-gradient(135deg, var(--tgm-sys-color-primary) 0%, #f0d982 100%);
+  --table-head-border-bottom-width: 2px;
+  --table-head-border-bottom-color: var(--tgm-sys-color-secondary);
+
+  // Table Header Variables
+  --table-header-padding: var(--tgm-sys-spacing-16) var(--tgm-sys-spacing-24);
+  --table-header-font-weight: var(--tgm-sys-font-weight-600);
+  --table-header-font-size: var(--tgm-sys-font-size-14);
+  --table-header-color: var(--tgm-sys-color-secondary);
+  --table-header-letter-spacing: 0.05em;
+  --table-header-separator-width: 1px;
+  --table-header-separator-color: var(--tgm-sys-color-table-header-separator);
+
+  // Table Body Variables
+  --table-body-background-color: var(--tgm-sys-color-white);
+
+  // Table Row Variables
+  --table-row-transition: all 0.2s ease;
+  --table-row-border-bottom: 1px solid var(--tgm-sys-color-background-secondary);
+  --table-row-hover-background: var(--tgm-sys-color-background);
+  --table-row-hover-transform: translateY(-1px);
+  --table-row-hover-shadow: var(--tgm-sys-box-shadow-table-hover);
+  --table-row-even-background: var(--tgm-sys-color-table-row-even);
+
+  // Table Cell Variables
+  --table-cell-padding: var(--tgm-sys-spacing-16) var(--tgm-sys-spacing-24);
+  --table-cell-font-size: var(--tgm-sys-font-size-16);
+  --table-cell-color: var(--tgm-sys-color-secondary);
+  --table-cell-font-weight: var(--tgm-sys-font-weight-400);
+  --table-cell-first-font-weight: var(--tgm-sys-font-weight-500);
+  --table-cell-first-color: var(--tgm-sys-color-secondary-dark);
+  --table-cell-separator-width: 1px;
+  --table-cell-separator-color: var(--tgm-sys-color-table-cell-separator);
+
+  // Table Empty Variables
+  --table-empty-padding: var(--tgm-sys-spacing-32);
+  --table-empty-background: var(--tgm-sys-color-white);
+  --table-empty-border-radius: 12px;
+  --table-empty-shadow: var(--tgm-sys-box-shadow-light);
+  --table-empty-color: var(--tgm-sys-color-secondary);
+  --table-empty-font-size: var(--tgm-sys-font-size-16);
+  --table-empty-font-weight: var(--tgm-sys-font-weight-400);
+
+  // Table Responsive Variables
+  --table-mobile-padding: var(--tgm-sys-spacing-8) var(--tgm-sys-spacing-16);
+  --table-mobile-font-size: var(--tgm-sys-font-size-14);
+
+  // Table Animation Variables
+  --table-animation-duration: 0.4s;
+  --table-animation-timing: ease-out;
+}
+
+.table {
+  width: var(--table-width);
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: var(--table-background-color);
+  border-radius: var(--table-border-radius);
+  overflow: hidden;
+  box-shadow: var(--table-shadow);
+  font-family: var(--table-font-family);
+  margin: var(--table-margin);
+
+  &__head {
+    background: var(--table-head-background);
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--table-head-border-bottom-width);
+      background: var(--table-head-border-bottom-color);
+    }
+  }
+
+  &__header {
+    padding: var(--table-header-padding);
+    text-align: left;
+    font-weight: var(--table-header-font-weight);
+    font-size: var(--table-header-font-size);
+    color: var(--table-header-color);
+    text-transform: uppercase;
+    letter-spacing: var(--table-header-letter-spacing);
+    border: none;
+    position: relative;
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 25%;
+      bottom: 25%;
+      width: var(--table-header-separator-width);
+      background: var(--table-header-separator-color);
+    }
+  }
+
+  &__body {
+    background-color: var(--table-body-background-color);
+  }
+
+  &__row {
+    transition: var(--table-row-transition);
+    border-bottom: var(--table-row-border-bottom);
+
+    &:hover {
+      background-color: var(--table-row-hover-background);
+      transform: var(--table-row-hover-transform);
+      box-shadow: var(--table-row-hover-shadow);
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &--even {
+      background-color: var(--table-row-even-background);
+
+      &:hover {
+        background-color: var(--table-row-hover-background);
+      }
+    }
+  }
+
+  &__cell {
+    padding: var(--table-cell-padding);
+    font-size: var(--table-cell-font-size);
+    color: var(--table-cell-color);
+    font-weight: var(--table-cell-font-weight);
+    border: none;
+    vertical-align: middle;
+    position: relative;
+
+    &:first-child {
+      font-weight: var(--table-cell-first-font-weight);
+      color: var(--table-cell-first-color);
+    }
+
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 20%;
+      bottom: 20%;
+      width: var(--table-cell-separator-width);
+      background: var(--table-cell-separator-color);
+    }
+  }
+
+  &__empty {
+    text-align: center;
+    padding: var(--table-empty-padding);
+    background-color: var(--table-empty-background);
+    border-radius: var(--table-empty-border-radius);
+    box-shadow: var(--table-empty-shadow);
+
+    p {
+      color: var(--table-empty-color);
+      font-size: var(--table-empty-font-size);
+      font-weight: var(--table-empty-font-weight);
+      margin: 0;
+    }
+  }
+
+  &__name-cell {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--tgm-sys-color-primary);
+    }
+  }
+
+  &__image-cell {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  // Responsive design
+  @media (max-width: 768px) {
+
+    &__header,
+    &__cell {
+      padding: var(--table-mobile-padding);
+      font-size: var(--table-mobile-font-size);
+    }
+  }
+
+  // Animation
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  animation: fadeInUp var(--table-animation-duration) var(--table-animation-timing);
+}

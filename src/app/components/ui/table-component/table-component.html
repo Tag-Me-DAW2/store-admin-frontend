@@ -1,17 +1,45 @@
-@if (data && columns) {
-<table>
-    <tbody>
-        @for (row of data; track row) {
-        <tr>
-            @for (col of columns; track col) {
-            <td>
-                {{ row[col] }}
-            </td>
-            }
-        </tr>
+@if (dataPage && columns && dataPage.data !== undefined) {
+<table class="table">
+  <thead class="table__head">
+    <tr>
+      @for (col of columns; track col) {
+      <th class="table__header">{{ col | titlecase }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody class="table__body">
+    @for (row of dataPage.data; track row; let i = $index) {
+    <tr class="table__row" [class.table__row--even]="i % 2 === 0">
+      @for (col of columns; track col) {
+      <td class="table__cell">
+
+        @switch (col) {
+        @case ('image') {
+        <img class="table__image-cell" [src]="productService.getImageSrc(row[col])" alt="Product Image">
         }
-    </tbody>
+        @case ('category') {
+        {{ row[col].name }}
+        }
+        @case ('price') {
+        {{ row[col] | currency }}
+        }
+        @case ('name') {
+        <span class="table__name-cell" (click)="sendItemIdClicked(row['id'])">
+          {{ row[col] }}
+        </span>
+        }
+        @default {
+        {{ row[col] }}
+        }
+        }
+      </td>
+      }
+    </tr>
+    }
+  </tbody>
 </table>
 } @else {
-    <p>No products found</p>
+<div class="table__empty">
+  <p>No products found</p>
+</div>
 }

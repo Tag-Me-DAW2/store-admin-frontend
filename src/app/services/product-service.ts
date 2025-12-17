@@ -5,6 +5,7 @@ import { ProductSummaryResponse } from '../models/response/product-summary-respo
 import { ProductDetailResponse } from '../models/response/product-detail-response';
 import { ProductInsertRequest } from '../models/request/product-insert-request';
 import { ProductUpdateRequest } from '../models/request/product-update-request';
+import { PageModel } from '../models/PageModel';
 
 @Injectable({
   providedIn: 'root',
@@ -12,11 +13,11 @@ import { ProductUpdateRequest } from '../models/request/product-update-request';
 export class ProductService {
   productHttp = inject(ProductHttp);
 
-  getProducts(): Observable<ProductSummaryResponse[]> {
+  getProducts(): Observable<PageModel<ProductSummaryResponse>> {
     return this.productHttp.getProducts();
   }
 
-  getProductById(productId: string): Observable<ProductDetailResponse> {
+  getProductById(productId: number): Observable<ProductDetailResponse> {
     return this.productHttp.getProductById(productId);
   }
 
@@ -24,11 +25,18 @@ export class ProductService {
     return this.productHttp.createProduct(product);
   }
 
-  updateProduct(productId: string, product: ProductUpdateRequest): Observable<ProductDetailResponse> {
+  updateProduct(
+    productId: number,
+    product: ProductUpdateRequest
+  ): Observable<ProductDetailResponse> {
     return this.productHttp.updateProduct(productId, product);
   }
 
-  deleteProductById(productId: string): Observable<void> {
+  deleteProductById(productId: number): Observable<void> {
     return this.productHttp.deleteProductById(productId);
+  }
+
+  getImageSrc(image64: string): string {
+    return `data:image/png;base64,${image64}`;
   }
 }

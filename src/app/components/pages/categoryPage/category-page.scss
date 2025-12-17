@@ -1,0 +1,220 @@
+:host {
+    display: block;
+    grid-area: main;
+    height: 100%;
+    width: 100%;
+    background-color: #f9f8f8;
+    font-family: var(--tgm-sys-font-family-primary);
+    overflow-x: hidden;
+}
+
+.category {
+    padding: 30px 80px 0 80px;
+
+    &__main-title {
+        font-size: 45px;
+    }
+
+    &__table {
+        margin-top: 40px;
+        width: 90%;
+        border-collapse: collapse;
+    }
+}
+
+// Dialog Overlay
+.dialog-overlay {
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 1000;
+    overflow: hidden;
+
+    &--open {
+        width: 100%;
+    }
+}
+
+// Category Detail Panel
+.category-detail {
+    // Category Detail Variables
+    --category-detail-padding: var(--tgm-sys-spacing-24);
+    --category-detail-title-color: var(--tgm-sys-color-secondary);
+    --category-detail-title-font-size: var(--tgm-sys-font-size-24);
+    --category-detail-title-font-weight: var(--tgm-sys-font-weight-700);
+    --category-detail-title-margin: var(--tgm-sys-spacing-24);
+
+    // Form Variables
+    --category-detail-form-gap: var(--tgm-sys-spacing-16);
+
+    // Field Variables
+    --category-detail-label-color: var(--tgm-sys-color-secondary-dark);
+    --category-detail-label-font-size: var(--tgm-sys-font-size-12);
+    --category-detail-label-font-weight: var(--tgm-sys-font-weight-600);
+    --category-detail-label-margin: var(--tgm-sys-spacing-8);
+
+    // Input Variables
+    --category-detail-input-padding: var(--tgm-sys-spacing-16);
+    --category-detail-input-border-color: var(--tgm-sys-color-background-secondary);
+    --category-detail-input-border-radius: 8px;
+    --category-detail-input-font-size: var(--tgm-sys-font-size-16);
+    --category-detail-input-background: var(--tgm-sys-color-white);
+    --category-detail-input-readonly-background: var(--tgm-sys-color-background);
+    --category-detail-input-focus-border: var(--tgm-sys-color-primary);
+
+    // Actions Variables
+    --category-detail-actions-gap: var(--tgm-sys-spacing-16);
+    --category-detail-actions-margin: var(--tgm-sys-spacing-24);
+
+    // Button Variables
+    --category-detail-button-padding: 12px 24px;
+    --category-detail-button-border-radius: 8px;
+    --category-detail-button-font-size: var(--tgm-sys-font-size-14);
+    --category-detail-button-font-weight: var(--tgm-sys-font-weight-600);
+
+    padding: var(--category-detail-padding);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+
+    &__title {
+        color: var(--category-detail-title-color);
+        font-size: var(--category-detail-title-font-size);
+        font-weight: var(--category-detail-title-font-weight);
+        margin: 0 0 var(--category-detail-title-margin) 0;
+        padding-bottom: var(--tgm-sys-spacing-16);
+        border-bottom: 2px solid var(--tgm-sys-color-primary);
+    }
+
+    &__form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--category-detail-form-gap);
+        flex: 1;
+        overflow-y: auto;
+        padding-bottom: var(--tgm-sys-spacing-16);
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+
+        &--full {
+            grid-column: 1 / -1;
+        }
+    }
+
+    &__label {
+        color: var(--category-detail-label-color);
+        font-size: var(--category-detail-label-font-size);
+        font-weight: var(--category-detail-label-font-weight);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: var(--category-detail-label-margin);
+    }
+
+    &__input,
+    &__textarea {
+        padding: var(--category-detail-input-padding);
+        border: 1px solid var(--category-detail-input-border-color);
+        border-radius: var(--category-detail-input-border-radius);
+        font-size: var(--category-detail-input-font-size);
+        font-family: var(--tgm-sys-font-family-primary);
+        background-color: var(--category-detail-input-background);
+        color: var(--tgm-sys-color-secondary);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: var(--category-detail-input-focus-border);
+            box-shadow: 0 0 0 3px rgba(243, 222, 138, 0.2);
+        }
+
+        &::placeholder {
+            color: rgba(39, 40, 56, 0.4);
+        }
+
+        &--readonly {
+            background-color: var(--category-detail-input-readonly-background);
+            cursor: not-allowed;
+            color: rgba(39, 40, 56, 0.6);
+        }
+    }
+
+    &__textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    &__actions {
+        height: 100px;
+        width: 100%;
+        display: flex;
+        gap: var(--category-detail-actions-gap);
+        margin-top: var(--category-detail-actions-margin);
+        padding-top: var(--tgm-sys-spacing-16);
+        border-top: 1px solid var(--tgm-sys-color-background-secondary);
+    }
+
+    &__button {
+        flex: 1;
+        padding: var(--category-detail-button-padding);
+        border: none;
+        border-radius: var(--category-detail-button-border-radius);
+        font-size: var(--category-detail-button-font-size);
+        font-weight: var(--category-detail-button-font-weight);
+        font-family: var(--tgm-sys-font-family-primary);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &--update {
+            background-color: var(--tgm-sys-color-primary);
+            color: var(--tgm-sys-color-secondary);
+
+            &:hover {
+                background-color: #f0d982;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+
+        &--delete {
+            background-color: var(--tgm-sys-color-accent);
+            color: var(--tgm-sys-color-white);
+
+            &:hover {
+                background-color: #e04a2d;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            &:active {
+                transform: translateY(0);
+            }
+        }
+    }
+
+    // Responsive
+    @media (max-width: 768px) {
+        &__form {
+            grid-template-columns: 1fr;
+        }
+
+        &__actions {
+            flex-direction: column;
+        }
+    }
+}

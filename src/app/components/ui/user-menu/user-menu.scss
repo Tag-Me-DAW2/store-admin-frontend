@@ -44,6 +44,7 @@
   transition: height 0.3s ease-out;
   cursor: default;
   overflow: hidden;
+  z-index: 1000;
 
   animation: userMenuIn 160ms ease-out forwards;
   transform-origin: top right;

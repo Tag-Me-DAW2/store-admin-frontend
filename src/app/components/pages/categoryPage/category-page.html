@@ -1,0 +1,40 @@
+<div class="category">
+    <h1 class="category__main-title">Categories management</h1>
+    <table-component class="category__table" [dataPage]="categoryPage" [columns]="columns"
+        (itemClicked)="openItemDetail($event)">
+    </table-component>
+
+    <div class="dialog-overlay" [class.dialog-overlay--open]="dialogOpen" (click)="closeDialog()">
+        <detail-dialog [class.detail-dialog--open]="dialogOpen" (closeDialog)="closeDialog()"
+            (click)="$event.stopPropagation()">
+            @if (detailedCategory) {
+            <div class="category-detail">
+                <h2 class="category-detail__title">Category Details</h2>
+
+                <div class="category-detail__form">
+                    <div class="category-detail__field">
+                        <label class="category-detail__label">ID</label>
+                        <input class="category-detail__input category-detail__input--readonly" type="text"
+                            [value]="detailedCategory.id" readonly>
+                    </div>
+
+                    <div class="category-detail__field">
+                        <label class="category-detail__label">Name</label>
+                        <input class="category-detail__input" type="text" [(ngModel)]="detailedCategory.name"
+                            placeholder="Enter category name">
+                    </div>
+                </div>
+                <div class="category-detail__actions">
+                    <button class="category-detail__button category-detail__button--update"
+                        (click)="updateCategory()">
+                        Update Category
+                    </button>
+                    <button class="category-detail__button category-detail__button--delete"
+                        (click)="deleteCategory()">
+                        Delete Category
+                    </button>
+                </div>
+            </div>}
+        </detail-dialog>
+    </div>
+</div>

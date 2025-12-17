@@ -6,7 +6,7 @@ export interface ProductDetailResponse {
   description: string;
   basePrice: number;
   discountPercentage: number;
-  finalPrice: number;
+  price: number;
   image: string;
   category: CategoryResponse;
 }

@@ -1,0 +1,59 @@
+:host {
+  // Detail Dialog Variables
+  --detail-dialog-width: 600px;
+  --detail-dialog-max-width: 90vw;
+  --detail-dialog-height: 100vh;
+  --detail-dialog-background: var(--tgm-sys-color-white);
+  --detail-dialog-box-shadow: -10px 0 20px rgba(0, 0, 0, 0.3);
+  --detail-dialog-padding: var(--tgm-sys-spacing-24);
+  --detail-dialog-transform-initial: translateX(100%);
+  --detail-dialog-transform-open: translateX(0);
+  --detail-dialog-transition: transform 0.3s ease-out;
+
+  // Close Button Variables
+  --detail-dialog-close-size: 40px;
+  --detail-dialog-close-font-size: 32px;
+  --detail-dialog-close-color: var(--tgm-sys-color-secondary);
+  --detail-dialog-close-hover-bg: rgba(39, 40, 56, 0.1);
+  --detail-dialog-close-transition: background-color 0.2s ease;
+
+  display: block;
+  height: var(--detail-dialog-height);
+  width: var(--detail-dialog-width);
+  max-width: var(--detail-dialog-max-width);
+}
+
+:host(.detail-dialog--open) .detail-dialog {
+  transform: var(--detail-dialog-transform-open);
+}
+
+.detail-dialog {
+  height: 100%;
+  background-color: var(--detail-dialog-background);
+  box-shadow: var(--detail-dialog-box-shadow);
+  padding: var(--detail-dialog-padding);
+  position: relative;
+  transform: var(--detail-dialog-transform-initial);
+  transition: var(--detail-dialog-transition);
+
+  &__close {
+    background: none;
+    border: none;
+    font-size: var(--detail-dialog-close-font-size);
+    color: var(--detail-dialog-close-color);
+    cursor: pointer;
+    padding: 0;
+    width: var(--detail-dialog-close-size);
+    height: var(--detail-dialog-close-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--detail-dialog-close-transition);
+    line-height: 1;
+
+    &:hover {
+      background-color: var(--detail-dialog-close-hover-bg);
+    }
+  }
+}

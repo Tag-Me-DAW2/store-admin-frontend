@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ProductInsertRequest } from '../models/request/product-insert-request';
 import { ProductDetailResponse } from '../models/response/product-detail-response';
 import { ProductUpdateRequest } from '../models/request/product-update-request';
+import { PageModel } from '../models/PageModel';
 
 @Injectable({
   providedIn: 'root',
@@ -12,24 +13,29 @@ import { ProductUpdateRequest } from '../models/request/product-update-request';
 export class ProductHttp {
   httpClient = inject(HttpClient);
   apiUrl = 'http://localhost:8080/products';
+  apiUrlAdmin = 'http://localhost:8080/admin/products';
 
-  getProducts(): Observable<ProductSummaryResponse[]> {
-    return this.httpClient.get<ProductSummaryResponse[]>(this.apiUrl);
+  getProducts(): Observable<PageModel<ProductSummaryResponse>> {
+    return this.httpClient.get<PageModel<ProductSummaryResponse>>(this.apiUrl);
   }
 
-  getProductById(productId: string): Observable<ProductDetailResponse> {
+  getProductById(productId: number): Observable<ProductDetailResponse> {
     return this.httpClient.get<ProductDetailResponse>(`${this.apiUrl}/${productId}`);
   }
 
   createProduct(product: ProductInsertRequest): Observable<ProductDetailResponse> {
-    return this.httpClient.post<ProductDetailResponse>(this.apiUrl, product);
+    return this.httpClient.post<ProductDetailResponse>(this.apiUrlAdmin, product);
   }
 
-  updateProduct(productId: string, product: ProductUpdateRequest): Observable<ProductDetailResponse> {
-    return this.httpClient.put<ProductDetailResponse>(`${this.apiUrl}/${productId}`, product);
+  updateProduct(
+    productId: number,
+    product: ProductUpdateRequest
+  ): Observable<ProductDetailResponse> {
+    return this.httpClient.put<ProductDetailResponse>(`${this.apiUrlAdmin}/${productId}`, product);
   }
 
-  deleteProductById(productId: string): Observable<void> {
-    return this.httpClient.delete<void>(`${this.apiUrl}/${productId}`);
+  deleteProductById(productId: number): Observable<void> {
+    console.log('Deleting product with ID:', productId);
+    return this.httpClient.delete<void>(`${this.apiUrlAdmin}/${productId}`);
   }
 }

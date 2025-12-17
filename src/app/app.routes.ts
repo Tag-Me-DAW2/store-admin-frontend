@@ -4,6 +4,7 @@ import { DashboardPage } from './components/pages/dashboard/dashboard-page';
 import { loginGuard } from './guards/login-guard';
 import { dashboardGuard } from './guards/dashboard-guard';
 import { ProductPage } from './components/pages/productPage/product-page';
+import { CategoryPage } from './components/pages/categoryPage/category-page';
 
 export const routes: Routes = [
   { path: '', component: LoginPage },
@@ -11,6 +12,9 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardPage,
     canActivate: [loginGuard, dashboardGuard],
-    children: [{ path: 'products', component: ProductPage }],
+    children: [
+      { path: 'products', component: ProductPage },
+      { path: 'categories', component: CategoryPage }
+    ],
   },
 ];
