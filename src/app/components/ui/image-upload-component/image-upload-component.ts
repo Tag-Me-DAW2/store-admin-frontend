@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { AlertService } from '../../../services/AlertService';
 
 @Component({
   selector: 'tgm-image-upload-component',
@@ -10,6 +11,8 @@ export class ImageUploadComponent {
   @Output() imageBase64 = new EventEmitter<string>();
   preview: string | ArrayBuffer | null = null;
 
+  alertService = inject(AlertService);
+
   onFileSelected(event: any) {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) {
@@ -19,7 +22,10 @@ export class ImageUploadComponent {
     const file = input.files[0];
 
     if (!file.type.startsWith('image/')) {
-      console.error('El archivo seleccionado no es una imagen.'); // Cambiar a Swal2 o similar si es necesario
+      this.alertService.error({
+        title: 'Invalid File Type',
+        text: 'Please select a valid image file.',
+      });
       return;
     }
 

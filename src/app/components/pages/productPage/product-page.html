@@ -46,23 +46,23 @@
           <div class="product-detail__field">
             <label class="product-detail__label">Final Price (€)</label>
             <input class="product-detail__input product-detail__input--readonly" type="text"
-            [placeholder]="detailedProduct.price"
-              [value]="detailedProduct.price | currency" readonly>
+              [placeholder]="detailedProduct.price" [value]="detailedProduct.price | currency" readonly>
           </div>
 
           <div class="product-detail__field">
             <label class="product-detail__label">Category</label>
-            <select class="product-detail__input" id="category" name="category" [(ngModel)]="detailedProduct.category.id">
+            <select class="product-detail__input" id="category" name="category"
+              [(ngModel)]="detailedProduct.category.id">
               @for (category of categoriesPage.data; track $index) {
-                <option [value]="category.id">{{ category.name }}</option>
+              <option [value]="category.id">{{ category.name }}</option>
               }
             </select>
           </div>
 
           <div class="product-detail__field product-detail__field--full">
             <label class="product-detail__label">Image URL</label>
-              <tgm-image-upload-component (imageBase64)="onImageBase64($event)"
-            class="user-dialog__image-upload"></tgm-image-upload-component>
+            <tgm-image-upload-component (imageBase64)="onImageBase64($event) "
+              class="user-dialog__image-upload"></tgm-image-upload-component>
           </div>
         </div>
 

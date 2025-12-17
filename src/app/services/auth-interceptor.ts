@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, Observable, throwError } from 'rxjs';
 import Swal from 'sweetalert2';
+import { AlertService } from './AlertService';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,7 @@ import Swal from 'sweetalert2';
 export class AuthInterceptor implements HttpInterceptor {
   isAlertDisplayed: boolean = false;
   router = inject(Router);
+  alertService = inject(AlertService);
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('authToken');
@@ -27,16 +29,16 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error.status === 401 && !this.isAlertDisplayed) {
           this.isAlertDisplayed = true;
 
-          Swal.fire({
-            icon: 'error',
-            title: 'Permiso denegado',
-            text: 'No tienes permiso para acceder a este recurso. Por favor, inicia sesión nuevamente.',
-          }).then(() => {
-            this.isAlertDisplayed = false;
-            this.router.navigate(['/']);
-          });
+          this.alertService
+            .error({
+              title: 'Session Expired',
+              text: 'Your session has expired. Please log in again.',
+            })
+            .then(() => {
+              this.isAlertDisplayed = false;
+              this.router.navigate(['/']);
+            });
         }
-
         return throwError(() => error);
       })
     );

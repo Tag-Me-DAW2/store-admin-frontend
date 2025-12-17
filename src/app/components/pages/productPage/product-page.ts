@@ -11,7 +11,8 @@ import { DetailDialogComponent } from '../../ui/detail-dialog/detail-dialog';
 import { ProductUpdateRequest } from '../../../models/request/product-update-request';
 import { CategoryResponse } from '../../../models/response/category-response';
 import { CategoryService } from '../../../services/category-service';
-import { ImageUploadComponent } from "../../ui/image-upload-component/image-upload-component";
+import { ImageUploadComponent } from '../../ui/image-upload-component/image-upload-component';
+import { AlertService } from '../../../services/AlertService';
 
 @Component({
   selector: 'product-page',
@@ -31,6 +32,8 @@ export class ProductPage implements OnInit, OnDestroy {
   detailedProduct!: ProductDetailResponse;
   dialogOpen: boolean = false;
 
+  alertService = inject(AlertService);
+
   ngOnInit() {
     this.loadProducts();
   }
@@ -45,9 +48,12 @@ export class ProductPage implements OnInit, OnDestroy {
     this.subscription = this.categoryService.getCategories().subscribe({
       next: (data) => {
         this.categoriesPage = data;
-        console.log('Categories loaded:', this.categoriesPage);
       },
       error: (error) => {
+        this.alertService.error({
+          title: 'Error',
+          text: 'Failed to load categories. Please try again later.',
+        });
         console.error('Error fetching categories:', error);
       },
     });
@@ -57,9 +63,12 @@ export class ProductPage implements OnInit, OnDestroy {
     this.subscription = this.productService.getProducts().subscribe({
       next: (data) => {
         this.productsPage = data;
-        console.log('Products loaded:', this.productsPage);
       },
       error: (error) => {
+        this.alertService.error({
+          title: 'Error',
+          text: 'Failed to load products. Please try again later.',
+        });
         console.error('Error fetching products:', error);
       },
     });
@@ -76,9 +85,12 @@ export class ProductPage implements OnInit, OnDestroy {
     return this.productService.getProductById(id).subscribe({
       next: (data) => {
         this.detailedProduct = data;
-        console.log('Product details:', data);
       },
       error: (error) => {
+        this.alertService.error({
+          title: 'Error',
+          text: 'Failed to load product details. Please try again later.',
+        });
         console.error('Error fetching product details:', error);
       },
     });
@@ -98,18 +110,25 @@ export class ProductPage implements OnInit, OnDestroy {
         basePrice: this.detailedProduct.basePrice,
         discountPercentage: this.detailedProduct.discountPercentage,
         image: this.detailedProduct.image.split(',')[1] || this.detailedProduct.image,
-        categoryId: this.detailedProduct.category.id
-      }
+        categoryId: this.detailedProduct.category.id,
+      };
       console.log('Updating product:', this.detailedProduct);
       this.productService.updateProduct(this.detailedProduct.id, updatedProduct).subscribe({
         next: (data) => {
-          console.log('Product updated successfully:', data);
+          this.alertService.success({
+            title: 'Product Updated',
+            text: 'The product has been successfully updated.',
+          });
           this.loadProducts();
         },
         error: (error) => {
+          this.alertService.error({
+            title: 'Error',
+            text: 'Failed to update product. Please try again later.',
+          });
           console.error('Error updating product:', error);
-        }
-      })
+        },
+      });
       this.closeDialog();
     }
   }
@@ -117,14 +136,19 @@ export class ProductPage implements OnInit, OnDestroy {
   deleteProduct() {
     this.productService.deleteProductById(this.detailedProduct.id).subscribe({
       next: () => {
-        console.log('Product deleted successfully');
-        alert('Product deleted successfully');
+        this.alertService.success({
+          title: 'Product Deleted',
+          text: 'The product has been successfully deleted.',
+        });
         this.closeDialog();
         this.loadProducts();
       },
       error: (error) => {
         console.error('Error deleting product:', error);
-        alert('Error deleting product. Please try again.');
+        this.alertService.error({
+          title: 'Error',
+          text: 'Failed to delete product. Please try again later.',
+        });
       },
     });
   }

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth-service';
 import { inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
+import { AlertService } from '../../../services/AlertService';
 
 @Component({
   selector: 'login-page',
@@ -17,6 +17,8 @@ export class LoginPage {
 
   authService = inject(AuthService);
   router = inject(Router);
+
+  alertService = inject(AlertService);
 
   ngOnInit(): void {
     localStorage.removeItem('authToken');
@@ -37,11 +39,11 @@ export class LoginPage {
         });
       },
       error: (error) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Credenciales inválidas',
-          text: 'Por favor, verifica tu correo electrónico y contraseña e intenta nuevamente.',
+        this.alertService.error({
+          title: 'Login Failed',
+          text: 'Invalid email or password. Please try again.',
         });
+        console.error('Login error:', error);
       },
     });
   }

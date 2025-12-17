@@ -4,9 +4,10 @@ import { Subscription } from 'rxjs';
 import { CategoryResponse } from '../../../models/response/category-response';
 import { PageModel } from '../../../models/PageModel';
 import { CategoryRequest } from '../../../models/request/category-request';
-import { TableComponent } from "../../ui/table-component/table-component";
-import { DetailDialogComponent } from "../../ui/detail-dialog/detail-dialog";
+import { TableComponent } from '../../ui/table-component/table-component';
+import { DetailDialogComponent } from '../../ui/detail-dialog/detail-dialog';
 import { FormsModule } from '@angular/forms';
+import { AlertService } from '../../../services/AlertService';
 
 @Component({
   selector: 'app-category-page',
@@ -24,6 +25,8 @@ export class CategoryPage {
   detailedCategory!: CategoryResponse;
   dialogOpen: boolean = false;
 
+  alertService = inject(AlertService);
+
   ngOnInit() {
     this.loadCategories();
   }
@@ -38,9 +41,12 @@ export class CategoryPage {
     this.subscription = this.categoryService.getCategories().subscribe({
       next: (data) => {
         this.categoryPage = data;
-        console.log('Categories loaded:', this.categoryPage);
       },
       error: (error) => {
+        this.alertService.error({
+          title: 'Error',
+          text: 'Failed to load categories. Please try again later.',
+        });
         console.error('Error fetching categories:', error);
       },
     });
@@ -56,9 +62,12 @@ export class CategoryPage {
     return this.categoryService.getCategoryById(id).subscribe({
       next: (data) => {
         this.detailedCategory = data;
-        console.log('Category details:', data);
       },
       error: (error) => {
+        this.alertService.error({
+          title: 'Error',
+          text: 'Failed to load category details. Please try again later.',
+        });
         console.error('Error fetching category details:', error);
       },
     });
@@ -74,17 +83,24 @@ export class CategoryPage {
       let updatedCategory: CategoryRequest = {
         id: this.detailedCategory.id,
         name: this.detailedCategory.name,
-      }
-      console.log('Updating category:', this.detailedCategory);
+      };
+
       this.categoryService.updateCategory(this.detailedCategory.id, updatedCategory).subscribe({
         next: (data) => {
-          console.log('Category updated successfully:', data);
+          this.alertService.success({
+            title: 'Category Updated',
+            text: 'The category has been successfully updated.',
+          });
           this.loadCategories();
         },
         error: (error) => {
           console.error('Error updating category:', error);
-        }
-      })
+          this.alertService.error({
+            title: 'Error',
+            text: 'Failed to update category. Please try again later.',
+          });
+        },
+      });
       this.closeDialog();
     }
   }
@@ -92,13 +108,19 @@ export class CategoryPage {
   deleteCategory() {
     this.categoryService.deleteCategoryById(this.detailedCategory.id).subscribe({
       next: () => {
-        console.log('Category deleted successfully');
+        this.alertService.success({
+          title: 'Category Deleted',
+          text: 'The category has been successfully deleted.',
+        });
         this.closeDialog();
         this.loadCategories();
       },
       error: (error) => {
         console.error('Error deleting category:', error);
-        alert('Error deleting category. Please try again.');
+        this.alertService.error({
+          title: 'Error',
+          text: 'Failed to delete category. Please try again later.',
+        });
       },
     });
   }

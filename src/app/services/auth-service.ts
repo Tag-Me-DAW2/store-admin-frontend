@@ -5,6 +5,7 @@ import { BehaviorSubject, tap } from 'rxjs';
 import { LoginRequest } from '../models/request/login-request';
 import { UserResponse } from '../models/response/user-response';
 import { Router } from '@angular/router';
+import { AlertService } from './AlertService';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   httpClient = inject(AuthHttp);
   router = inject(Router);
+  alertService = inject(AlertService);
 
   login(email: string, password: string): Observable<{ token: string }> {
     let loginRequest: LoginRequest = { email, password };
@@ -31,7 +33,10 @@ export class AuthService {
         this.router.navigate(['/']);
       },
       error: (error) => {
-        console.error('Logout failed', error);
+        this.alertService.error({
+          title: 'Logout Failed',
+          text: 'An error occurred while logging out. Please try again.',
+        });
       },
     });
   }
