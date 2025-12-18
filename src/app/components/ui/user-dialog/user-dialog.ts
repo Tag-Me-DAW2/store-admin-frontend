@@ -42,7 +42,8 @@ export class UserDialogComponent {
       role: this.user.role,
     };
 
-    this.userService.updateUser(this.user.id, this.usertToUpdate);
-    this.closeDialog();
+    this.userService.updateUser(this.user.id, this.usertToUpdate).subscribe(() => {
+      this.closeDialog();
+    });
   }
 }

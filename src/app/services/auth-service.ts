@@ -54,6 +54,7 @@ export class AuthService {
           this.router.navigate(['/']);
           return;
         }
+        console.log('Fetched user:', user);
         user.profilePicture = user.profilePicture ? user.profilePicture : 'assets/user-icon.png';
         localStorage.setItem('user', JSON.stringify(user));
       })
