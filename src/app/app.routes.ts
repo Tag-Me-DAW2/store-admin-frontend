@@ -6,6 +6,7 @@ import { dashboardGuard } from './guards/dashboard-guard';
 import { ProductPage } from './components/pages/productPage/product-page';
 import { CategoryPage } from './components/pages/categoryPage/category-page';
 import { DashboardDetailPage } from './components/pages/dashboard-detail/dashboard-detail';
+import { UserPage } from './components/pages/userPage/user-page';
 
 export const routes: Routes = [
   { path: '', component: LoginPage },
@@ -17,6 +18,7 @@ export const routes: Routes = [
       { path: '', component: DashboardDetailPage },
       { path: 'products', component: ProductPage },
       { path: 'categories', component: CategoryPage },
+      { path: 'users', component: UserPage },
     ],
   },
 ];

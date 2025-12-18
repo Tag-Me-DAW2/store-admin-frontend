@@ -17,6 +17,9 @@
         @case ('image') {
         <img class="table__image-cell" [src]="(row[col])" alt="Product Image">
         }
+        @case ('profilePicture') {
+        <img class="table__image-cell" [src]="(row[col])" alt="User Image">
+        }
         @case ('category') {
         {{ row[col].name }}
         }
@@ -24,6 +27,11 @@
         {{ row[col] | currency }}
         }
         @case ('name') {
+        <span class="table__name-cell" (click)="sendItemIdClicked(row['id'])">
+          {{ row[col] }}
+        </span>
+        }
+        @case ('email') {
         <span class="table__name-cell" (click)="sendItemIdClicked(row['id'])">
           {{ row[col] }}
         </span>

@@ -218,9 +218,4 @@ export class ProductPage implements OnInit, OnDestroy {
       },
     });
   }
-
-  // onImageBase64(id: number, image64: string) {
-
-  //   this.detailedProduct.image = image64;
-  // }
 }

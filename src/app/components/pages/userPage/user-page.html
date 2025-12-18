@@ -1,0 +1,140 @@
+<div class="user">
+    <h1 class="user__main-title">Users management</h1>
+    <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Add
+        User</button>
+
+    <div class="dialog-overlay" [class.dialog-overlay--open]="creationDialogOpen" (click)="closeDialog()">
+        <detail-dialog [class.detail-dialog--open]="creationDialogOpen" (closeDialog)="closeDialog()"
+            (click)="$event.stopPropagation()">
+            @if (creationDialogOpen) {
+            <div class="user-detail">
+                <h2 class="user-detail__title">User Creation</h2>
+                <div class="user-detail__form">
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Username</label>
+                        <input class="user-detail__input" type="text" placeholder="Enter username"
+                            [(ngModel)]="userToCreate.username">
+                    </div>
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Email</label>
+                        <input class="user-detail__input" type="email" placeholder="Enter email"
+                            [(ngModel)]="userToCreate.email">
+                    </div>
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Password</label>
+                        <input class="user-detail__input" type="password" placeholder="Enter password"
+                            [(ngModel)]="userToCreate.password">
+                    </div>
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">First Name</label>
+                        <input class="user-detail__input" type="text" placeholder="Enter first name"
+                            [(ngModel)]="userToCreate.firstName">
+                    </div>
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Last Name</label>
+                        <input class="user-detail__input" type="text" placeholder="Enter last name"
+                            [(ngModel)]="userToCreate.lastName">
+                    </div>
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Phone</label>
+                        <input class="user-detail__input" type="text" placeholder="Enter phone number"
+                            [(ngModel)]="userToCreate.phone">
+                    </div>
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Category</label>
+                        <select class="user-detail__input" id="category" name="category"
+                            [(ngModel)]="userToCreate.role">
+                            <option value="ADMIN">Admin</option>
+                            <option value="CUSTOMER">Customer</option>
+                        </select>
+                    </div>
+                    <div class="user-detail__field user-detail__field--full">
+                        <label class="user-detail__label">Image URL</label>
+                        <tgm-image-upload-component [preview]="userToCreate.profilePicture"
+                            (imageSelected)="setImageInsert($event)"
+                            class="user-dialog__image-upload"></tgm-image-upload-component>
+                    </div>
+                </div>
+                <div class="user-detail__actions">
+                    <button class="user-detail__button user-detail__button--update" (click)=" createUser()">
+                        Create User
+                    </button>
+                </div>
+            </div>
+            }
+        </detail-dialog>
+    </div>
+
+    <table-component class="user__table" [dataPage]="usersPage" [columns]="columns"
+        (itemClicked)="openItemDetail($event)">
+    </table-component>
+
+    <div class="dialog-overlay" [class.dialog-overlay--open]="detaildetailDialogOpen" (click)="closeDialog()">
+        <detail-dialog [class.detail-dialog--open]="detaildetailDialogOpen" (closeDialog)="closeDialog()"
+            (click)="$event.stopPropagation()">
+            @if (detailedUser) {
+            <div class="user-detail">
+                <h2 class="user-detail__title">User Details</h2>
+
+                <div class="user-detail__form">
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">ID</label>
+                        <input class="user-detail__input user-detail__input--readonly" type="text"
+                            [value]="detailedUser.id" readonly>
+                    </div>
+
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Username</label>
+                        <input class="user-detail__input" type="text" [(ngModel)]="detailedUser.username"
+                            placeholder="Enter username">
+                    </div>
+
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Email</label>
+                        <input class="user-detail__input" type="email" placeholder="Enter email"
+                            [(ngModel)]="detailedUser.email">
+                    </div>
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">First Name</label>
+                        <input class="user-detail__input" type="text" placeholder="Enter first name"
+                            [(ngModel)]="detailedUser.firstName">
+                    </div>
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Last Name</label>
+                        <input class="user-detail__input" type="text" placeholder="Enter last name"
+                            [(ngModel)]="detailedUser.lastName">
+                    </div>
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Phone</label>
+                        <input class="user-detail__input" type="text" placeholder="Enter phone number"
+                            [(ngModel)]="detailedUser.phone">
+                    </div>
+                    <div class="user-detail__field">
+                        <label class="user-detail__label">Category</label>
+                        <select class="user-detail__input" id="category" name="category"
+                            [(ngModel)]="detailedUser.role">
+                            <option value="ADMIN">Admin</option>
+                            <option value="CUSTOMER">Customer</option>
+                        </select>
+                    </div>
+                    <div class="user-detail__field user-detail__field--full">
+                        <label class="user-detail__label">Image URL</label>
+                        <tgm-image-upload-component [preview]="detailedUser.profilePicture"
+                            (imageSelected)="setImage($event)"
+                            class="user-dialog__image-upload"></tgm-image-upload-component>
+                    </div>
+                </div>
+
+                <div class="user-detail__actions">
+                    <button class="user-detail__button user-detail__button--update" (click)="updateUser()">
+                        Update User
+                    </button>
+                    <button class="user-detail__button user-detail__button--delete" (click)="deleteUser()">
+                        Delete User
+                    </button>
+                </div>
+            </div>
+            }
+        </detail-dialog>
+    </div>
+</div>

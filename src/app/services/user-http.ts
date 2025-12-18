@@ -4,6 +4,7 @@ import { UserUpdateRequest } from '../models/request/user-update-request';
 import { map, Observable } from 'rxjs';
 import { UserResponse } from '../models/response/user-response';
 import { PageModel } from '../models/PageModel';
+import { UserInsertRequest } from '../models/request/user-insert-request';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,24 @@ export class UserHttpService {
   }
 
   getUserCount(): Observable<number> {
-    return this.HttpClient.get<PageModel<UserResponse>>(`${this.apiUrl}`).pipe( map(response => response.totalElements ) );
+    return this.HttpClient.get<PageModel<UserResponse>>(`${this.apiUrl}`).pipe(
+      map((response) => response.totalElements)
+    );
+  }
+
+  getUsers(): Observable<PageModel<UserResponse>> {
+    return this.HttpClient.get<PageModel<UserResponse>>(`${this.apiUrl}`);
+  }
+
+  getUser(id: number): Observable<UserResponse> {
+    return this.HttpClient.get<UserResponse>(`${this.apiUrl}/${id}`);
+  }
+
+  createUser(newUser: UserInsertRequest): Observable<UserResponse> {
+    return this.HttpClient.post<UserResponse>(`${this.apiUrl}`, newUser);
+  }
+
+  deleteUserById(userId: number): Observable<void> {
+    return this.HttpClient.delete<void>(`${this.apiUrl}/${userId}`);
   }
 }
