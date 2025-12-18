@@ -1,11 +1,69 @@
 <div class="product">
   <h1 class="product__main-title">Products management</h1>
+  <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Add Product</button>
+
+  <div class="dialog-overlay" [class.dialog-overlay--open]="creationDialogOpen" (click)="closeDialog()">
+    <detail-dialog [class.detail-dialog--open]="creationDialogOpen" (closeDialog)="closeDialog()"
+      (click)="$event.stopPropagation()">
+      @if (creationDialogOpen) {
+      <div class="product-detail">
+        <h2 class="product-detail__title">Product Creation</h2>
+        <div class="product-detail__form">
+          <div class="product-detail__field">
+            <label class="product-detail__label">Name</label>
+            <input class="product-detail__input" type="text" placeholder="Enter product name"
+              [(ngModel)]="createdProduct.name">
+          </div>
+          <div class="product-detail__field">
+            <label class="product-detail__label">Category</label>
+            <select class="product-detail__input" id="category" name="category" [(ngModel)]="createdProduct.categoryId">
+              @for (category of categoriesPage.data; track $index) {
+              <option [value]="category.id">{{ category.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="product-detail__field product-detail__field--full">
+            <label class="product-detail__label">Description</label>
+            <textarea class="product-detail__textarea" placeholder="Enter product description" rows="3"
+              [(ngModel)]="createdProduct.description">
+              </textarea>
+          </div>
+
+          <div class="product-detail__field">
+            <label class="product-detail__label">Base Price (€)</label>
+            <input class="product-detail__input" type="number" step="0.01" placeholder="0.00"
+              [(ngModel)]="createdProduct.basePrice">
+          </div>
+
+          <div class="product-detail__field">
+            <label class="product-detail__label">Discount (%)</label>
+            <input class="product-detail__input" type="number" step="0.01" placeholder="0"
+              [(ngModel)]="createdProduct.discountPercentage">
+          </div>
+
+          <div class="product-detail__field product-detail__field--full">
+            <label class="product-detail__label">Image URL</label>
+            <tgm-image-upload-component (imageBase64)="createdProduct.image = $event"
+              class="user-dialog__image-upload"></tgm-image-upload-component>
+          </div>
+        </div>
+        <div class="product-detail__actions">
+          <button class="product-detail__button product-detail__button--update" (click)="createProduct()">
+            Create Product
+          </button>
+        </div>
+      </div>
+      }
+    </detail-dialog>
+  </div>
+
   <table-component class="product__table" [dataPage]="productsPage" [columns]="columns"
     (itemClicked)="openItemDetail($event)">
   </table-component>
 
-  <div class="dialog-overlay" [class.dialog-overlay--open]="dialogOpen" (click)="closeDialog()">
-    <detail-dialog [class.detail-dialog--open]="dialogOpen" (closeDialog)="closeDialog()"
+  <div class="dialog-overlay" [class.dialog-overlay--open]="detaildetailDialogOpen" (click)="closeDialog()">
+    <detail-dialog [class.detail-dialog--open]="detaildetailDialogOpen" (closeDialog)="closeDialog()"
       (click)="$event.stopPropagation()">
       @if (detailedProduct) {
       <div class="product-detail">
@@ -61,7 +119,7 @@
 
           <div class="product-detail__field product-detail__field--full">
             <label class="product-detail__label">Image URL</label>
-            <tgm-image-upload-component (imageBase64)="onImageBase64($event) "
+            <tgm-image-upload-component (imageBase64)="detailedProduct.image = $event"
               class="user-dialog__image-upload"></tgm-image-upload-component>
           </div>
         </div>

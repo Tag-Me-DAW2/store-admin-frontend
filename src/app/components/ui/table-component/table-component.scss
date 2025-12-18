@@ -176,10 +176,28 @@
   }
 
   &__name-cell {
+    position: relative;
     cursor: pointer;
+    transition: all 0.3s ease;
 
     &:hover {
       color: var(--tgm-sys-color-primary);
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -5px;
+      height: 2px;
+      width: 0;
+      background-color: var(--tgm-sys-color-primary);
+      transition: all 0.3s ease;
+    }
+
+    &:hover::before {
+      left: 0;
+      width: 100%;
     }
   }
 

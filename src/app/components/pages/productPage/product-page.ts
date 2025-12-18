@@ -13,10 +13,12 @@ import { CategoryResponse } from '../../../models/response/category-response';
 import { CategoryService } from '../../../services/category-service';
 import { ImageUploadComponent } from '../../ui/image-upload-component/image-upload-component';
 import { AlertService } from '../../../services/AlertService';
+import { TgmButtonComponent } from "../../ui/tgm-button/tgm-button";
+import { ProductInsertRequest } from '../../../models/request/product-insert-request';
 
 @Component({
   selector: 'product-page',
-  imports: [TableComponent, DetailDialogComponent, CommonModule, FormsModule, ImageUploadComponent],
+  imports: [TableComponent, DetailDialogComponent, CommonModule, FormsModule, ImageUploadComponent, TgmButtonComponent],
   templateUrl: './product-page.html',
   styleUrl: './product-page.scss',
 })
@@ -26,11 +28,20 @@ export class ProductPage implements OnInit, OnDestroy {
   subscription!: Subscription;
 
   productsPage!: PageModel<ProductSummaryResponse>;
-  categoriesPage!: PageModel<CategoryResponse>;
+  categoriesPage: PageModel<CategoryResponse> = { data: [], pageNumber: 0, pageSize: 0, totalElements: 0, totalPages: 0 };
   columns: string[] = ['id', 'image', 'name', 'price', 'category'];
 
+  createdProduct: ProductInsertRequest = {
+    name: '',
+    description: '',
+    basePrice: 0,
+    discountPercentage: 0,
+    image: '',
+    categoryId: 0,
+  };
   detailedProduct!: ProductDetailResponse;
-  dialogOpen: boolean = false;
+  detaildetailDialogOpen: boolean = false;
+  creationDialogOpen: boolean = false;
 
   alertService = inject(AlertService);
 
@@ -47,6 +58,7 @@ export class ProductPage implements OnInit, OnDestroy {
   loadCategories() {
     this.subscription = this.categoryService.getCategories().subscribe({
       next: (data) => {
+        console.log('Categories loaded:', data);
         data.data.push({ id: 0, name: 'Uncategorized' });
         this.categoriesPage = data;
       },
@@ -84,7 +96,13 @@ export class ProductPage implements OnInit, OnDestroy {
     console.log('Product ID clicked:', id);
     this.getProduct(id);
     this.loadCategories();
-    this.dialogOpen = true;
+    this.detaildetailDialogOpen = true;
+  }
+
+  openCreationDialog() {
+    console.log('Entrando en creacion de producto');
+    this.loadCategories();
+    this.creationDialogOpen = true;
   }
 
   getProduct(id: number) {
@@ -104,12 +122,46 @@ export class ProductPage implements OnInit, OnDestroy {
   }
 
   closeDialog() {
-    this.dialogOpen = false;
+    this.detaildetailDialogOpen = false;
+    this.creationDialogOpen = false;
+  }
+
+  createProduct() {
+    console.log('Category:', this.createdProduct.categoryId);
+    if (this.categoriesPage) {
+      let newProduct: ProductInsertRequest = {
+        name: this.createdProduct.name,
+        description: this.createdProduct.description,
+        basePrice: this.createdProduct.basePrice,
+        discountPercentage: this.createdProduct.discountPercentage,
+        image: this.createdProduct.image.split(',')[1] || this.createdProduct.image,
+        categoryId: this.createdProduct.categoryId,
+      };
+      console.log('Creating product:', this.createdProduct);
+      this.productService.createProduct(newProduct).subscribe({
+        next: (data) => {
+          this.alertService.success({
+            title: 'Product Created',
+            text: 'The product has been successfully created.',
+          });
+          this.loadProducts();
+        },
+        error: (error) => {
+          this.alertService.error({
+            title: 'Error',
+            text: 'Failed to create product. Please try again later.',
+          });
+          console.error('Error creating product:', error);
+        }
+      });
+      this.closeDialog();
+    }
   }
 
   updateProduct() {
     console.log('Category:', this.detailedProduct.category);
     if (this.detailedProduct) {
+
       let updatedProduct: ProductUpdateRequest = {
         id: this.detailedProduct.id,
         name: this.detailedProduct.name,
@@ -160,7 +212,8 @@ export class ProductPage implements OnInit, OnDestroy {
     });
   }
 
-  onImageBase64(image64: string) {
-    this.detailedProduct.image = image64;
-  }
+  // onImageBase64(id: number, image64: string) {
+
+  //   this.detailedProduct.image = image64;
+  // }
 }

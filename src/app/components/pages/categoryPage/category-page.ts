@@ -8,10 +8,11 @@ import { TableComponent } from '../../ui/table-component/table-component';
 import { DetailDialogComponent } from '../../ui/detail-dialog/detail-dialog';
 import { FormsModule } from '@angular/forms';
 import { AlertService } from '../../../services/AlertService';
+import { TgmButtonComponent } from "../../ui/tgm-button/tgm-button";
 
 @Component({
   selector: 'app-category-page',
-  imports: [TableComponent, DetailDialogComponent, FormsModule],
+  imports: [TableComponent, DetailDialogComponent, FormsModule, TgmButtonComponent],
   templateUrl: './category-page.html',
   styleUrl: './category-page.scss',
 })
@@ -23,7 +24,12 @@ export class CategoryPage {
   columns: string[] = ['id', 'name'];
 
   detailedCategory!: CategoryResponse;
-  dialogOpen: boolean = false;
+  createdCategory: CategoryRequest = {
+    id: null,
+    name: '',
+  };
+  detailDialogOpen: boolean = false;
+  creationDialogOpen: boolean = false;
 
   alertService = inject(AlertService);
 
@@ -55,7 +61,11 @@ export class CategoryPage {
   openItemDetail(id: number) {
     console.log('Category ID clicked:', id);
     this.getCategory(id);
-    this.dialogOpen = true;
+    this.detailDialogOpen = true;
+  }
+
+  openCreationDialog() {
+    this.creationDialogOpen = true;
   }
 
   getCategory(id: number) {
@@ -74,7 +84,29 @@ export class CategoryPage {
   }
 
   closeDialog() {
-    this.dialogOpen = false;
+    this.detailDialogOpen = false;
+    this.creationDialogOpen = false;
+  }
+
+  createCategory() {
+    console.log('Category:', this.createdCategory);
+    this.categoryService.createCategory(this.createdCategory).subscribe({
+      next: (data) => {
+        this.alertService.success({
+          title: 'Category Created',
+          text: 'The category has been successfully created.',
+        });
+        this.loadCategories();
+      },
+      error: (error) => {
+        console.error('Error creating category:', error);
+        this.alertService.error({
+          title: 'Error',
+          text: 'Failed to create category. Please try again later.',
+        });
+      },
+    });
+    this.closeDialog();
   }
 
   updateCategory() {

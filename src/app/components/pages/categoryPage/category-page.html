@@ -1,11 +1,37 @@
 <div class="category">
     <h1 class="category__main-title">Categories management</h1>
+    <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Create
+        Category</button>
+
+    <div class="dialog-overlay" [class.dialog-overlay--open]="creationDialogOpen" (click)="closeDialog()">
+        <detail-dialog [class.detail-dialog--open]="creationDialogOpen" (closeDialog)="closeDialog()"
+            (click)="$event.stopPropagation()">
+            @if (creationDialogOpen) {
+            <div class="category-detail">
+                <h2 class="category-detail__title">Category Creation</h2>
+                <div class="category-detail__form">
+                    <div class="category-detail__field">
+                        <label class="category-detail__label">Name</label>
+                        <input class="category-detail__input" type="text" placeholder="Enter Category name"
+                            [(ngModel)]="createdCategory.name">
+                    </div>
+                </div>
+                <div class="category-detail__actions">
+                    <button class="category-detail__button category-detail__button--update" (click)="createCategory()">
+                        Create Category
+                    </button>
+                </div>
+            </div>
+            }
+        </detail-dialog>
+    </div>
+
     <table-component class="category__table" [dataPage]="categoryPage" [columns]="columns"
         (itemClicked)="openItemDetail($event)">
     </table-component>
 
-    <div class="dialog-overlay" [class.dialog-overlay--open]="dialogOpen" (click)="closeDialog()">
-        <detail-dialog [class.detail-dialog--open]="dialogOpen" (closeDialog)="closeDialog()"
+    <div class="dialog-overlay" [class.dialog-overlay--open]="detailDialogOpen" (click)="closeDialog()">
+        <detail-dialog [class.detail-dialog--open]="detailDialogOpen" (closeDialog)="closeDialog()"
             (click)="$event.stopPropagation()">
             @if (detailedCategory) {
             <div class="category-detail">
@@ -25,12 +51,10 @@
                     </div>
                 </div>
                 <div class="category-detail__actions">
-                    <button class="category-detail__button category-detail__button--update"
-                        (click)="updateCategory()">
+                    <button class="category-detail__button category-detail__button--update" (click)="updateCategory()">
                         Update Category
                     </button>
-                    <button class="category-detail__button category-detail__button--delete"
-                        (click)="deleteCategory()">
+                    <button class="category-detail__button category-detail__button--delete" (click)="deleteCategory()">
                         Delete Category
                     </button>
                 </div>
