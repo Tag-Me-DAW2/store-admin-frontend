@@ -14,7 +14,7 @@
 
   /* === Espaciado === */
   --boton-padding: 0.375rem 0.75rem;
-  --boton-border-radius: var(--tgm-sys-border-radius-small);
+  --boton-border-radius: var(--tgm-sys-border-radius-medium);
 
   font-family: var(--boton-font-family);
   font-size: var(--boton-font-size);
@@ -102,11 +102,11 @@
 
   &--sizeMedium {
     --boton-font-size: 1rem;
-    --boton-padding: 0.375rem 0.75rem;
+    --boton-padding: 0.5rem 1rem;
   }
 
   &--sizeLarge {
     --boton-font-size: 1.25rem;
-    --boton-padding: 0.5rem 1rem;
+    --boton-padding: 0.75rem 1.5rem;
   }
 }

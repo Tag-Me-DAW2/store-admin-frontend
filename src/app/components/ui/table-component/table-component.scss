@@ -45,7 +45,7 @@
   // Table Empty Variables
   --table-empty-padding: var(--tgm-sys-spacing-32);
   --table-empty-background: var(--tgm-sys-color-white);
-  --table-empty-border-radius: 12px;
+  --table-empty-border-radius: var(--tgm-sys-border-radius-medium);
   --table-empty-shadow: var(--tgm-sys-box-shadow-light);
   --table-empty-color: var(--tgm-sys-color-secondary);
   --table-empty-font-size: var(--tgm-sys-font-size-16);
