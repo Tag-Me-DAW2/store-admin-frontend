@@ -47,6 +47,7 @@ export class ProductPage implements OnInit, OnDestroy {
   loadCategories() {
     this.subscription = this.categoryService.getCategories().subscribe({
       next: (data) => {
+        data.data.push({ id: 0, name: 'Uncategorized' });
         this.categoriesPage = data;
       },
       error: (error) => {
@@ -62,6 +63,11 @@ export class ProductPage implements OnInit, OnDestroy {
   loadProducts() {
     this.subscription = this.productService.getProducts().subscribe({
       next: (data) => {
+        data.data.map((element) => {
+          element.category =
+            element.category === null ? { id: 0, name: 'Uncategorized' } : element.category;
+        });
+
         this.productsPage = data;
       },
       error: (error) => {
@@ -84,6 +90,7 @@ export class ProductPage implements OnInit, OnDestroy {
   getProduct(id: number) {
     return this.productService.getProductById(id).subscribe({
       next: (data) => {
+        data.category = data.category === null ? { id: 0, name: 'Uncategorized' } : data.category;
         this.detailedProduct = data;
       },
       error: (error) => {

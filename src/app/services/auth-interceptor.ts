@@ -22,8 +22,6 @@ export class AuthInterceptor implements HttpInterceptor {
         })
       : req;
 
-    console.log('Intercepted request:', authReq);
-
     return next.handle(authReq).pipe(
       catchError((error) => {
         if (error.status === 401 && !this.isAlertDisplayed) {
