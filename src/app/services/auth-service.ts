@@ -44,7 +44,13 @@ export class AuthService {
   getUser(): Observable<UserResponse> {
     return this.httpClient.getUser().pipe(
       tap((user: UserResponse) => {
-        if (!user) {
+        if (!user || user.role !== 'ADMIN') {
+          localStorage.removeItem('authToken');
+          localStorage.removeItem('user');
+          this.alertService.error({
+            title: 'Access Denied',
+            text: 'You do not have permission to access this application.',
+          });
           this.router.navigate(['/']);
           return;
         }
