@@ -53,10 +53,12 @@ export class ImageUploadComponent implements OnInit {
         title: 'Invalid File Type',
         text: 'Please select a valid image file.',
       });
+      input.value = '';
       return;
     }
 
     this.readFileAsBase64(file);
+    input.value = '';
   }
 
   private readFileAsBase64(file: File) {
