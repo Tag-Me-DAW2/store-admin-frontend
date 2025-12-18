@@ -64,7 +64,6 @@ export class ImageUploadComponent implements OnInit {
 
     reader.onload = () => {
       const base64 = reader.result as string;
-      console.log('File read as base64:', base64);
 
       this.preview = base64;
       this.imageSelected.emit({
