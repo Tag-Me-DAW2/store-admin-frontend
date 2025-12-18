@@ -45,6 +45,7 @@ export class AuthService {
     return this.httpClient.getUser().pipe(
       tap((user: UserResponse) => {
         if (!user || user.role !== 'ADMIN') {
+          this.logout();
           localStorage.removeItem('authToken');
           localStorage.removeItem('user');
           this.alertService.error({

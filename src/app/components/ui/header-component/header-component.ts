@@ -53,6 +53,7 @@ export class HeaderComponent {
   ngAfterViewInit() {
     this.clickListener = this.renderer.listen('document', 'click', (event: Event) => {
       const target = event.target as HTMLElement;
+      
 
       const clickedInsideMenu = target.closest('[class^="user-menu"]') !== null;
       const clickedOnIcon = this.elementRef.nativeElement
