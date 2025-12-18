@@ -15,8 +15,8 @@ export class ProductHttp {
   apiUrl = 'http://localhost:8080/products';
   apiUrlAdmin = 'http://localhost:8080/admin/products';
 
-  getProducts(): Observable<PageModel<ProductSummaryResponse>> {
-    return this.httpClient.get<PageModel<ProductSummaryResponse>>(this.apiUrl);
+  getProducts(pageNumber: number, pageSize: number): Observable<PageModel<ProductSummaryResponse>> {
+    return this.httpClient.get<PageModel<ProductSummaryResponse>>(`${this.apiUrl}?page=${pageNumber}&size=${pageSize}`);
   }
 
   getProductById(productId: number): Observable<ProductDetailResponse> {

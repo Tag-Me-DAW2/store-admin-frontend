@@ -8,8 +8,8 @@ import { CategoryRequest } from '../models/request/category-request';
 export class CategoryService {
   categoryHttp = inject(CategoryHttp);
 
-  getCategories() {
-    return this.categoryHttp.getCategories();
+  getCategories(pageNumber: number, pageSize: number) {
+    return this.categoryHttp.getCategories(pageNumber, pageSize);
   }
 
   getCategoryById(categoryId: number) {

@@ -9,16 +9,20 @@ import { DetailDialogComponent } from '../../ui/detail-dialog/detail-dialog';
 import { FormsModule } from '@angular/forms';
 import { AlertService } from '../../../services/AlertService';
 import { TgmButtonComponent } from "../../ui/tgm-button/tgm-button";
+import { PaginationComponent } from "../../ui/pagination-component/pagination-component";
 
 @Component({
   selector: 'app-category-page',
-  imports: [TableComponent, DetailDialogComponent, FormsModule, TgmButtonComponent],
+  imports: [TableComponent, DetailDialogComponent, FormsModule, TgmButtonComponent, PaginationComponent],
   templateUrl: './category-page.html',
   styleUrl: './category-page.scss',
 })
 export class CategoryPage {
   categoryService = inject(CategoryService);
   subscription!: Subscription;
+
+  pageSize: number = 5;
+  pageNumber: number = 1;
 
   categoryPage!: PageModel<CategoryResponse>;
   columns: string[] = ['id', 'name'];
@@ -34,7 +38,7 @@ export class CategoryPage {
   alertService = inject(AlertService);
 
   ngOnInit() {
-    this.loadCategories();
+    this.loadCategories(this.pageNumber, this.pageSize);
   }
 
   ngOnDestroy() {
@@ -43,8 +47,8 @@ export class CategoryPage {
     }
   }
 
-  loadCategories() {
-    this.subscription = this.categoryService.getCategories().subscribe({
+  loadCategories(pageNumber: number, pageSize: number) {
+    this.subscription = this.categoryService.getCategories(pageNumber, pageSize).subscribe({
       next: (data) => {
         this.categoryPage = data;
       },
@@ -96,7 +100,7 @@ export class CategoryPage {
           title: 'Category Created',
           text: 'The category has been successfully created.',
         });
-        this.loadCategories();
+        this.loadCategories(this.pageNumber, this.pageSize);
       },
       error: (error) => {
         console.error('Error creating category:', error);
@@ -123,7 +127,7 @@ export class CategoryPage {
             title: 'Category Updated',
             text: 'The category has been successfully updated.',
           });
-          this.loadCategories();
+          this.loadCategories(this.pageNumber, this.pageSize);
         },
         error: (error) => {
           console.error('Error updating category:', error);
@@ -145,7 +149,7 @@ export class CategoryPage {
           text: 'The category has been successfully deleted.',
         });
         this.closeDialog();
-        this.loadCategories();
+        this.loadCategories(this.pageNumber, this.pageSize);
       },
       error: (error) => {
         console.error('Error deleting category:', error);

@@ -1,7 +1,24 @@
 <div class="user">
     <h1 class="user__main-title">Users management</h1>
-    <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Add
-        User</button>
+    <div class="user__controls">
+        <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Add
+            User</button>
+        <select name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="loadUsers(1, $event)"
+            class="user__pagesize-select">
+            <option [ngValue]="5" selected>5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="25">25</option>
+            <option [ngValue]="50">50</option>
+            <option [ngValue]="100">100</option>
+        </select>
+    </div>
+    <table-component class="user__table" [dataPage]="usersPage" [columns]="columns"
+        (itemClicked)="openItemDetail($event)">
+    </table-component>
+    <app-pagination-component [currentPageNumber]="usersPage.pageNumber" [totalPages]="usersPage.totalPages"
+        (pageChange)="loadUsers($event, pageSize)"></app-pagination-component>
+
+
 
     <div class="dialog-overlay" [class.dialog-overlay--open]="creationDialogOpen" (click)="closeDialog()">
         <detail-dialog [class.detail-dialog--open]="creationDialogOpen" (closeDialog)="closeDialog()"
@@ -64,10 +81,6 @@
             }
         </detail-dialog>
     </div>
-
-    <table-component class="user__table" [dataPage]="usersPage" [columns]="columns"
-        (itemClicked)="openItemDetail($event)">
-    </table-component>
 
     <div class="dialog-overlay" [class.dialog-overlay--open]="detaildetailDialogOpen" (click)="closeDialog()">
         <detail-dialog [class.detail-dialog--open]="detaildetailDialogOpen" (closeDialog)="closeDialog()"

@@ -1,7 +1,24 @@
 <div class="category">
     <h1 class="category__main-title">Categories management</h1>
-    <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Create
-        Category</button>
+    <div class="category__controls">
+        <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Create
+            Category</button>
+        <select name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="loadCategories(1, $event)"
+            class="category__pagesize-select">
+            <option [ngValue]="5" selected>5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="25">25</option>
+            <option [ngValue]="50">50</option>
+            <option [ngValue]="100">100</option>
+        </select>
+    </div>
+
+    <table-component class="category__table" [dataPage]="categoryPage" [columns]="columns"
+        (itemClicked)="openItemDetail($event)">
+    </table-component>
+    <app-pagination-component [currentPageNumber]="categoryPage.pageNumber" [totalPages]="categoryPage.totalPages"
+        (pageChange)="loadCategories($event, pageSize)"></app-pagination-component>
+
 
     <div class="dialog-overlay" [class.dialog-overlay--open]="creationDialogOpen" (click)="closeDialog()">
         <detail-dialog [class.detail-dialog--open]="creationDialogOpen" (closeDialog)="closeDialog()"
@@ -25,10 +42,6 @@
             }
         </detail-dialog>
     </div>
-
-    <table-component class="category__table" [dataPage]="categoryPage" [columns]="columns"
-        (itemClicked)="openItemDetail($event)">
-    </table-component>
 
     <div class="dialog-overlay" [class.dialog-overlay--open]="detailDialogOpen" (click)="closeDialog()">
         <detail-dialog [class.detail-dialog--open]="detailDialogOpen" (closeDialog)="closeDialog()"

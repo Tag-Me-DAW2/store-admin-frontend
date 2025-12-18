@@ -39,8 +39,8 @@ export class UserService {
     );
   }
 
-  getUsers() {
-    return this.httpUser.getUsers();
+  getUsers(pageNumber: number, pageSize: number) {
+    return this.httpUser.getUsers(pageNumber, pageSize);
   }
 
   getUser(id: number) {
