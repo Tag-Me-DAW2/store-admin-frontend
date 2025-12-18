@@ -24,7 +24,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       catchError((error) => {
-        if (error.status === 401 && !this.isAlertDisplayed) {
+        if ((error.status === 401 || error.status === 403) && !this.isAlertDisplayed) {
           this.isAlertDisplayed = true;
 
           this.alertService
