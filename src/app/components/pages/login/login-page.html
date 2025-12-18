@@ -2,19 +2,20 @@
   <div class="login__logo-container">
     <img class="login__background-image login__background-image--top-left" src="/assets/login-element1.png" alt="">
     <img class="login__background-image login__background-image--bottom-right" src="/assets/login-element2.png" alt="">
-    <img class="login__logo" src="/assets/logo-shadow_grey.svg" alt="App Logo"/>
+    <img class="login__logo" src="/assets/logo-shadow_grey.svg" alt="App Logo" />
   </div>
   <div class="login__form-container">
     <h1 class="login__form-title">SIGN IN</h1>
     <form (ngSubmit)="onLogin()" method="post" class="login__form">
       <div class="login__inputs-container">
         <div class="login__form-input-wrapper">
-          <img class="login__form-user-icon" src="/assets/user-icon.png">
-          <input class="login__form-input" type="text" placeholder="Email" name="email" [(ngModel)]="email"/>
+          <i class='bxr  bxs-user login__form-user-icon' style='color:#000000'></i>
+          <input class="login__form-input" type="text" placeholder="Email" name="email" [(ngModel)]="email" />
         </div>
         <div class="login__form-input-wrapper">
           <img class="login__form-user-icon" src="/assets/password-icon.svg">
-          <input class="login__form-input" type="password" placeholder="Password" name="password"[(ngModel)]="password"/>
+          <input class="login__form-input" type="password" placeholder="Password" name="password"
+            [(ngModel)]="password" />
         </div>
       </div>
       <button class="login__form-button" type="submit">Sign in</button>
