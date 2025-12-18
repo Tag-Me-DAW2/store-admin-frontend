@@ -40,6 +40,7 @@
   // Login form user icon variables
   --login-form-user-icon-height: var(--tgm-sys-height-30);
   --login-form-user-icon-width: var(--tgm-sys-width-30);
+  --login-form-user-icon-font-size: var(--tgm-sys-font-size-25);
 
   // Login form input variables
   --login-form-input-width: var(--tgm-sys-percentage-75);
@@ -60,7 +61,6 @@
   justify-content: center;
   background: linear-gradient(#272838, #897888);
 }
-
 
 .login {
   display: flex;
@@ -139,13 +139,15 @@
   &__form-user-icon {
     height: var(--login-form-user-icon-height);
     width: var(--login-form-user-icon-width);
+    display: flex;
+    align-items: center;
+    font-size: var(--login-form-user-icon-font-size);
   }
 
   &__form-input {
     border: none;
     outline: none;
     width: var(--login-form-input-width);
-
   }
 
   &__form-button {
@@ -179,19 +181,17 @@
 
     --login-inputs-container-gap: var(--tgm-sys-gap-50);
     --login-form-input-wrapper-width: var(--tgm-sys-width-500);
-    
+
     --login-form-button-width: var(--tgm-sys-width-500);
     --login-form-button-margin-top: var(--tgm-sys-margin-50);
   }
 
-   // Meter gap de 100 px almenos y letras sign in mas grandes
+  // Meter gap de 100 px almenos y letras sign in mas grandes
   .login {
     flex-direction: column;
 
-
     &__logo-container {
       flex: 1;
-
     }
 
     &__form-container {
@@ -218,7 +218,6 @@
 
     --login-form-input-wrapper-width: var(--tgm-sys-percentage-100);
     --login-form-button-width: var(--tgm-sys-percentage-100);
-    
   }
 
   .login {
@@ -238,6 +237,5 @@
     --login-width: var(--tgm-sys-percentage-100);
     --login-height: var(--tgm-sys-percentage-100);
     --login-border-radius: 0;
-
   }
 }
