@@ -45,6 +45,7 @@
     align-items: center;
     justify-content: center;
     gap: var(--dashboard-detail-card-gap);
+    cursor: pointer;
 
     &__icon {
         font-size: var(--dashboard-detail-card-icon-font-size);

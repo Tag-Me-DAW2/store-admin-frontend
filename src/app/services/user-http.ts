@@ -23,8 +23,8 @@ export class UserHttpService {
     );
   }
 
-  getUsers(): Observable<PageModel<UserResponse>> {
-    return this.HttpClient.get<PageModel<UserResponse>>(`${this.apiUrl}`);
+  getUsers(pageNumber: number, pageSize: number): Observable<PageModel<UserResponse>> {
+    return this.HttpClient.get<PageModel<UserResponse>>(`${this.apiUrl}?page=${pageNumber}&size=${pageSize}`);
   }
 
   getUser(id: number): Observable<UserResponse> {

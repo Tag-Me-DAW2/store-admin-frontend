@@ -13,8 +13,8 @@ import { PageModel } from '../models/PageModel';
 export class ProductService {
   productHttp = inject(ProductHttp);
 
-  getProducts(): Observable<PageModel<ProductSummaryResponse>> {
-    return this.productHttp.getProducts();
+  getProducts(pageNumber: number, pageSize: number): Observable<PageModel<ProductSummaryResponse>> {
+    return this.productHttp.getProducts(pageNumber, pageSize);
   }
 
   getProductById(productId: number): Observable<ProductDetailResponse> {

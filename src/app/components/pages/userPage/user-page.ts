@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { UserService } from '../../../services/user-service';
 import { Subscription } from 'rxjs';
 import { UserResponse } from '../../../models/response/user-response';
@@ -12,6 +12,7 @@ import { TgmButtonComponent } from '../../ui/tgm-button/tgm-button';
 import { ImageUploadComponent } from '../../ui/image-upload-component/image-upload-component';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../../ui/table-component/table-component';
+import { PaginationComponent } from "../../ui/pagination-component/pagination-component";
 
 @Component({
   selector: 'user-page',
@@ -24,11 +25,16 @@ import { TableComponent } from '../../ui/table-component/table-component';
     FormsModule,
     ImageUploadComponent,
     TgmButtonComponent,
-  ],
+    PaginationComponent
+],
 })
 export class UserPage {
   userService = inject(UserService);
   subscription!: Subscription;
+
+  @Input() pageSize: number = 5;
+  pageNumber: number = 1;
+  totalCategoriesCount: number = 0;
 
   usersPage!: PageModel<UserResponse>;
   columns: string[] = [
@@ -61,7 +67,7 @@ export class UserPage {
   alertService = inject(AlertService);
 
   ngOnInit() {
-    this.loadUsers();
+    this.loadUsers(this.pageNumber, this.pageSize);
   }
 
   ngOnDestroy() {
@@ -80,8 +86,8 @@ export class UserPage {
     this.userToCreate.profilePictureName = ImageModel.imageName;
   }
 
-  loadUsers() {
-    this.subscription = this.userService.getUsers().subscribe({
+  loadUsers(pageNumber: number, pageSize: number) {
+    this.subscription = this.userService.getUsers(pageNumber, pageSize).subscribe({
       next: (data) => {
         data.data.map((element) => {
           element.profilePicture = element.profilePicture
@@ -153,7 +159,7 @@ export class UserPage {
           title: 'User Created',
           text: 'The user has been successfully created.',
         });
-        this.loadUsers();
+        this.loadUsers(this.pageNumber, this.pageSize);
       },
       error: (error) => {
         this.alertService.error({
@@ -184,7 +190,7 @@ export class UserPage {
       console.log('Updating user:', this.detailedUser);
       this.userService.updateUser(this.detailedUser.id, updatedUser).subscribe({
         next: (data) => {
-          this.loadUsers();
+          this.loadUsers(this.pageNumber, this.pageSize);
         },
         error: (error) => {
           this.alertService.error({
@@ -206,7 +212,7 @@ export class UserPage {
           text: 'The user has been successfully deleted.',
         });
         this.closeDialog();
-        this.loadUsers();
+        this.loadUsers(this.pageNumber, this.pageSize);
       },
       error: (error) => {
         console.error('Error deleting user:', error);

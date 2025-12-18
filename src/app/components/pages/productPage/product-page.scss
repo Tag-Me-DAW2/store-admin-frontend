@@ -57,6 +57,30 @@
     margin-bottom: 25px;
   }
 
+  &__controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  &__pagesize-select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid var(--tgm-sys-color-background-secondary);
+    border-radius: var(--product-detail-button-border-radius);
+    background-color: var(--tgm-sys-color-white);
+    color: var(--tgm-sys-color-secondary);
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: var(--tgm-sys-color-primary);
+      box-shadow: 0 0 0 3px rgba(243, 222, 138, 0.2);
+    }
+  }
+
   &__table {
     width: 100%;
     border-collapse: collapse;

@@ -13,8 +13,8 @@ export class CategoryHttp {
   apiUrl = 'http://localhost:8080/categories';
   apiUrlAdmin = 'http://localhost:8080/admin/categories';
 
-  getCategories(): Observable<PageModel<CategoryResponse>> {
-    return this.httpClient.get<PageModel<CategoryResponse>>(this.apiUrl);
+  getCategories(pageNumber: number, pageSize: number): Observable<PageModel<CategoryResponse>> {
+    return this.httpClient.get<PageModel<CategoryResponse>>(`${this.apiUrl}?page=${pageNumber}&size=${pageSize}`);
   }
 
   getCategoryById(categoryId: number): Observable<CategoryResponse> {

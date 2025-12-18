@@ -1,0 +1,7 @@
+<div class="pagination">
+    <button class="pagination__arrow-button" (click)="previousPage()" [disabled]="currentPageNumber === 1"><i class='bx  bx-chevron-left'></i> </button>
+    @for (page of pages; track $index) {
+        <button class="pagination__page-number" (click)="goToPage(page)" [class.--active]="page === currentPageNumber">{{ page }}</button>
+    }
+    <button class="pagination__arrow-button" (click)="nextPage()" [disabled]="currentPageNumber >= totalPages"><i class='bx  bx-chevron-right'></i> </button>
+</div>

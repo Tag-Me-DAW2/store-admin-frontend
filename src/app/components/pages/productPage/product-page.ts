@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProductService } from '../../../services/product-service';
@@ -15,6 +15,7 @@ import { ImageUploadComponent } from '../../ui/image-upload-component/image-uplo
 import { AlertService } from '../../../services/AlertService';
 import { TgmButtonComponent } from '../../ui/tgm-button/tgm-button';
 import { ProductInsertRequest } from '../../../models/request/product-insert-request';
+import { PaginationComponent } from "../../ui/pagination-component/pagination-component";
 
 @Component({
   selector: 'product-page',
@@ -25,11 +26,16 @@ import { ProductInsertRequest } from '../../../models/request/product-insert-req
     FormsModule,
     ImageUploadComponent,
     TgmButtonComponent,
-  ],
+    PaginationComponent
+],
   templateUrl: './product-page.html',
   styleUrl: './product-page.scss',
 })
 export class ProductPage implements OnInit, OnDestroy {
+  @Input() pageSize: number = 5;
+  pageNumber: number = 1;
+  totalCategoriesCount: number = 0;
+
   productService = inject(ProductService);
   categoryService = inject(CategoryService);
   subscription!: Subscription;
@@ -46,7 +52,8 @@ export class ProductPage implements OnInit, OnDestroy {
   alertService = inject(AlertService);
 
   ngOnInit() {
-    this.loadProducts();
+    this.loadProducts(this.pageNumber, this.pageSize);
+    this.getTotalCategoriesCount();
   }
 
   ngOnDestroy() {
@@ -55,13 +62,23 @@ export class ProductPage implements OnInit, OnDestroy {
     }
   }
 
+  getTotalCategoriesCount() {
+    return this.categoryService.getCategoryCount().subscribe({
+      next: (count) => {
+        this.totalCategoriesCount = count;
+      },
+      error: (error) => {
+        console.error('Error fetching category count:', error);
+      },
+    });
+  }
   setImage(ImageModel: { image: string; imageName: string }) {
     this.detailedProduct.image = ImageModel.image;
     this.detailedProduct.imageName = ImageModel.imageName;
   }
 
   loadCategories() {
-    this.subscription = this.categoryService.getCategories().subscribe({
+    this.subscription = this.categoryService.getCategories(1, this.totalCategoriesCount).subscribe({
       next: (data) => {
         console.log('Categories loaded:', data);
         data.data.push({ id: 0, name: 'Uncategorized' });
@@ -77,8 +94,8 @@ export class ProductPage implements OnInit, OnDestroy {
     });
   }
 
-  loadProducts() {
-    this.subscription = this.productService.getProducts().subscribe({
+  loadProducts(pageNumber: number, pageSize: number) {
+    this.subscription = this.productService.getProducts(pageNumber, pageSize).subscribe({
       next: (data) => {
         data.data.map((element) => {
           element.category =
@@ -151,7 +168,7 @@ export class ProductPage implements OnInit, OnDestroy {
             title: 'Product Created',
             text: 'The product has been successfully created.',
           });
-          this.loadProducts();
+          this.loadProducts(this.pageNumber, this.pageSize);
         },
         error: (error) => {
           this.alertService.error({
@@ -185,7 +202,7 @@ export class ProductPage implements OnInit, OnDestroy {
             title: 'Product Updated',
             text: 'The product has been successfully updated.',
           });
-          this.loadProducts();
+          this.loadProducts(this.pageNumber, this.pageSize);
         },
         error: (error) => {
           this.alertService.error({
@@ -207,7 +224,7 @@ export class ProductPage implements OnInit, OnDestroy {
           text: 'The product has been successfully deleted.',
         });
         this.closeDialog();
-        this.loadProducts();
+        this.loadProducts(this.pageNumber, this.pageSize);
       },
       error: (error) => {
         console.error('Error deleting product:', error);

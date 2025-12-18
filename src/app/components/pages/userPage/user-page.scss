@@ -55,174 +55,198 @@
     margin-bottom: 25px;
   }
 
+  &__controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  &__pagesize-select {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid var(--tgm-sys-color-background-secondary);
+    border-radius: var(--user-detail-button-border-radius);
+    background-color: var(--tgm-sys-color-white);
+    color: var(--tgm-sys-color-secondary);
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+      border-color: var(--tgm-sys-color-primary);
+      box-shadow: 0 0 0 3px rgba(243, 222, 138, 0.2);
+    }
+  }
+
   &__table {
     width: 100%;
     border-collapse: collapse;
   }
-}
 
-// Dialog Overlay
-.dialog-overlay {
-  width: 0;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  z-index: 1000;
-  overflow: hidden;
+  // Dialog Overlay
+  .dialog-overlay {
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    z-index: 1000;
+    overflow: hidden;
 
-  &--open {
-    width: 100%;
-  }
-}
-
-// Product Detail Panel
-.user-detail {
-  padding: var(--user-detail-padding);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-
-  &__title {
-    color: var(--user-detail-title-color);
-    font-size: var(--user-detail-title-font-size);
-    font-weight: var(--user-detail-title-font-weight);
-    margin: 0 0 var(--user-detail-title-margin) 0;
-    padding-bottom: var(--tgm-sys-spacing-16);
-    border-bottom: 2px solid var(--tgm-sys-color-primary);
+    &--open {
+      width: 100%;
+    }
   }
 
-  &__form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--user-detail-form-gap);
-    flex: 1;
-    overflow-y: auto;
-    padding-bottom: var(--tgm-sys-spacing-16);
-  }
-
-  &__field {
+  // Product Detail Panel
+  .user-detail {
+    padding: var(--user-detail-padding);
+    height: 100%;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 
-    &--full {
-      grid-column: 1 / -1;
-    }
-  }
-
-  &__label {
-    color: var(--user-detail-label-color);
-    font-size: var(--user-detail-label-font-size);
-    font-weight: var(--user-detail-label-font-weight);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--user-detail-label-margin);
-  }
-
-  &__input,
-  &__textarea {
-    padding: var(--user-detail-input-padding);
-    border: 1px solid var(--user-detail-input-border-color);
-    border-radius: var(--user-detail-input-border-radius);
-    font-size: var(--user-detail-input-font-size);
-    font-family: var(--tgm-sys-font-family-primary);
-    background-color: var(--user-detail-input-background);
-    color: var(--tgm-sys-color-secondary);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-
-    &:focus {
-      outline: none;
-      border-color: var(--user-detail-input-focus-border);
-      box-shadow: 0 0 0 3px rgba(243, 222, 138, 0.2);
+    &__title {
+      color: var(--user-detail-title-color);
+      font-size: var(--user-detail-title-font-size);
+      font-weight: var(--user-detail-title-font-weight);
+      margin: 0 0 var(--user-detail-title-margin) 0;
+      padding-bottom: var(--tgm-sys-spacing-16);
+      border-bottom: 2px solid var(--tgm-sys-color-primary);
     }
 
-    &::placeholder {
-      color: rgba(39, 40, 56, 0.4);
-    }
-
-    &--readonly {
-      background-color: var(--user-detail-input-readonly-background);
-      cursor: not-allowed;
-      color: rgba(39, 40, 56, 0.6);
-    }
-  }
-
-  &__textarea {
-    resize: vertical;
-    min-height: 80px;
-  }
-
-  &__actions {
-    display: flex;
-    gap: var(--user-detail-actions-gap);
-    margin-top: var(--user-detail-actions-margin);
-    padding-top: var(--tgm-sys-spacing-16);
-    border-top: 1px solid var(--tgm-sys-color-background-secondary);
-  }
-
-  &__button {
-    flex: 1;
-    padding: var(--user-detail-button-padding);
-    border: none;
-    border-radius: var(--user-detail-button-border-radius);
-    font-size: var(--user-detail-button-font-size);
-    font-weight: var(--user-detail-button-font-weight);
-    font-family: var(--tgm-sys-font-family-primary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &--update {
-      background-color: var(--tgm-sys-color-primary);
-      color: var(--tgm-sys-color-secondary);
-
-      &:hover {
-        background-color: #f0d982;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      }
-
-      &:active {
-        transform: translateY(0);
-      }
-    }
-
-    &--delete {
-      background-color: var(--tgm-sys-color-accent);
-      color: var(--tgm-sys-color-white);
-
-      &:hover {
-        background-color: #e04a2d;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      }
-
-      &:active {
-        transform: translateY(0);
-      }
-    }
-  }
-
-  // Responsive
-  @media (max-width: 768px) {
     &__form {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--user-detail-form-gap);
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: var(--tgm-sys-spacing-16);
+    }
+
+    &__field {
+      display: flex;
+      flex-direction: column;
+
+      &--full {
+        grid-column: 1 / -1;
+      }
+    }
+
+    &__label {
+      color: var(--user-detail-label-color);
+      font-size: var(--user-detail-label-font-size);
+      font-weight: var(--user-detail-label-font-weight);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--user-detail-label-margin);
+    }
+
+    &__input,
+    &__textarea {
+      padding: var(--user-detail-input-padding);
+      border: 1px solid var(--user-detail-input-border-color);
+      border-radius: var(--user-detail-input-border-radius);
+      font-size: var(--user-detail-input-font-size);
+      font-family: var(--tgm-sys-font-family-primary);
+      background-color: var(--user-detail-input-background);
+      color: var(--tgm-sys-color-secondary);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: var(--user-detail-input-focus-border);
+        box-shadow: 0 0 0 3px rgba(243, 222, 138, 0.2);
+      }
+
+      &::placeholder {
+        color: rgba(39, 40, 56, 0.4);
+      }
+
+      &--readonly {
+        background-color: var(--user-detail-input-readonly-background);
+        cursor: not-allowed;
+        color: rgba(39, 40, 56, 0.6);
+      }
+    }
+
+    &__textarea {
+      resize: vertical;
+      min-height: 80px;
     }
 
     &__actions {
-      flex-direction: column;
+      display: flex;
+      gap: var(--user-detail-actions-gap);
+      margin-top: var(--user-detail-actions-margin);
+      padding-top: var(--tgm-sys-spacing-16);
+      border-top: 1px solid var(--tgm-sys-color-background-secondary);
+    }
+
+    &__button {
+      flex: 1;
+      padding: var(--user-detail-button-padding);
+      border: none;
+      border-radius: var(--user-detail-button-border-radius);
+      font-size: var(--user-detail-button-font-size);
+      font-weight: var(--user-detail-button-font-weight);
+      font-family: var(--tgm-sys-font-family-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &--update {
+        background-color: var(--tgm-sys-color-primary);
+        color: var(--tgm-sys-color-secondary);
+
+        &:hover {
+          background-color: #f0d982;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+
+      &--delete {
+        background-color: var(--tgm-sys-color-accent);
+        color: var(--tgm-sys-color-white);
+
+        &:hover {
+          background-color: #e04a2d;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+    }
+
+    // Responsive
+    @media (max-width: 768px) {
+      &__form {
+        grid-template-columns: 1fr;
+      }
+
+      &__actions {
+        flex-direction: column;
+      }
     }
   }
-}
 
-:host {
-  grid-area: main;
-  height: 100%;
-  width: 100%;
+  :host {
+    grid-area: main;
+    height: 100%;
+    width: 100%;
+  }
 }
