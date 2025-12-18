@@ -15,7 +15,7 @@
 
         @switch (col) {
         @case ('image') {
-        <img class="table__image-cell" [src]="productService.getImageSrc(row[col])" alt="Product Image">
+        <img class="table__image-cell" [src]="(row[col])" alt="Product Image">
         }
         @case ('category') {
         {{ row[col].name }}

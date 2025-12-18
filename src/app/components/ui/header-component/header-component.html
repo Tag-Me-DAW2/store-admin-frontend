@@ -5,7 +5,7 @@
     <img src="assets/logo-brigth_snow.svg" alt="Logo" class="header__app-icon--image" />
   </div>
   <div class="header__app-user-icon" (click)="openUserMenu()" alt="user-icon">
-    <img src="assets/user-icon.png" alt="User Icon" class="header__app-user-icon--image" />
+    <img [src]="user.profilePicture" alt="User Icon" class="header__app-user-icon--image" />
     @if(menuOpen) {
     <tgm-user-menu [menuOpen]="menuOpen" (editUser)="openEditUser()"></tgm-user-menu>
     }

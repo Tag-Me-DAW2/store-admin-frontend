@@ -13,12 +13,19 @@ import { CategoryResponse } from '../../../models/response/category-response';
 import { CategoryService } from '../../../services/category-service';
 import { ImageUploadComponent } from '../../ui/image-upload-component/image-upload-component';
 import { AlertService } from '../../../services/AlertService';
-import { TgmButtonComponent } from "../../ui/tgm-button/tgm-button";
+import { TgmButtonComponent } from '../../ui/tgm-button/tgm-button';
 import { ProductInsertRequest } from '../../../models/request/product-insert-request';
 
 @Component({
   selector: 'product-page',
-  imports: [TableComponent, DetailDialogComponent, CommonModule, FormsModule, ImageUploadComponent, TgmButtonComponent],
+  imports: [
+    TableComponent,
+    DetailDialogComponent,
+    CommonModule,
+    FormsModule,
+    ImageUploadComponent,
+    TgmButtonComponent,
+  ],
   templateUrl: './product-page.html',
   styleUrl: './product-page.scss',
 })
@@ -28,17 +35,10 @@ export class ProductPage implements OnInit, OnDestroy {
   subscription!: Subscription;
 
   productsPage!: PageModel<ProductSummaryResponse>;
-  categoriesPage: PageModel<CategoryResponse> = { data: [], pageNumber: 0, pageSize: 0, totalElements: 0, totalPages: 0 };
+  categoriesPage!: PageModel<CategoryResponse>;
   columns: string[] = ['id', 'image', 'name', 'price', 'category'];
 
-  createdProduct: ProductInsertRequest = {
-    name: '',
-    description: '',
-    basePrice: 0,
-    discountPercentage: 0,
-    image: '',
-    categoryId: 0,
-  };
+  createdProduct!: ProductInsertRequest;
   detailedProduct!: ProductDetailResponse;
   detaildetailDialogOpen: boolean = false;
   creationDialogOpen: boolean = false;
@@ -53,6 +53,11 @@ export class ProductPage implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+  }
+
+  setImage(ImageModel: { image: string; imageName: string }) {
+    this.detailedProduct.image = ImageModel.image;
+    this.detailedProduct.imageName = ImageModel.imageName;
   }
 
   loadCategories() {
@@ -78,8 +83,9 @@ export class ProductPage implements OnInit, OnDestroy {
         data.data.map((element) => {
           element.category =
             element.category === null ? { id: 0, name: 'Uncategorized' } : element.category;
+          element.image = element.image ? element.image : 'assets/product-no-image.svg';
         });
-
+        console.log('Products loaded:', data);
         this.productsPage = data;
       },
       error: (error) => {
@@ -127,17 +133,18 @@ export class ProductPage implements OnInit, OnDestroy {
   }
 
   createProduct() {
-    console.log('Category:', this.createdProduct.categoryId);
+    console.log('Category:', this.detailedProduct.category);
     if (this.categoriesPage) {
       let newProduct: ProductInsertRequest = {
-        name: this.createdProduct.name,
-        description: this.createdProduct.description,
-        basePrice: this.createdProduct.basePrice,
-        discountPercentage: this.createdProduct.discountPercentage,
-        image: this.createdProduct.image.split(',')[1] || this.createdProduct.image,
-        categoryId: this.createdProduct.categoryId,
+        name: this.detailedProduct.name,
+        description: this.detailedProduct.description,
+        basePrice: this.detailedProduct.basePrice,
+        discountPercentage: this.detailedProduct.discountPercentage,
+        image: this.detailedProduct.image.split(',')[1] || this.detailedProduct.image,
+        imageName: this.detailedProduct.imageName,
+        categoryId: this.detailedProduct.category.id,
       };
-      console.log('Creating product:', this.createdProduct);
+      console.log('Creating product:', this.detailedProduct);
       this.productService.createProduct(newProduct).subscribe({
         next: (data) => {
           this.alertService.success({
@@ -152,16 +159,15 @@ export class ProductPage implements OnInit, OnDestroy {
             text: 'Failed to create product. Please try again later.',
           });
           console.error('Error creating product:', error);
-        }
+        },
       });
       this.closeDialog();
     }
   }
 
   updateProduct() {
-    console.log('Category:', this.detailedProduct.category);
+    console.log('Prodct:', this.detailedProduct);
     if (this.detailedProduct) {
-
       let updatedProduct: ProductUpdateRequest = {
         id: this.detailedProduct.id,
         name: this.detailedProduct.name,
@@ -169,6 +175,7 @@ export class ProductPage implements OnInit, OnDestroy {
         basePrice: this.detailedProduct.basePrice,
         discountPercentage: this.detailedProduct.discountPercentage,
         image: this.detailedProduct.image.split(',')[1] || this.detailedProduct.image,
+        imageName: this.detailedProduct.imageName,
         categoryId: this.detailedProduct.category.id,
       };
       console.log('Updating product:', this.detailedProduct);

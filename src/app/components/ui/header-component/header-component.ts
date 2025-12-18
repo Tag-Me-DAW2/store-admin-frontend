@@ -1,5 +1,6 @@
 import {
   Component,
+  effect,
   ElementRef,
   EventEmitter,
   inject,
@@ -15,6 +16,7 @@ import { HeaderLinkComponent } from '../header-link/header-link';
 import { AuthService } from '../../../services/auth-service';
 import { UserMenuComponent } from '../user-menu/user-menu';
 import { UserDialogComponent } from '../user-dialog/user-dialog';
+import { UserService } from '../../../services/user-service';
 
 @Component({
   selector: 'header-component',
@@ -32,13 +34,21 @@ import { UserDialogComponent } from '../user-dialog/user-dialog';
 export class HeaderComponent {
   isCollapsed: boolean = false;
   menuOpen = false;
-  httpAuth = inject(AuthService);
+  userService = inject(UserService);
   @Output() userDetailsPopup = new EventEmitter<boolean>();
   @Input() headerType: 'horizontal' | 'vertical' = 'vertical';
+  user = JSON.parse(localStorage.getItem('user') || '{}');
 
   renderer = inject(Renderer2);
   elementRef = inject(ElementRef);
   clickListener!: () => void;
+
+  constructor() {
+    effect(() => {
+      this.userService.refreshUser$();
+      this.user = JSON.parse(localStorage.getItem('user') || '{}');
+    });
+  }
 
   ngAfterViewInit() {
     this.clickListener = this.renderer.listen('document', 'click', (event: Event) => {

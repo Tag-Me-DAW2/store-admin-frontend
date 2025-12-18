@@ -1,6 +1,7 @@
 <div class="product">
   <h1 class="product__main-title">Products management</h1>
-  <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Add Product</button>
+  <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Add
+    Product</button>
 
   <div class="dialog-overlay" [class.dialog-overlay--open]="creationDialogOpen" (click)="closeDialog()">
     <detail-dialog [class.detail-dialog--open]="creationDialogOpen" (closeDialog)="closeDialog()"
@@ -44,7 +45,7 @@
 
           <div class="product-detail__field product-detail__field--full">
             <label class="product-detail__label">Image URL</label>
-            <tgm-image-upload-component (imageBase64)="createdProduct.image = $event"
+            <tgm-image-upload-component [preview]="createdProduct.image" (imageSelected)="setImage($event)"
               class="user-dialog__image-upload"></tgm-image-upload-component>
           </div>
         </div>
@@ -119,7 +120,7 @@
 
           <div class="product-detail__field product-detail__field--full">
             <label class="product-detail__label">Image URL</label>
-            <tgm-image-upload-component (imageBase64)="detailedProduct.image = $event"
+            <tgm-image-upload-component [preview]="detailedProduct.image" (imageSelected)="setImage($event)"
               class="user-dialog__image-upload"></tgm-image-upload-component>
           </div>
         </div>

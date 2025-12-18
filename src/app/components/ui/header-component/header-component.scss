@@ -37,7 +37,7 @@
   --header-link-hover-underline-width: var(--tgm-sys-percentage-75);
 
   --header-user-icon-size: var(--tgm-sys-width-40);
-  --header-user-icon-border-radius: var(--tgm-sys-border-radius-large);
+  --header-user-icon-border-radius: var(--tgm-sys-border-radius-circle);
   --header-user-icon-margin-right: var(--tgm-sys-margin-20);
 }
 
@@ -64,7 +64,7 @@
     }
   }
 
-  &__app-user-icon {
+  &__app-user-icon--image {
     width: var(--header-user-icon-size);
     height: var(--header-user-icon-size);
     border-radius: var(--header-user-icon-border-radius);

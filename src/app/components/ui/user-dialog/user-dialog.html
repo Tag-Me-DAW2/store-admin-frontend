@@ -18,7 +18,7 @@
             <tgm-input-component label="Role" type="text" [(ngModel)]="user.role" placeholder="Enter role" name="role"
                 [disabled]="true"></tgm-input-component>
         </div>
-        <tgm-image-upload-component (imageBase64)="onImageBase64($event)"
+        <tgm-image-upload-component [preview]="user.profilePicture" (imageSelected)="onImageBase64($event)"
             class="user-dialog__image-upload"></tgm-image-upload-component>
         <button tgm-button function="normal" importance="primary" size="medium" type="submit"
             class="user-dialog__submit-button">Update</button>

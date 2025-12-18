@@ -25,15 +25,11 @@
   height: 100vh;
   z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
-  // filter: opacity(1);
 }
 
 .user-dialog {
   position: relative;
-  // top: var(--user-dialog-top);
-  // left: var(--user-dialog-left);
   background-color: var(--user-dialog-bg-color);
-  // width: var(--user-dialog-width);
   border-radius: var(--user-dialog-border-radius);
   box-shadow: var(--user-dialog-box-shadow);
   animation: userDialogIn 180ms ease-out forwards;
