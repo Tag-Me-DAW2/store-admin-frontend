@@ -5,5 +5,6 @@ export interface ProductUpdateRequest {
   basePrice: number;
   discountPercentage: number;
   image: string;
+  imageName: string;
   categoryId: number;
 }

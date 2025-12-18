@@ -16,12 +16,13 @@ export class UserDialogComponent {
   user = JSON.parse(localStorage.getItem('user') || '{}');
   @Output() userDialog: EventEmitter<boolean> = new EventEmitter<boolean>();
   userImageBase64: string = '';
+  userImageName: string = '';
   usertToUpdate!: UserUpdateRequest;
   userService = inject(UserService);
 
-  onImageBase64(base64: string) {
-    this.userImageBase64 = base64;
-    console.log('Imagen en base64 recibida:', base64);
+  onImageBase64(ImageModel: { image: string; imageName: string }) {
+    this.userImageBase64 = ImageModel.image;
+    this.userImageName = ImageModel.imageName;
   }
 
   closeDialog() {
@@ -37,6 +38,7 @@ export class UserDialogComponent {
       lastName: this.user.lastName,
       phone: this.user.phone,
       profilePicture: this.userImageBase64.split(',')[1] || this.user.profilePicture,
+      profilePictureName: this.userImageName || this.user.profilePictureName,
       role: this.user.role,
     };
 

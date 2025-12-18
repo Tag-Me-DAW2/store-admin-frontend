@@ -8,5 +8,6 @@ export interface ProductDetailResponse {
   discountPercentage: number;
   price: number;
   image: string;
+  imageName: string;
   category: CategoryResponse;
 }

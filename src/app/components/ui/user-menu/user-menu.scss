@@ -13,7 +13,7 @@
 
   --user-menu-profile-gap: var(--tgm-sys-gap-5);
   --user-menu-profile-margin-bottom: var(--tgm-sys-margin-100);
-  --user-menu-image-radius: var(--tgm-sys-percentage-50);
+  --user-menu-image-radius: var(--tgm-sys-border-radius-circle);
 
   --user-menu-profile-username-font-size: var(--tgm-sys-font-size-16);
   --user-menu-profile-username-font-weight: var(--tgm-sys-font-weight-600);
@@ -60,10 +60,11 @@
 
     &--image {
       width: var(--tgm-sys-width-40);
-      height: auto;
+      height: var(--tgm-sys-width-40);
       border-radius: var(--user-menu-image-radius);
       object-fit: cover;
       margin-right: var(--tgm-sys-margin-16);
+      align-content: center;
     }
 
     &--username {

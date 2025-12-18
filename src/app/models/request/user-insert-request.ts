@@ -5,5 +5,7 @@ export interface UserInsertRequest {
   firstName: string;
   lastName: string;
   phone: string;
+  profilePicture: string;
+  profilePictureName: string;
   role: string;
 }

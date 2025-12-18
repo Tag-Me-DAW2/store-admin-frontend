@@ -6,5 +6,6 @@ export interface UserUpdateRequest {
   lastName: string;
   phone: string;
   profilePicture: string;
+  profilePictureName: string;
   role: string;
 }

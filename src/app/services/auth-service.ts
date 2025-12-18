@@ -54,7 +54,7 @@ export class AuthService {
           this.router.navigate(['/']);
           return;
         }
-
+        user.profilePicture = user.profilePicture ? user.profilePicture : 'assets/user-icon.png';
         localStorage.setItem('user', JSON.stringify(user));
       })
     );
