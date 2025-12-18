@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { UserUpdateRequest } from '../models/request/user-update-request';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { UserResponse } from '../models/response/user-response';
+import { PageModel } from '../models/PageModel';
 
 @Injectable({
   providedIn: 'root',
@@ -13,5 +14,9 @@ export class UserHttpService {
 
   updateUser(userId: number, userData: UserUpdateRequest): Observable<UserResponse> {
     return this.HttpClient.put<UserResponse>(`${this.apiUrl}/${userId}`, userData);
+  }
+
+  getUserCount(): Observable<number> {
+    return this.HttpClient.get<PageModel<UserResponse>>(`${this.apiUrl}`).pipe( map(response => response.totalElements ) );
   }
 }

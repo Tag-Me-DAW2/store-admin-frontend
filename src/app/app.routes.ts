@@ -5,6 +5,7 @@ import { loginGuard } from './guards/login-guard';
 import { dashboardGuard } from './guards/dashboard-guard';
 import { ProductPage } from './components/pages/productPage/product-page';
 import { CategoryPage } from './components/pages/categoryPage/category-page';
+import { DashboardDetailPage } from './components/pages/dashboard-detail/dashboard-detail';
 
 export const routes: Routes = [
   { path: '', component: LoginPage },
@@ -13,8 +14,9 @@ export const routes: Routes = [
     component: DashboardPage,
     canActivate: [loginGuard, dashboardGuard],
     children: [
+      { path: '', component: DashboardDetailPage },
       { path: 'products', component: ProductPage },
-      { path: 'categories', component: CategoryPage }
+      { path: 'categories', component: CategoryPage },
     ],
   },
 ];

@@ -32,6 +32,7 @@ $font-sizes: (
   'tgm-sys-font-size-32': 32px,
   'tgm-sys-font-size-40': 40px,
   'tgm-sys-font-size-48': 48px,
+  'tgm-sys-font-size-60': 60px,
 );
 // Font Weights
 $font-weights: (
@@ -65,6 +66,10 @@ $fixed-heights: (
   'tgm-sys-height-70': 70px,
   'tgm-sys-height-80': 80px,
   'tgm-sys-height-100': 100px,
+  'tgm-sys-height-150': 150px,
+  'tgm-sys-height-200': 200px,
+  'tgm-sys-height-250': 250px,
+  'tgm-sys-height-300': 300px,
   'tgm-sys-height-viewport': 100vh,
 );
 // Fixed widths
@@ -104,6 +109,8 @@ $percentages: (
 // Gaps
 $gaps: (
   'tgm-sys-gap-5': 5px,
+  'tgm-sys-gap-6': 6px,
+  'tgm-sys-gap-8': 8px,
   'tgm-sys-gap-10': 10px,
   'tgm-sys-gap-15': 15px,
   'tgm-sys-gap-20': 20px,

@@ -1,7 +1,7 @@
 @switch(headerType) {
 @case('horizontal') {
 <div class="header header--horizontal">
-  <div class="header__app-icon" alt="app-icon">
+  <div class="header__app-icon" alt="app-icon" routerLink="/dashboard">
     <img src="assets/logo-brigth_snow.svg" alt="Logo" class="header__app-icon--image" />
   </div>
   <div class="header__app-user-icon" (click)="openUserMenu()" alt="user-icon">

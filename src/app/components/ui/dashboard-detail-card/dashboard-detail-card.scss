@@ -1,0 +1,78 @@
+:host {
+  --dashboard-detail-card-icon-color: var(--tgm-sys-color-primary);
+  --dashboard-detail-card-title-color: var(--tgm-sys-color-secondary);
+  --dashboard-detail-card-count-color: var(--tgm-sys-color-secondary-dark);
+  --dashboard-detail-card-bg-color: var(--tgm-sys-color-background);
+  --dashboard-detail-card-border-radius: var(--tgm-sys-border-radius-medium);
+  --dashboard-detail-card-box-shadow: var(--tgm-sys-box-shadow-medium);
+  --dashboard-detail-font-family: var(--tgm-sys-font-family-primary);
+
+  --dashboard-host-gap: var(--tgm-sys-gap-20);
+  --dashboard-host-padding: var(--tgm-sys-padding-30);
+
+  --dashboard-detail-content-gap: var(--tgm-sys-gap-8);
+
+  --dashboard-detail-card-width: var(--tgm-sys-width-300);
+  --dashboard-detail-card-height: var(--tgm-sys-height-300);
+    --dashboard-detail-card-hover-transform: translateY(-4px);
+    --dashboard-detail-card-padding: var(--tgm-sys-padding-16);
+    --dashboard-detail-card-gap: var(--tgm-sys-gap-40);
+
+    --dashboard-detail-card-icon-font-size: var(--tgm-sys-font-size-60);
+    --dashboard-detail-card-title-font-weight: var(--tgm-sys-font-weight-600);
+    
+    --dashboard-detail-card-title-font-size: var(--tgm-sys-font-size-24);
+    --dashboard-detail-card-count-color: var(--tgm-sys-color-secondary-dark);
+    --dashboard-detail-card-count-font-weight: var(--tgm-sys-font-weight-700);
+
+    --dashboard-detail-card-count-font-size: var(--tgm-sys-font-size-32);
+
+
+    
+}
+
+.dashboard-detail-card {
+    font-family: var(--dashboard-detail-font-family);
+    display: inline-block;
+    width: var(--dashboard-detail-card-width);
+    height: var(--dashboard-detail-card-height);
+    background-color: var(--dashboard-detail-card-bg-color);
+    border-radius: var(--dashboard-detail-card-border-radius);
+    box-shadow: var(--dashboard-detail-card-box-shadow);
+    padding: var(--dashboard-detail-card-padding);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--dashboard-detail-card-gap);
+
+    &__icon {
+        font-size: var(--dashboard-detail-card-icon-font-size);
+        color: var(--dashboard-detail-card-icon-color);
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--dashboard-detail-content-gap);
+    }
+
+    &__title {
+        font-size: var(--dashboard-detail-card-title-font-size);
+        font-weight: var(--dashboard-detail-card-title-font-weight);
+        color: var(--dashboard-detail-card-title-color);
+    }
+
+    &__count {
+        font-size: var(--dashboard-detail-card-count-font-size);
+        font-weight: var(--dashboard-detail-card-count-font-weight);
+        color: var(--dashboard-detail-card-count-color);
+    }
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.216);
+        transform: translateY(-4px);
+        transition: all 0.3s ease;
+    }
+}

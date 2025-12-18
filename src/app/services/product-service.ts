@@ -39,4 +39,8 @@ export class ProductService {
   getImageSrc(image64: string): string {
     return `data:image/png;base64,${image64}`;
   }
+
+  getProductCount(): Observable<number> {
+    return this.productHttp.getProductCount();
+  }
 }

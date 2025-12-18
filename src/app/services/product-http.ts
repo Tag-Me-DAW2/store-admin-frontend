@@ -38,4 +38,8 @@ export class ProductHttp {
     console.log('Deleting product with ID:', productId);
     return this.httpClient.delete<void>(`${this.apiUrlAdmin}/${productId}`);
   }
+
+  getProductCount(): Observable<number> {
+    return this.httpClient.get<number>(`${this.apiUrl}/total`);
+  }
 }

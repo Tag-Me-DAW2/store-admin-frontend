@@ -27,4 +27,8 @@ export class CategoryService {
   deleteCategoryById(categoryId: number) {
     return this.categoryHttp.deleteCategoryById(categoryId);
   }
+
+  getCategoryCount() {
+    return this.categoryHttp.getCategoryCount();
+  }
 }

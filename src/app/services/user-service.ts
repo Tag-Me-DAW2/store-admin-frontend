@@ -25,4 +25,8 @@ export class UserService {
       },
     });
   }
+
+  getUserCount() {
+    return this.httpUser.getUserCount();
+  }
 }

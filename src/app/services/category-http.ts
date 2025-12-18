@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { CategoryRequest } from '../models/request/category-request';
 import { CategoryResponse } from '../models/response/category-response';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { PageModel } from '../models/PageModel';
 
 @Injectable({
@@ -31,5 +31,11 @@ export class CategoryHttp {
 
   deleteCategoryById(categoryId: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiUrlAdmin}/${categoryId}`);
+  }
+
+  getCategoryCount(): Observable<number> {
+    return this.httpClient
+      .get<PageModel<CategoryResponse>>(`${this.apiUrl}`)
+      .pipe(map((response) => response.totalElements));
   }
 }
