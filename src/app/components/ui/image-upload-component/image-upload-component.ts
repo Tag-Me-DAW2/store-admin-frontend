@@ -41,7 +41,8 @@ export class ImageUploadComponent implements OnInit {
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
 
-    if (!input.files || input.files.length === 0) {
+    if (!input.files || input.files.length === 0 || !input.files[0]) {
+      console.log('No file selected');
       this.loadDefaultImage();
       return;
     }
