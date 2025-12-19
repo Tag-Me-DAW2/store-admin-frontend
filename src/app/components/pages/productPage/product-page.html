@@ -1,19 +1,22 @@
 <div class="product">
   <h1 class="product__main-title">Products management</h1>
   <div class="product__controls">
-    <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Add Product</button>
-    <select name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="loadProducts(1, $event)" class="product__pagesize-select">
+    <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Add
+      Product</button>
+    <select name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="loadProducts(1, $event)"
+      class="product__pagesize-select">
       <option [ngValue]="5" selected>5</option>
-      <option [ngValue]="10" >10</option>
-      <option [ngValue]="25" >25</option>
-      <option [ngValue]="50" >50</option>
-      <option [ngValue]="100" >100</option>
+      <option [ngValue]="10">10</option>
+      <option [ngValue]="25">25</option>
+      <option [ngValue]="50">50</option>
+      <option [ngValue]="100">100</option>
     </select>
   </div>
-   <table-component class="product__table" [dataPage]="productsPage" [columns]="columns"
+  <table-component class="product__table" [dataPage]="productsPage" [columns]="columns"
     (itemClicked)="openItemDetail($event)">
   </table-component>
-  <app-pagination-component [currentPageNumber]="productsPage.pageNumber" [totalPages]="productsPage.totalPages" (pageChange)="loadProducts($event, pageSize)"></app-pagination-component>
+  <app-pagination-component [currentPageNumber]="productsPage.pageNumber" [totalPages]="productsPage.totalPages"
+    (pageChange)="loadProducts($event, pageSize)"></app-pagination-component>
 
   <div class="dialog-overlay" [class.dialog-overlay--open]="creationDialogOpen" (click)="closeDialog()">
     <detail-dialog [class.detail-dialog--open]="creationDialogOpen" (closeDialog)="closeDialog()"
@@ -57,7 +60,7 @@
 
           <div class="product-detail__field product-detail__field--full">
             <label class="product-detail__label">Image URL</label>
-            <tgm-image-upload-component [preview]="createdProduct.image" (imageSelected)="setImage($event)"
+            <tgm-image-upload-component [preview]="createdProduct.image" (imageSelected)="setImageInsert($event)"
               class="user-dialog__image-upload"></tgm-image-upload-component>
           </div>
         </div>

@@ -15,7 +15,7 @@ import { ImageUploadComponent } from '../../ui/image-upload-component/image-uplo
 import { AlertService } from '../../../services/AlertService';
 import { TgmButtonComponent } from '../../ui/tgm-button/tgm-button';
 import { ProductInsertRequest } from '../../../models/request/product-insert-request';
-import { PaginationComponent } from "../../ui/pagination-component/pagination-component";
+import { PaginationComponent } from '../../ui/pagination-component/pagination-component';
 
 @Component({
   selector: 'product-page',
@@ -26,8 +26,8 @@ import { PaginationComponent } from "../../ui/pagination-component/pagination-co
     FormsModule,
     ImageUploadComponent,
     TgmButtonComponent,
-    PaginationComponent
-],
+    PaginationComponent,
+  ],
   templateUrl: './product-page.html',
   styleUrl: './product-page.scss',
 })
@@ -44,7 +44,16 @@ export class ProductPage implements OnInit, OnDestroy {
   categoriesPage!: PageModel<CategoryResponse>;
   columns: string[] = ['id', 'image', 'name', 'price', 'category'];
 
-  createdProduct!: ProductInsertRequest;
+  createdProduct: ProductInsertRequest = {
+    name: '',
+    description: '',
+    basePrice: 0,
+    discountPercentage: 0,
+    image: '',
+    imageName: '',
+    categoryId: 0,
+  };
+
   detailedProduct!: ProductDetailResponse;
   detaildetailDialogOpen: boolean = false;
   creationDialogOpen: boolean = false;
@@ -75,6 +84,11 @@ export class ProductPage implements OnInit, OnDestroy {
   setImage(ImageModel: { image: string; imageName: string }) {
     this.detailedProduct.image = ImageModel.image;
     this.detailedProduct.imageName = ImageModel.imageName;
+  }
+
+  setImageInsert(ImageModel: { image: string; imageName: string }) {
+    this.createdProduct.image = ImageModel.image;
+    this.createdProduct.imageName = ImageModel.imageName;
   }
 
   loadCategories() {
@@ -150,36 +164,33 @@ export class ProductPage implements OnInit, OnDestroy {
   }
 
   createProduct() {
-    console.log('Category:', this.detailedProduct.category);
-    if (this.categoriesPage) {
-      let newProduct: ProductInsertRequest = {
-        name: this.detailedProduct.name,
-        description: this.detailedProduct.description,
-        basePrice: this.detailedProduct.basePrice,
-        discountPercentage: this.detailedProduct.discountPercentage,
-        image: this.detailedProduct.image.split(',')[1] || this.detailedProduct.image,
-        imageName: this.detailedProduct.imageName,
-        categoryId: this.detailedProduct.category.id,
-      };
-      console.log('Creating product:', this.detailedProduct);
-      this.productService.createProduct(newProduct).subscribe({
-        next: (data) => {
-          this.alertService.success({
-            title: 'Product Created',
-            text: 'The product has been successfully created.',
-          });
-          this.loadProducts(this.pageNumber, this.pageSize);
-        },
-        error: (error) => {
-          this.alertService.error({
-            title: 'Error',
-            text: 'Failed to create product. Please try again later.',
-          });
-          console.error('Error creating product:', error);
-        },
-      });
-      this.closeDialog();
-    }
+    let newProduct: ProductInsertRequest = {
+      name: this.createdProduct.name,
+      description: this.createdProduct.description,
+      basePrice: this.createdProduct.basePrice,
+      discountPercentage: this.createdProduct.discountPercentage,
+      image: this.createdProduct.image.split(',')[1],
+      imageName: this.createdProduct.imageName,
+      categoryId: this.createdProduct.categoryId,
+    };
+    console.log('Creating product:', newProduct);
+    this.productService.createProduct(newProduct).subscribe({
+      next: (data) => {
+        this.alertService.success({
+          title: 'Product Created',
+          text: 'The product has been successfully created.',
+        });
+        this.loadProducts(this.pageNumber, this.pageSize);
+      },
+      error: (error) => {
+        this.alertService.error({
+          title: 'Error',
+          text: 'Failed to create product. Please try again later.',
+        });
+        console.error('Error creating product:', error);
+      },
+    });
+    this.closeDialog();
   }
 
   updateProduct() {
