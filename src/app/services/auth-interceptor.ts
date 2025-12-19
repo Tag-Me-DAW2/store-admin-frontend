@@ -9,7 +9,6 @@ import { AlertService } from './AlertService';
   providedIn: 'root',
 })
 export class AuthInterceptor implements HttpInterceptor {
-  isAlertDisplayed: boolean = false;
   router = inject(Router);
   alertService = inject(AlertService);
 
@@ -24,17 +23,21 @@ export class AuthInterceptor implements HttpInterceptor {
 
     return next.handle(authReq).pipe(
       catchError((error) => {
-        if ((error.status === 401 || error.status === 403) && !this.isAlertDisplayed) {
-          this.isAlertDisplayed = true;
+        if (error.status === 401 || error.status === 403) {
+          this.alertService.close();
+          this.alertService.setSessionExpiredAlertActive(true);
 
           this.alertService
             .error({
               title: 'Session Expired',
               text: 'Your session has expired. Please log in again.',
+              allowOutsideClick: false,
+              allowEscapeKey: false,
             })
             .then(() => {
-              this.isAlertDisplayed = false;
+              localStorage.removeItem('authToken');
               this.router.navigate(['/']);
+              this.alertService.setSessionExpiredAlertActive(false);
             });
         }
         return throwError(() => error);
