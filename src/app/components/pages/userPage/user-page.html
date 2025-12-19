@@ -124,11 +124,17 @@
                     </div>
                     <div class="user-detail__field">
                         <label class="user-detail__label">Category</label>
+                        @if (userRoleCanBeChanged) {
                         <select class="user-detail__input" id="category" name="category"
                             [(ngModel)]="detailedUser.role">
                             <option value="ADMIN">Admin</option>
                             <option value="CUSTOMER">Customer</option>
                         </select>
+                        }
+                        @else {
+                        <input class="user-detail__input user-detail__input--readonly" type="text"
+                            [value]="detailedUser.role" readonly>
+                        }
                     </div>
                     <div class="user-detail__field user-detail__field--full">
                         <label class="user-detail__label">Image URL</label>

@@ -12,7 +12,7 @@ import { TgmButtonComponent } from '../../ui/tgm-button/tgm-button';
 import { ImageUploadComponent } from '../../ui/image-upload-component/image-upload-component';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../../ui/table-component/table-component';
-import { PaginationComponent } from "../../ui/pagination-component/pagination-component";
+import { PaginationComponent } from '../../ui/pagination-component/pagination-component';
 
 @Component({
   selector: 'user-page',
@@ -25,8 +25,8 @@ import { PaginationComponent } from "../../ui/pagination-component/pagination-co
     FormsModule,
     ImageUploadComponent,
     TgmButtonComponent,
-    PaginationComponent
-],
+    PaginationComponent,
+  ],
 })
 export class UserPage {
   userService = inject(UserService);
@@ -37,16 +37,7 @@ export class UserPage {
   totalCategoriesCount: number = 0;
 
   usersPage!: PageModel<UserResponse>;
-  columns: string[] = [
-    'id',
-    'username',
-    'email',
-    'firstName',
-    'lastName',
-    'phone',
-    'profilePicture',
-    'role',
-  ];
+  columns: string[] = ['id', 'profilePicture', 'username', 'email', 'role'];
 
   userToCreate: UserInsertRequest = {
     username: '',
@@ -63,6 +54,9 @@ export class UserPage {
   detailedUser!: UserResponse;
   detaildetailDialogOpen: boolean = false;
   creationDialogOpen: boolean = false;
+
+  userRoleCanBeChanged: boolean = true;
+  actualUser = JSON.parse(localStorage.getItem('user') || '{}');
 
   alertService = inject(AlertService);
 
@@ -119,9 +113,13 @@ export class UserPage {
   }
 
   getUser(id: number) {
+    this.userRoleCanBeChanged = true;
     return this.userService.getUser(id).subscribe({
       next: (data) => {
         this.detailedUser = data;
+        if (this.detailedUser.id === this.actualUser.id) {
+          this.userRoleCanBeChanged = false;
+        }
       },
       error: (error) => {
         this.alertService.error({
