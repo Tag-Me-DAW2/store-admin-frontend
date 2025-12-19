@@ -134,6 +134,12 @@ export class ProductPage implements OnInit, OnDestroy {
     this.loadProducts(this.pageNumber, this.pageSize);
   }
 
+  onPageSizeChange(newPageSize: number) {
+    this.pageSize = newPageSize;
+    this.pageNumber = 1; // Reset to first page when changing page size
+    this.loadProducts(this.pageNumber, this.pageSize);
+  }
+
   openItemDetail(id: number) {
     console.log('Product ID clicked:', id);
     this.getProduct(id);

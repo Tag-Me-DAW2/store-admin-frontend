@@ -1,7 +1,8 @@
 <div class="category">
     <h1 class="category__main-title">Categories management</h1>
     <div class="category__controls">
-        <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Create
+        <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()"><i
+                class='bxr  bx-plus'></i>Create
             Category</button>
         <select name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="loadCategories(1, $event)"
             class="category__pagesize-select">

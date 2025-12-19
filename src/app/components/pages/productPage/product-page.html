@@ -1,13 +1,11 @@
 <div class="product">
   <h1 class="product__main-title">Products management</h1>
   <div class="product__controls">
-    <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Add Product</button>
-    <select name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="onPageChange($event)" class="product__pagesize-select">
+    <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()"><i class='bxr  bx-plus'></i> Add Product</button>
+    <select name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="onPageSizeChange($event)" class="product__pagesize-select">
       <option [ngValue]="5" selected>5</option>
       <option [ngValue]="10">10</option>
-      <option [ngValue]="25">25</option>
-      <option [ngValue]="50">50</option>
-      <option [ngValue]="100">100</option>
+      <option [ngValue]="25">15</option>
     </select>
   </div>
   <table-component class="product__table" [dataPage]="productsPage" [columns]="columns"
