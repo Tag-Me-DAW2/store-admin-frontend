@@ -16,8 +16,8 @@
     <table-component class="category__table" [dataPage]="categoryPage" [columns]="columns"
         (itemClicked)="openItemDetail($event)">
     </table-component>
-    <app-pagination-component [currentPageNumber]="categoryPage.pageNumber" [totalPages]="categoryPage.totalPages"
-        (pageChange)="loadCategories($event, pageSize)"></app-pagination-component>
+    <app-pagination-component [currentPageNumber]="pageNumber" [totalPages]="categoryPage.totalPages"
+        (pageChange)="onPageChange($event)"></app-pagination-component>
 
 
     <div class="dialog-overlay" [class.dialog-overlay--open]="creationDialogOpen" (click)="closeDialog()">
