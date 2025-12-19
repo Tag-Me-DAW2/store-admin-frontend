@@ -15,8 +15,8 @@
     <table-component class="user__table" [dataPage]="usersPage" [columns]="columns"
         (itemClicked)="openItemDetail($event)">
     </table-component>
-    <app-pagination-component [currentPageNumber]="usersPage.pageNumber" [totalPages]="usersPage.totalPages"
-        (pageChange)="loadUsers($event, pageSize)"></app-pagination-component>
+    <app-pagination-component [currentPageNumber]="pageNumber" [totalPages]="usersPage.totalPages"
+        (pageChange)="onPageChange($event)"></app-pagination-component>
 
 
 

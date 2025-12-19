@@ -62,6 +62,11 @@ export class CategoryPage {
     });
   }
 
+  onPageChange(newPage: number) {
+    this.pageNumber = newPage;
+    this.loadCategories(this.pageNumber, this.pageSize);
+  }
+
   openItemDetail(id: number) {
     console.log('Category ID clicked:', id);
     this.getCategory(id);
@@ -148,6 +153,9 @@ export class CategoryPage {
           title: 'Category Deleted',
           text: 'The category has been successfully deleted.',
         });
+        if (this.categoryPage.data.length === 1 && this.pageNumber > 1) {
+          this.pageNumber--;
+        }
         this.closeDialog();
         this.loadCategories(this.pageNumber, this.pageSize);
       },

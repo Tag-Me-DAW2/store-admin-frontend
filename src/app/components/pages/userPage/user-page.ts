@@ -101,6 +101,11 @@ export class UserPage {
     });
   }
 
+  onPageChange(newPage: number) {
+    this.pageNumber = newPage;
+    this.loadUsers(this.pageNumber, this.pageSize);
+  }
+
   openItemDetail(id: number) {
     console.log('User ID clicked:', id);
     this.getUser(id);
@@ -209,6 +214,9 @@ export class UserPage {
           title: 'User Deleted',
           text: 'The user has been successfully deleted.',
         });
+        if (this.usersPage.data.length === 1 && this.pageNumber > 1) {
+          this.pageNumber--;
+        }
         this.closeDialog();
         this.loadUsers(this.pageNumber, this.pageSize);
       },

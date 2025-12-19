@@ -129,6 +129,11 @@ export class ProductPage implements OnInit, OnDestroy {
     });
   }
 
+  onPageChange(newPage: number) {
+    this.pageNumber = newPage;
+    this.loadProducts(this.pageNumber, this.pageSize);
+  }
+
   openItemDetail(id: number) {
     console.log('Product ID clicked:', id);
     this.getProduct(id);
@@ -234,6 +239,9 @@ export class ProductPage implements OnInit, OnDestroy {
           title: 'Product Deleted',
           text: 'The product has been successfully deleted.',
         });
+        if (this.productsPage.data.length === 1 && this.pageNumber > 1) {
+          this.pageNumber--;
+        }
         this.closeDialog();
         this.loadProducts(this.pageNumber, this.pageSize);
       },
