@@ -223,7 +223,10 @@ export class ProductPage implements OnInit, OnDestroy {
         error: (error) => {
           this.alertService.error({
             title: 'Error',
-            text: 'Failed to update product. Please try again later.',
+            text:
+              error.error.message.split(':')[1] === undefined
+                ? 'Failed to update product. Please try again later.'
+                : error.error.message.split(':')[1],
           });
           console.error('Error updating product:', error);
         },

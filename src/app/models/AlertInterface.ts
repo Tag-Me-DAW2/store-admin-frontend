@@ -5,6 +5,8 @@ export interface AlertOptions {
   dismissible?: boolean;
   confirmButtonText?: string;
   cancelButtonText?: string;
+  allowOutsideClick?: boolean;
+  allowEscapeKey?: boolean;
 }
 
 export interface AlertInterface {

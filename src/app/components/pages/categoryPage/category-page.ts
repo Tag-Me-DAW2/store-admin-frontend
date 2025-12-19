@@ -8,12 +8,18 @@ import { TableComponent } from '../../ui/table-component/table-component';
 import { DetailDialogComponent } from '../../ui/detail-dialog/detail-dialog';
 import { FormsModule } from '@angular/forms';
 import { AlertService } from '../../../services/AlertService';
-import { TgmButtonComponent } from "../../ui/tgm-button/tgm-button";
-import { PaginationComponent } from "../../ui/pagination-component/pagination-component";
+import { TgmButtonComponent } from '../../ui/tgm-button/tgm-button';
+import { PaginationComponent } from '../../ui/pagination-component/pagination-component';
 
 @Component({
   selector: 'app-category-page',
-  imports: [TableComponent, DetailDialogComponent, FormsModule, TgmButtonComponent, PaginationComponent],
+  imports: [
+    TableComponent,
+    DetailDialogComponent,
+    FormsModule,
+    TgmButtonComponent,
+    PaginationComponent,
+  ],
   templateUrl: './category-page.html',
   styleUrl: './category-page.scss',
 })
@@ -111,7 +117,7 @@ export class CategoryPage {
         console.error('Error creating category:', error);
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to create category. Please try again later.',
+          text: error.error.message.split(':')[1],
         });
       },
     });
@@ -138,7 +144,7 @@ export class CategoryPage {
           console.error('Error updating category:', error);
           this.alertService.error({
             title: 'Error',
-            text: 'Failed to update category. Please try again later.',
+            text: error.error.message.split(':')[1],
           });
         },
       });

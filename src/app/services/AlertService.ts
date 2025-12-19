@@ -6,6 +6,15 @@ import Swal from 'sweetalert2';
   providedIn: 'root',
 })
 export class AlertService implements AlertInterface {
+  private isSessionExpiredAlertActive = false;
+
+  setSessionExpiredAlertActive(active: boolean): void {
+    this.isSessionExpiredAlertActive = active;
+  }
+
+  isSessionAlertActive(): boolean {
+    return this.isSessionExpiredAlertActive;
+  }
   success(options: AlertOptions): Promise<void> {
     return Swal.fire({
       title: options.title,
@@ -17,12 +26,18 @@ export class AlertService implements AlertInterface {
   }
 
   error(options: AlertOptions): Promise<void> {
+    // Si hay una alerta de sesión activa Y NO es la propia alerta de sesión, no mostrar
+    if (this.isSessionExpiredAlertActive && options.title !== 'Session Expired') {
+      return Promise.resolve();
+    }
     return Swal.fire({
       title: options.title,
       text: options.text,
       icon: 'error',
       timer: options.duration ? options.duration : undefined,
       showConfirmButton: options.dismissible !== false,
+      allowOutsideClick: options.allowOutsideClick !== false,
+      allowEscapeKey: options.allowEscapeKey !== false,
     }).then(() => {});
   }
 
@@ -44,5 +59,9 @@ export class AlertService implements AlertInterface {
       timer: options.duration ? options.duration : undefined,
       showConfirmButton: options.dismissible !== false,
     }).then(() => {});
+  }
+
+  close() {
+    Swal.close();
   }
 }
