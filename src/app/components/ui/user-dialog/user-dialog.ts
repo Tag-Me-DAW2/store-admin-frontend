@@ -37,7 +37,7 @@ export class UserDialogComponent {
       firstName: this.user.firstName,
       lastName: this.user.lastName,
       phone: this.user.phone,
-      profilePicture: this.userImageBase64.split(',')[1] || this.user.profilePicture,
+      profilePicture: this.userImageBase64.split(',')[1] || this.user.profilePicture.split(',')[1],
       profilePictureName: this.userImageName || this.user.profilePictureName,
       role: this.user.role,
     };
