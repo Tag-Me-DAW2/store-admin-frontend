@@ -1,7 +1,7 @@
 <div class="user">
     <h1 class="user__main-title">Users management</h1>
     <div class="user__controls">
-        <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()">Add
+        <button tgm-button size="large" function="normal" importance="primary" (click)="openCreationDialog()"><i class='bxr  bx-plus'></i>Add
             User</button>
         <select name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="loadUsers(1, $event)"
             class="user__pagesize-select">
