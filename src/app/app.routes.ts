@@ -21,4 +21,5 @@ export const routes: Routes = [
       { path: 'users', component: UserPage },
     ],
   },
+  { path: '**', redirectTo: '' },
 ];
