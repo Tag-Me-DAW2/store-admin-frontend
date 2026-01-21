@@ -10,7 +10,7 @@ import { UserInsertRequest } from '../models/request/user-insert-request';
   providedIn: 'root',
 })
 export class UserHttpService {
-  private apiUrl = 'http://store-tagme.preproducciondaw.cip.fpmislata.com/users';
+  private apiUrl = 'http://store-back-tagme.preproducciondaw.cip.fpmislata.com/users';
   HttpClient = inject(HttpClient);
 
   updateUser(userId: number, userData: UserUpdateRequest): Observable<UserResponse> {

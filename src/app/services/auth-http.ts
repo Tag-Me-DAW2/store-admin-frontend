@@ -8,7 +8,7 @@ import { UserResponse } from '../models/response/user-response';
   providedIn: 'root',
 })
 export class AuthHttp {
-  apiUrl = 'http://store-tagme.preproducciondaw.cip.fpmislata.com/auth';
+  apiUrl = 'http://store-back-tagme.preproducciondaw.cip.fpmislata.com/auth';
 
   HttpClient = inject(HttpClient);
 

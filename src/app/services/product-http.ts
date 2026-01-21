@@ -12,8 +12,8 @@ import { PageModel } from '../models/PageModel';
 })
 export class ProductHttp {
   httpClient = inject(HttpClient);
-  apiUrl = 'http://store-tagme.preproducciondaw.cip.fpmislata.com/products';
-  apiUrlAdmin = 'http://store-tagme.preproducciondaw.cip.fpmislata.com/admin/products';
+  apiUrl = 'http://store-back-tagme.preproducciondaw.cip.fpmislata.com/products';
+  apiUrlAdmin = 'http://store-back-tagme.preproducciondaw.cip.fpmislata.com/admin/products';
 
   getProducts(pageNumber: number, pageSize: number): Observable<PageModel<ProductSummaryResponse>> {
     return this.httpClient.get<PageModel<ProductSummaryResponse>>(
