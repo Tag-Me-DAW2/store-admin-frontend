@@ -12,11 +12,13 @@ import { PageModel } from '../models/PageModel';
 })
 export class ProductHttp {
   httpClient = inject(HttpClient);
-  apiUrl = 'http://localhost:8080/products';
-  apiUrlAdmin = 'http://localhost:8080/admin/products';
+  apiUrl = 'http://store-tagme.preproducciondaw.cip.fpmislata.com/products';
+  apiUrlAdmin = 'http://store-tagme.preproducciondaw.cip.fpmislata.com/admin/products';
 
   getProducts(pageNumber: number, pageSize: number): Observable<PageModel<ProductSummaryResponse>> {
-    return this.httpClient.get<PageModel<ProductSummaryResponse>>(`${this.apiUrl}?page=${pageNumber}&size=${pageSize}`);
+    return this.httpClient.get<PageModel<ProductSummaryResponse>>(
+      `${this.apiUrl}?page=${pageNumber}&size=${pageSize}`,
+    );
   }
 
   getProductById(productId: number): Observable<ProductDetailResponse> {
@@ -29,7 +31,7 @@ export class ProductHttp {
 
   updateProduct(
     productId: number,
-    product: ProductUpdateRequest
+    product: ProductUpdateRequest,
   ): Observable<ProductDetailResponse> {
     return this.httpClient.put<ProductDetailResponse>(`${this.apiUrlAdmin}/${productId}`, product);
   }
