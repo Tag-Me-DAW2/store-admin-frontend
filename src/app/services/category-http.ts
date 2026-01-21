@@ -10,11 +10,13 @@ import { PageModel } from '../models/PageModel';
 })
 export class CategoryHttp {
   httpClient = inject(HttpClient);
-  apiUrl = 'http://localhost:8080/categories';
-  apiUrlAdmin = 'http://localhost:8080/admin/categories';
+  apiUrl = 'http://store-tagme.preproducciondaw.cip.fpmislata.com/categories';
+  apiUrlAdmin = 'http://store-tagme.preproducciondaw.cip.fpmislata.com/admin/categories';
 
   getCategories(pageNumber: number, pageSize: number): Observable<PageModel<CategoryResponse>> {
-    return this.httpClient.get<PageModel<CategoryResponse>>(`${this.apiUrl}?page=${pageNumber}&size=${pageSize}`);
+    return this.httpClient.get<PageModel<CategoryResponse>>(
+      `${this.apiUrl}?page=${pageNumber}&size=${pageSize}`,
+    );
   }
 
   getCategoryById(categoryId: number): Observable<CategoryResponse> {

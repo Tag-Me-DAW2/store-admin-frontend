@@ -10,7 +10,7 @@ import { UserInsertRequest } from '../models/request/user-insert-request';
   providedIn: 'root',
 })
 export class UserHttpService {
-  private apiUrl = 'http://localhost:8080/users';
+  private apiUrl = 'http://store-tagme.preproducciondaw.cip.fpmislata.com/users';
   HttpClient = inject(HttpClient);
 
   updateUser(userId: number, userData: UserUpdateRequest): Observable<UserResponse> {
@@ -19,12 +19,14 @@ export class UserHttpService {
 
   getUserCount(): Observable<number> {
     return this.HttpClient.get<PageModel<UserResponse>>(`${this.apiUrl}`).pipe(
-      map((response) => response.totalElements)
+      map((response) => response.totalElements),
     );
   }
 
   getUsers(pageNumber: number, pageSize: number): Observable<PageModel<UserResponse>> {
-    return this.HttpClient.get<PageModel<UserResponse>>(`${this.apiUrl}?page=${pageNumber}&size=${pageSize}`);
+    return this.HttpClient.get<PageModel<UserResponse>>(
+      `${this.apiUrl}?page=${pageNumber}&size=${pageSize}`,
+    );
   }
 
   getUser(id: number): Observable<UserResponse> {
