@@ -1,3 +1,4 @@
+import { ProductMaterial } from '../ProductMaterial';
 import { CategoryResponse } from './category-response';
 
 export interface ProductDetailResponse {
@@ -10,4 +11,5 @@ export interface ProductDetailResponse {
   image: string;
   imageName: string;
   category: CategoryResponse;
+  material: ProductMaterial;
 }

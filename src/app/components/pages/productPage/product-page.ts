@@ -206,6 +206,8 @@ export class ProductPage implements OnInit, OnDestroy {
 
   updateProduct() {
     console.log('Prodct:', this.detailedProduct);
+    console.log(this.detailedProduct.name);
+    
     if (this.detailedProduct) {
       let updatedProduct: ProductUpdateRequest = {
         id: this.detailedProduct.id,
@@ -216,6 +218,7 @@ export class ProductPage implements OnInit, OnDestroy {
         image: this.detailedProduct.image.split(',')[1] || this.detailedProduct.image,
         imageName: this.detailedProduct.imageName,
         categoryId: this.detailedProduct.category.id,
+        material: this.detailedProduct.material,
       };
       console.log('Updating product:', this.detailedProduct);
       this.productService.updateProduct(this.detailedProduct.id, updatedProduct).subscribe({
