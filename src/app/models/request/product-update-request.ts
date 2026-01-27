@@ -1,3 +1,5 @@
+import { ProductMaterial } from "../ProductMaterial";
+
 export interface ProductUpdateRequest {
   id: number;
   name: string;
@@ -7,4 +9,5 @@ export interface ProductUpdateRequest {
   image: string;
   imageName: string;
   categoryId: number;
+  material: ProductMaterial;
 }
