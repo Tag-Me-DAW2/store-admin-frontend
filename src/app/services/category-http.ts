@@ -4,14 +4,15 @@ import { CategoryRequest } from '../models/request/category-request';
 import { CategoryResponse } from '../models/response/category-response';
 import { map, Observable } from 'rxjs';
 import { PageModel } from '../models/PageModel';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryHttp {
   httpClient = inject(HttpClient);
-  apiUrl = 'http://store-back-tagme.preproducciondaw.cip.fpmislata.com/categories';
-  apiUrlAdmin = 'http://store-back-tagme.preproducciondaw.cip.fpmislata.com/admin/categories';
+  apiUrl =  environment.apiUrl + '/categories';
+  apiUrlAdmin = environment.apiUrl + '/admin/categories';
 
   getCategories(pageNumber: number, pageSize: number): Observable<PageModel<CategoryResponse>> {
     return this.httpClient.get<PageModel<CategoryResponse>>(

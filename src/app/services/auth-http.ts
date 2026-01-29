@@ -3,12 +3,13 @@ import { inject, Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { LoginRequest } from '../models/request/login-request';
 import { UserResponse } from '../models/response/user-response';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthHttp {
-  apiUrl = 'http://store-back-tagme.preproducciondaw.cip.fpmislata.com/auth';
+  apiUrl = environment.apiUrl + '/auth';
 
   HttpClient = inject(HttpClient);
 
