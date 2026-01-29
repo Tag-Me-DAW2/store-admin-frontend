@@ -21,7 +21,7 @@ export class AuthService {
     return this.httpClient.login(loginRequest).pipe(
       tap((response: { token: string }) => {
         localStorage.setItem('authToken', response.token);
-      })
+      }),
     );
   }
 
@@ -58,7 +58,7 @@ export class AuthService {
         console.log('Fetched user:', user);
         user.profilePicture = user.profilePicture ? user.profilePicture : 'assets/user-icon.png';
         localStorage.setItem('user', JSON.stringify(user));
-      })
+      }),
     );
   }
 }
