@@ -5,12 +5,13 @@ import { map, Observable } from 'rxjs';
 import { UserResponse } from '../models/response/user-response';
 import { PageModel } from '../models/PageModel';
 import { UserInsertRequest } from '../models/request/user-insert-request';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserHttpService {
-  private apiUrl = 'http://store-back-tagme.preproducciondaw.cip.fpmislata.com/users';
+  private apiUrl = environment.apiUrl + '/users';
   HttpClient = inject(HttpClient);
 
   updateUser(userId: number, userData: UserUpdateRequest): Observable<UserResponse> {

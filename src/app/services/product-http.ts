@@ -6,14 +6,15 @@ import { ProductInsertRequest } from '../models/request/product-insert-request';
 import { ProductDetailResponse } from '../models/response/product-detail-response';
 import { ProductUpdateRequest } from '../models/request/product-update-request';
 import { PageModel } from '../models/PageModel';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductHttp {
   httpClient = inject(HttpClient);
-  apiUrl = 'http://store-back-tagme.preproducciondaw.cip.fpmislata.com/products';
-  apiUrlAdmin = 'http://store-back-tagme.preproducciondaw.cip.fpmislata.com/admin/products';
+  apiUrl = environment.apiUrl + '/products';
+  apiUrlAdmin = environment.apiUrl + '/admin/products';
 
   getProducts(pageNumber: number, pageSize: number): Observable<PageModel<ProductSummaryResponse>> {
     return this.httpClient.get<PageModel<ProductSummaryResponse>>(
