@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://tagme-admin.producciondaw.cip.fpmislata.com'
+  apiUrl: 'http://tagme-store-back.producciondaw.cip.fpmislata.com'
 };
