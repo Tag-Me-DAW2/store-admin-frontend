@@ -30,7 +30,7 @@
             "styles": ["src/styles.scss"]
           },
           "configurations": {
-            "production": {
+            "prod": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -51,7 +51,7 @@
               ],
               "outputHashing": "all"
             },
-            "preproduction": {
+            "preprod": {
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
