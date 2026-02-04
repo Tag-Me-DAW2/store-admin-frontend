@@ -1,3 +1,5 @@
+import { ProductMaterial } from '../ProductMaterial';
+
 export interface ProductInsertRequest {
   name: string;
   description: string;
@@ -6,4 +8,5 @@ export interface ProductInsertRequest {
   image: string;
   imageName: string;
   categoryId: number;
+  material: ProductMaterial;
 }

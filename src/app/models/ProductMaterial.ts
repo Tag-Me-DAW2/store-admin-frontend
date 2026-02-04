@@ -1,6 +1,13 @@
 export enum ProductMaterial {
-    STEEL = 'Steel',
-    WOOD = 'Wood',
+    STEEL = 'STEEL',
+    WOOD = 'WOOD',
     PVC = 'PVC',
-    GOLDEN = 'Golden'
+    GOLDEN = 'GOLDEN'
 }
+
+export const ProductMaterialLabels: Record<ProductMaterial, string> = {
+    [ProductMaterial.STEEL]: 'Steel',
+    [ProductMaterial.WOOD]: 'Wood',
+    [ProductMaterial.PVC]: 'PVC',
+    [ProductMaterial.GOLDEN]: 'Golden'
+};
