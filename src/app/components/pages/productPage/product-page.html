@@ -53,6 +53,15 @@
               [(ngModel)]="createdProduct.discountPercentage">
           </div>
 
+          <div class="product-detail__field">
+            <label class="product-detail__label">Material</label>
+            <select class="product-detail__input" id="material-create" name="material" [(ngModel)]="createdProduct.material">
+              @for (material of materialOptions; track material) {
+              <option [value]="material">{{ ProductMaterialLabels[material] }}</option>
+              }
+            </select>
+          </div>
+
           <div class="product-detail__field product-detail__field--full">
             <label class="product-detail__label">Image URL</label>
             <tgm-image-upload-component [preview]="createdProduct.image" (imageSelected)="setImageInsert($event)"
@@ -120,6 +129,15 @@
               [(ngModel)]="detailedProduct.category.id">
               @for (category of categoriesPage.data; track $index) {
               <option [value]="category.id">{{ category.name }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="product-detail__field">
+            <label class="product-detail__label">Material</label>
+            <select class="product-detail__input" id="material-edit" name="material" [(ngModel)]="detailedProduct.material">
+              @for (material of materialOptions; track material) {
+              <option [value]="material">{{ ProductMaterialLabels[material] }}</option>
               }
             </select>
           </div>

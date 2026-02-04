@@ -16,6 +16,7 @@ import { AlertService } from '../../../services/AlertService';
 import { TgmButtonComponent } from '../../ui/tgm-button/tgm-button';
 import { ProductInsertRequest } from '../../../models/request/product-insert-request';
 import { PaginationComponent } from '../../ui/pagination-component/pagination-component';
+import { ProductMaterial, ProductMaterialLabels } from '../../../models/ProductMaterial';
 
 @Component({
   selector: 'product-page',
@@ -42,7 +43,7 @@ export class ProductPage implements OnInit, OnDestroy {
 
   productsPage!: PageModel<ProductSummaryResponse>;
   categoriesPage!: PageModel<CategoryResponse>;
-  columns: string[] = ['id', 'image', 'name', 'price', 'category'];
+  columns: string[] = ['id', 'image', 'name', 'price', 'category', 'material'];
 
   createdProduct: ProductInsertRequest = {
     name: '',
@@ -52,7 +53,12 @@ export class ProductPage implements OnInit, OnDestroy {
     image: '',
     imageName: '',
     categoryId: 0,
+    material: ProductMaterial.STEEL,
   };
+
+  ProductMaterial = ProductMaterial;
+  ProductMaterialLabels = ProductMaterialLabels;
+  materialOptions = Object.values(ProductMaterial);
 
   detailedProduct!: ProductDetailResponse;
   detaildetailDialogOpen: boolean = false;
@@ -183,6 +189,7 @@ export class ProductPage implements OnInit, OnDestroy {
       image: this.createdProduct.image.split(',')[1],
       imageName: this.createdProduct.imageName,
       categoryId: this.createdProduct.categoryId,
+      material: this.createdProduct.material,
     };
     console.log('Creating product:', newProduct);
     this.productService.createProduct(newProduct).subscribe({

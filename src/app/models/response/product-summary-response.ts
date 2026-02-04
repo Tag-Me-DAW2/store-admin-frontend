@@ -7,4 +7,5 @@ export interface ProductSummaryResponse {
   price: number;
   image: string;
   category: CategoryResponse;
+  material: string;
 }
