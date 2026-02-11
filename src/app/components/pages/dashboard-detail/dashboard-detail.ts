@@ -3,6 +3,7 @@ import { DashboardDetailCard } from '../../ui/dashboard-detail-card/dashboard-de
 import { UserService } from '../../../services/user-service';
 import { ProductService } from '../../../services/product-service';
 import { CategoryService } from '../../../services/category-service';
+import { OrderService } from '../../../services/order-service';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -15,10 +16,12 @@ export class DashboardDetailPage {
   categoryCount!: number;
   productCount!: number;
   userCount!: number;
+  orderCount!: number;
 
   userService = inject(UserService);
   productService = inject(ProductService);
   categoryService = inject(CategoryService);
+  orderService = inject(OrderService);
 
   ngOnInit() {
     this.fetchCounts();
@@ -48,6 +51,15 @@ export class DashboardDetailPage {
       },
       error: (err) => {
         console.error('Error fetching category count:', err);
+      },
+    });
+
+    this.orderService.getOrderCount().subscribe({
+      next: (count) => {
+        this.orderCount = count;
+      },
+      error: (err) => {
+        console.error('Error fetching order count:', err);
       },
     });
   }

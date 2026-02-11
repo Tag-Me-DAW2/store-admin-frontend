@@ -94,7 +94,7 @@ export class UserPage {
       error: (error) => {
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to load users. Please try again later.',
+          text: 'No se pudieron cargar los usuarios. Por favor, inténtalo de nuevo.',
         });
         console.error('Error fetching users:', error);
       },
@@ -129,7 +129,7 @@ export class UserPage {
       error: (error) => {
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to load user details. Please try again later.',
+          text: 'No se pudieron cargar los detalles del usuario. Por favor, inténtalo de nuevo.',
         });
         console.error('Error fetching user details:', error);
       },
@@ -159,15 +159,15 @@ export class UserPage {
     this.userService.createUser(newUser).subscribe({
       next: (data) => {
         this.alertService.success({
-          title: 'User Created',
-          text: 'The user has been successfully created.',
+          title: 'Usuario creado',
+          text: 'El usuario se ha creado correctamente.',
         });
         this.loadUsers(this.pageNumber, this.pageSize);
       },
       error: (error) => {
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to create user. Please try again later.',
+          text: 'No se pudo crear el usuario. Por favor, inténtalo de nuevo.',
         });
         console.error('Error creating user:', error);
       },
@@ -198,7 +198,7 @@ export class UserPage {
         error: (error) => {
           this.alertService.error({
             title: 'Error',
-            text: 'Failed to update user. Please try again later.',
+            text: 'No se pudo actualizar el usuario. Por favor, inténtalo de nuevo.',
           });
           console.error('Error updating user:', error);
         },
@@ -211,8 +211,8 @@ export class UserPage {
     this.userService.deleteUserById(this.detailedUser.id).subscribe({
       next: () => {
         this.alertService.success({
-          title: 'User Deleted',
-          text: 'The user has been successfully deleted.',
+          title: 'Usuario eliminado',
+          text: 'El usuario se ha eliminado correctamente.',
         });
         if (this.usersPage.data.length === 1 && this.pageNumber > 1) {
           this.pageNumber--;
@@ -224,7 +224,7 @@ export class UserPage {
         console.error('Error deleting user:', error);
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to delete user. Please try again later.',
+          text: 'No se pudo eliminar el usuario. Por favor, inténtalo de nuevo.',
         });
       },
     });

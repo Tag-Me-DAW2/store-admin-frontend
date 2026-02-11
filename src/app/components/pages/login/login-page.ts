@@ -40,8 +40,8 @@ export class LoginPage {
       },
       error: (error) => {
         this.alertService.error({
-          title: 'Login Failed',
-          text: 'Invalid email or password. Please try again.',
+          title: 'Error de inicio de sesión',
+          text: 'Email o contraseña incorrectos. Por favor, inténtalo de nuevo.',
         });
         console.error('Login error:', error);
       },

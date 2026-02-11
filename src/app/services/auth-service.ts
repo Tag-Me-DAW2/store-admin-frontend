@@ -34,8 +34,8 @@ export class AuthService {
       },
       error: (error) => {
         this.alertService.error({
-          title: 'Logout Failed',
-          text: 'An error occurred while logging out. Please try again.',
+          title: 'Error al cerrar sesión',
+          text: 'Ha ocurrido un error al cerrar sesión. Por favor, inténtalo de nuevo.',
         });
       },
     });
@@ -49,8 +49,8 @@ export class AuthService {
           localStorage.removeItem('authToken');
           localStorage.removeItem('user');
           this.alertService.error({
-            title: 'Access Denied',
-            text: 'You do not have permission to access this application.',
+            title: 'Acceso denegado',
+            text: 'No tienes permisos para acceder a esta aplicación.',
           });
           this.router.navigate(['/']);
           return;
