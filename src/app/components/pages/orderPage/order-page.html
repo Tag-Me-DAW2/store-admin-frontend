@@ -1,0 +1,222 @@
+<div class="order">
+    <h1 class="order__main-title">Gestión de Pedidos</h1>
+
+    <!-- Filters Section -->
+    <div class="order__filters">
+        <div class="order__filter-group">
+            <label class="order__filter-label">Estado</label>
+            <select class="order__filter-select" [(ngModel)]="statusFilter">
+                @for (option of statusOptions; track option.value) {
+                <option [value]="option.value">{{ option.label }}</option>
+                }
+            </select>
+        </div>
+
+        <div class="order__filter-group">
+            <label class="order__filter-label">ID Usuario</label>
+            <input class="order__filter-input" type="number" placeholder="Filtrar por ID de usuario"
+                [(ngModel)]="userIdFilter">
+        </div>
+
+        <div class="order__filter-actions">
+            <button tgm-button size="medium" function="normal" importance="primary" (click)="applyFilters()">
+                <i class='bx bx-search'></i> Aplicar filtros
+            </button>
+            <button tgm-button size="medium" function="normal" importance="secondary" (click)="clearFilters()">
+                <i class='bx bx-x'></i> Limpiar
+            </button>
+        </div>
+    </div>
+
+    <div class="order__controls">
+        <span class="order__total-count">
+            @if (ordersPage) {
+            Total: {{ ordersPage.totalElements }} pedidos
+            }
+        </span>
+        <select name="pageSize" id="pageSize" [(ngModel)]="pageSize" (ngModelChange)="onPageSizeChange($event)"
+            class="order__pagesize-select">
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="10" selected>10</option>
+            <option [ngValue]="25">25</option>
+        </select>
+    </div>
+
+    <!-- Orders Table -->
+    @if (ordersPage && ordersPage.data) {
+    <table class="order__table">
+        <thead class="order__table-head">
+            <tr>
+                <th class="order__table-header">ID</th>
+                <th class="order__table-header">ID Usuario</th>
+                <th class="order__table-header">Estado</th>
+                <th class="order__table-header">Productos</th>
+                <th class="order__table-header">Total</th>
+                <th class="order__table-header">Fecha</th>
+                <th class="order__table-header">Acciones</th>
+            </tr>
+        </thead>
+        <tbody class="order__table-body">
+            @for (order of ordersPage.data; track order.id; let i = $index) {
+            <tr class="order__table-row" [class.order__table-row--even]="i % 2 === 0">
+                <td class="order__table-cell">
+                    <span class="order__id">#{{ order.id }}</span>
+                </td>
+                <td class="order__table-cell">{{ order.userId }}</td>
+                <td class="order__table-cell">
+                    <span class="order__status" [ngClass]="getStatusClass(order.orderStatus)">
+                        {{ getStatusLabel(order.orderStatus) }}
+                    </span>
+                </td>
+                <td class="order__table-cell">
+                    <div class="order__products-preview">
+                        @for (item of order.orderItems.slice(0, 3); track item.id) {
+                        <img class="order__product-thumb" [src]="item.productImage" [alt]="item.productName">
+                        }
+                        @if (order.orderItems.length > 3) {
+                        <span class="order__products-more">+{{ order.orderItems.length - 3 }}</span>
+                        }
+                    </div>
+                </td>
+                <td class="order__table-cell">
+                    <span class="order__total">{{ getTotalWithShipping(order) | currency:'EUR':'symbol':'1.2-2'
+                        }}</span>
+                </td>
+                <td class="order__table-cell">
+                    {{ order.paidDate | date:'dd/MM/yyyy HH:mm' }}
+                </td>
+                <td class="order__table-cell order__table-cell--actions">
+                    <button class="order__action-btn order__action-btn--view" (click)="openOrderDetail(order)"
+                        title="Ver detalles">
+                        <i class='bx bx-show'></i>
+                        <span>Ver</span>
+                    </button>
+                    @if (order.orderStatus === 'PROCESSING') {
+                    <button class="order__action-btn order__action-btn--retry" (click)="retryPayment(order.id)"
+                        title="Reintentar pago">
+                        <i class='bx bx-refresh'></i>
+                        <span>Reintentar</span>
+                    </button>
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+    <app-pagination-component [currentPageNumber]="pageNumber" [totalPages]="ordersPage.totalPages"
+        (pageChange)="onPageChange($event)">
+    </app-pagination-component>
+    } @else {
+    <div class="order__empty">
+        <p>No hay pedidos disponibles</p>
+    </div>
+    }
+
+    <!-- Order Detail Dialog -->
+    <div class="dialog-overlay" [class.dialog-overlay--open]="detailDialogOpen" (click)="closeDialog()">
+        <detail-dialog [class.detail-dialog--open]="detailDialogOpen" (closeDialog)="closeDialog()"
+            (click)="$event.stopPropagation()">
+            @if (selectedOrder) {
+            <div class="order-detail">
+                <h2 class="order-detail__title">Pedido #{{ selectedOrder.id }}</h2>
+
+                <div class="order-detail__section">
+                    <h3 class="order-detail__section-title">Información General</h3>
+                    <div class="order-detail__info-grid">
+                        <div class="order-detail__info-item">
+                            <span class="order-detail__info-label">ID Usuario</span>
+                            <span class="order-detail__info-value">{{ selectedOrder.userId }}</span>
+                        </div>
+                        <div class="order-detail__info-item">
+                            <span class="order-detail__info-label">Estado</span>
+                            <span class="order__status" [ngClass]="getStatusClass(selectedOrder.orderStatus)">
+                                {{ getStatusLabel(selectedOrder.orderStatus) }}
+                            </span>
+                        </div>
+                        <div class="order-detail__info-item">
+                            <span class="order-detail__info-label">Fecha de Pago</span>
+                            <span class="order-detail__info-value">{{ selectedOrder.paidDate | date:'dd/MM/yyyy HH:mm'
+                                }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                @if (selectedOrder.shippingInfo) {
+                <div class="order-detail__section">
+                    <h3 class="order-detail__section-title">Información de Envío</h3>
+                    <div class="order-detail__info-grid">
+                        <div class="order-detail__info-item">
+                            <span class="order-detail__info-label">Nombre</span>
+                            <span class="order-detail__info-value">{{ selectedOrder.shippingInfo.name }} {{
+                                selectedOrder.shippingInfo.surname }}</span>
+                        </div>
+                        <div class="order-detail__info-item">
+                            <span class="order-detail__info-label">Email</span>
+                            <span class="order-detail__info-value">{{ selectedOrder.shippingInfo.email }}</span>
+                        </div>
+                        <div class="order-detail__info-item order-detail__info-item--full">
+                            <span class="order-detail__info-label">Dirección</span>
+                            <span class="order-detail__info-value">
+                                {{ selectedOrder.shippingInfo.address }}, {{ selectedOrder.shippingInfo.city }},
+                                {{ selectedOrder.shippingInfo.postalCode }}, {{ selectedOrder.shippingInfo.country }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                }
+
+                <div class="order-detail__section">
+                    <h3 class="order-detail__section-title">Productos ({{ selectedOrder.orderItems.length }})</h3>
+                    <div class="order-detail__items">
+                        @for (item of selectedOrder.orderItems; track item.id) {
+                        <div class="order-detail__item">
+                            <img class="order-detail__item-image" [src]="item.productImage" [alt]="item.productName">
+                            <div class="order-detail__item-info">
+                                <span class="order-detail__item-name">{{ item.productName }}</span>
+                                <span class="order-detail__item-quantity">Cantidad: {{ item.quantity }}</span>
+                            </div>
+                            <div class="order-detail__item-price">
+                                @if (item.discountPercentage > 0) {
+                                <span class="order-detail__item-original-price">{{ item.basePrice |
+                                    currency:'EUR':'symbol':'1.2-2' }}</span>
+                                <span class="order-detail__item-final-price">{{ getDiscountedPrice(item.basePrice,
+                                    item.discountPercentage) | currency:'EUR':'symbol':'1.2-2' }}</span>
+                                } @else {
+                                <span class="order-detail__item-final-price">{{ item.basePrice |
+                                    currency:'EUR':'symbol':'1.2-2' }}</span>
+                                }
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="order-detail__summary">
+                    <div class="order-detail__summary-row">
+                        <span>Subtotal</span>
+                        <span>{{ selectedOrder.totalPrice | currency:'EUR':'symbol':'1.2-2' }}</span>
+                    </div>
+                    <div class="order-detail__summary-row">
+                        <span>Gastos de envío</span>
+                        <span>{{ selectedOrder.shippingCost | currency:'EUR':'symbol':'1.2-2' }}</span>
+                    </div>
+                    <div class="order-detail__summary-row order-detail__summary-row--total">
+                        <span>Total</span>
+                        <span>{{ getTotalWithShipping(selectedOrder) | currency:'EUR':'symbol':'1.2-2' }}</span>
+                    </div>
+                </div>
+
+                @if (selectedOrder.orderStatus === 'PROCESSING') {
+                <div class="order-detail__actions">
+                    <button tgm-button size="large" function="normal" importance="primary"
+                        (click)="retryPayment(selectedOrder.id)">
+                        <i class='bx bx-refresh'></i> Reintentar Pago
+                    </button>
+                </div>
+                }
+            </div>
+            }
+        </detail-dialog>
+    </div>
+</div>

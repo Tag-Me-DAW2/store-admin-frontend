@@ -51,8 +51,8 @@ export class ImageUploadComponent implements OnInit {
 
     if (!file.type.startsWith('image/')) {
       this.alertService.error({
-        title: 'Invalid File Type',
-        text: 'Please select a valid image file.',
+        title: 'Tipo de archivo inválido',
+        text: 'Por favor, selecciona un archivo de imagen válido.',
       });
       input.value = '';
       return;

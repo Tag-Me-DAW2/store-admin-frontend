@@ -107,7 +107,7 @@ export class ProductPage implements OnInit, OnDestroy {
       error: (error) => {
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to load categories. Please try again later.',
+          text: 'No se pudieron cargar las categorías. Por favor, inténtalo de nuevo.',
         });
         console.error('Error fetching categories:', error);
       },
@@ -128,7 +128,7 @@ export class ProductPage implements OnInit, OnDestroy {
       error: (error) => {
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to load products. Please try again later.',
+          text: 'No se pudieron cargar los productos. Por favor, inténtalo de nuevo.',
         });
         console.error('Error fetching products:', error);
       },
@@ -168,7 +168,7 @@ export class ProductPage implements OnInit, OnDestroy {
       error: (error) => {
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to load product details. Please try again later.',
+          text: 'No se pudieron cargar los detalles del producto. Por favor, inténtalo de nuevo.',
         });
         console.error('Error fetching product details:', error);
       },
@@ -195,15 +195,15 @@ export class ProductPage implements OnInit, OnDestroy {
     this.productService.createProduct(newProduct).subscribe({
       next: (data) => {
         this.alertService.success({
-          title: 'Product Created',
-          text: 'The product has been successfully created.',
+          title: 'Producto creado',
+          text: 'El producto se ha creado correctamente.',
         });
         this.loadProducts(this.pageNumber, this.pageSize);
       },
       error: (error) => {
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to create product. Please try again later.',
+          text: 'No se pudo crear el producto. Por favor, inténtalo de nuevo.',
         });
         console.error('Error creating product:', error);
       },
@@ -214,7 +214,7 @@ export class ProductPage implements OnInit, OnDestroy {
   updateProduct() {
     console.log('Prodct:', this.detailedProduct);
     console.log(this.detailedProduct.name);
-    
+
     if (this.detailedProduct) {
       let updatedProduct: ProductUpdateRequest = {
         id: this.detailedProduct.id,
@@ -231,8 +231,8 @@ export class ProductPage implements OnInit, OnDestroy {
       this.productService.updateProduct(this.detailedProduct.id, updatedProduct).subscribe({
         next: (data) => {
           this.alertService.success({
-            title: 'Product Updated',
-            text: 'The product has been successfully updated.',
+            title: 'Producto actualizado',
+            text: 'El producto se ha actualizado correctamente.',
           });
           this.loadProducts(this.pageNumber, this.pageSize);
         },
@@ -241,7 +241,7 @@ export class ProductPage implements OnInit, OnDestroy {
             title: 'Error',
             text:
               error.error.message.split(':')[1] === undefined
-                ? 'Failed to update product. Please try again later.'
+                ? 'No se pudo actualizar el producto. Por favor, inténtalo de nuevo.'
                 : error.error.message.split(':')[1],
           });
           console.error('Error updating product:', error);
@@ -255,8 +255,8 @@ export class ProductPage implements OnInit, OnDestroy {
     this.productService.deleteProductById(this.detailedProduct.id).subscribe({
       next: () => {
         this.alertService.success({
-          title: 'Product Deleted',
-          text: 'The product has been successfully deleted.',
+          title: 'Producto eliminado',
+          text: 'El producto se ha eliminado correctamente.',
         });
         if (this.productsPage.data.length === 1 && this.pageNumber > 1) {
           this.pageNumber--;
@@ -268,7 +268,7 @@ export class ProductPage implements OnInit, OnDestroy {
         console.error('Error deleting product:', error);
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to delete product. Please try again later.',
+          text: 'No se pudo eliminar el producto. Por favor, inténtalo de nuevo.',
         });
       },
     });

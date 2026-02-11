@@ -26,8 +26,8 @@ export class UserService {
           }
 
           this.alertService.success({
-            title: 'User Updated',
-            text: 'The user information has been successfully updated.',
+            title: 'Usuario actualizado',
+            text: 'La información del usuario se ha actualizado correctamente.',
           });
 
           this._refreshUser.update((n) => n + 1);
@@ -35,7 +35,7 @@ export class UserService {
         error: (error) => {
           console.error('Error updating user:', error);
         },
-      })
+      }),
     );
   }
 
