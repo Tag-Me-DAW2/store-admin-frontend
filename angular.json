@@ -78,13 +78,16 @@
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "prod"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "store-admin-frontend:build:production"
+            "prod": {
+              "buildTarget": "store-admin-frontend:build:prod"
+            },
+            "preprod": {
+              "buildTarget": "store-admin-frontend:build:preprod"
             },
             "development": {
               "buildTarget": "store-admin-frontend:build:development"
