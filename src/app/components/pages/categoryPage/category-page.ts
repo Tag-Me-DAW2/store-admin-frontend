@@ -61,7 +61,7 @@ export class CategoryPage {
       error: (error) => {
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to load categories. Please try again later.',
+          text: 'No se pudieron cargar las categorías. Por favor, inténtalo de nuevo.',
         });
         console.error('Error fetching categories:', error);
       },
@@ -91,7 +91,7 @@ export class CategoryPage {
       error: (error) => {
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to load category details. Please try again later.',
+          text: 'No se pudieron cargar los detalles de la categoría. Por favor, inténtalo de nuevo.',
         });
         console.error('Error fetching category details:', error);
       },
@@ -108,8 +108,8 @@ export class CategoryPage {
     this.categoryService.createCategory(this.createdCategory).subscribe({
       next: (data) => {
         this.alertService.success({
-          title: 'Category Created',
-          text: 'The category has been successfully created.',
+          title: 'Categoría creada',
+          text: 'La categoría se ha creado correctamente.',
         });
         this.loadCategories(this.pageNumber, this.pageSize);
       },
@@ -135,8 +135,8 @@ export class CategoryPage {
       this.categoryService.updateCategory(this.detailedCategory.id, updatedCategory).subscribe({
         next: (data) => {
           this.alertService.success({
-            title: 'Category Updated',
-            text: 'The category has been successfully updated.',
+            title: 'Categoría actualizada',
+            text: 'La categoría se ha actualizado correctamente.',
           });
           this.loadCategories(this.pageNumber, this.pageSize);
         },
@@ -156,8 +156,8 @@ export class CategoryPage {
     this.categoryService.deleteCategoryById(this.detailedCategory.id).subscribe({
       next: () => {
         this.alertService.success({
-          title: 'Category Deleted',
-          text: 'The category has been successfully deleted.',
+          title: 'Categoría eliminada',
+          text: 'La categoría se ha eliminado correctamente.',
         });
         if (this.categoryPage.data.length === 1 && this.pageNumber > 1) {
           this.pageNumber--;
@@ -169,7 +169,7 @@ export class CategoryPage {
         console.error('Error deleting category:', error);
         this.alertService.error({
           title: 'Error',
-          text: 'Failed to delete category. Please try again later.',
+          text: 'No se pudo eliminar la categoría. Por favor, inténtalo de nuevo.',
         });
       },
     });
